@@ -1,4 +1,4 @@
-package models;
+package com.codewarriors.models;
 
 import java.util.List;
 public class Company {

@@ -7,11 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
-import models.Company;
-import models.Market;
-import models.Turn;
+import com.codewarriors.models.Company;
+import com.codewarriors.models.Market;
+import com.codewarriors.models.Turn;
 
 @RestController
 @RequestMapping("/stockMarket")
