@@ -21,6 +21,7 @@ public class StockMarketSharesDetailsController {
 	public Market getStokMarketSharsPrices() {
 		List<Company> companies= new ArrayList<Company>();
 		Market market=new Market();
+		
 		market.setGameTime(60);// game time is 0s
 		market.setTurnTime(6);// companies stock price will change after 6s
 		for(int j=1;j<=5;j++) {			
