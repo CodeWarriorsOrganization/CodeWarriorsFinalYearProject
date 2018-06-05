@@ -60,30 +60,6 @@
 			<artifactId>jstl</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/junit/junit -->
-		<dependency>
-   		 	<groupId>junit</groupId>
-    		<artifactId>junit</artifactId>
-    		<scope>test</scope>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-library -->
-		<dependency>
-   			<groupId>org.hamcrest</groupId>
-    		<artifactId>hamcrest-library</artifactId>
-    		<scope>test</scope>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
-		<dependency>
-   			 <groupId>org.springframework</groupId>
-    		 <artifactId>spring-context</artifactId>
-    		 </dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
-		<dependency>
-    		<groupId>org.springframework</groupId>
-    		<artifactId>spring-test</artifactId>
-    		<scope>test</scope>
-		</dependency>
-		
 	</dependencies>
 
 	<build>
