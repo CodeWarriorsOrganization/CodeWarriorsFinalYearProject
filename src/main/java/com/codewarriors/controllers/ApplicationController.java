@@ -49,12 +49,12 @@ public class ApplicationController {
 	
 //	@RequestMapping(value = "/gameScreen", method = RequestMethod.GET)
 	@GetMapping(value = "/gameScreen")
-	public  String loadGameScreen(HttpServletRequest request) {
+	public  String loadGameScreen() {
 		
 	//	Player player = new Player();
-	List<Player> players = new ArrayList<Player>();
-		players = playerService.getAllPlayers();
-		request.setAttribute("players",players);
+	//List<Player> players = new ArrayList<Player>();
+	//	players = playerService.getAllPlayers();
+	//	request.setAttribute("players",players);
 		return "gameScreen";
 	}
 

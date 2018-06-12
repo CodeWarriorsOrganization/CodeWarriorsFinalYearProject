@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,13 +16,13 @@ import com.codewarriors.models.Turn;
 @RequestMapping("/stockMarket")
 public class StockMarketSharesDetailsController {
 	
-	@GetMapping("/getMarketPrices")
+	@PostMapping("/getMarketPrices")
 	public Market getStokMarketSharsPrices() {
 		List<Company> companies= new ArrayList<Company>();
 		Market market=new Market();
 		
-		market.setGameTime(60);// game time is 0s
-		market.setTurnTime(6);// companies stock price will change after 6s
+		market.setNoTurns(4);// game time is 0s
+		market.setTurnTime(5000);// companies stock price will change after 6s
 		for(int j=1;j<=5;j++) {			
 			Company company=new Company();
 			List<Turn> turnList= new ArrayList<Turn>();
@@ -49,7 +50,7 @@ public class StockMarketSharesDetailsController {
 			}
 			
 			
-			for(int i=1;i<=10;i++) {
+			for(int i=1;i<=4;i++) {
 				Turn turn=new Turn();
 				turn.setTurnId(i);
 				turn.setPrice(i+100);
