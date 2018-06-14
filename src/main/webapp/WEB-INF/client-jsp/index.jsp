@@ -13,7 +13,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/postrequest.js"></script>
 <script src="/js/getrequest.js"></script>
-<title>index screen</title>
+<title>Market Phobia</title>
 </head>
 <body>
 	<form action="waitingScreen" method="post">

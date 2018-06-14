@@ -17,7 +17,7 @@ public class Player {
 	private int pID;
 
 	@Column(name = "playername", nullable = false, unique = true)
-	// @Email(message = "Please provide a valid e-mail")
+
 	@NotEmpty(message = "Please enter a name")
 	private String playerName;
 

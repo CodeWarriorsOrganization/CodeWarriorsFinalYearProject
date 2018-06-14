@@ -22,7 +22,7 @@
 	href="static/css/bootstrap.min.css">
 
 
-<title>Waiting Screen</title>
+<title>Market Phobia</title>
 </head>
 <body>
 	<h3>Please Wait...</h3>
@@ -31,7 +31,7 @@
 		<script type="text/javascript" charset="utf-8">
 			var countdown = $("#countdown").countdown360({
 				radius : 60,
-				seconds : 10,
+				seconds : 1,
 				fontColor : '#FFFFFF',
 				autostart : false,
 				onComplete : function() {
