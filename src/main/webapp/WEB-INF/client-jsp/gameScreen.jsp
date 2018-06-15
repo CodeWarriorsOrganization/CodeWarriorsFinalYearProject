@@ -53,7 +53,8 @@ function getStockMarketDetailFromService() {
 
 function loop(){
 	
-	var table = document.getElementById("demoTable");	 
+	var table = document.getElementById("demoTable");	
+	document.getElementById("demo").innerHTML=response.companies.length;
 	 for (var i = 0; i < response.companies.length; i++) {
 		 
 		 var object = response.companies[i];		 
@@ -74,13 +75,13 @@ function loop(){
 	          table.deleteRow(0);
 	          table.deleteRow(0);
 	          table.deleteRow(0);
-	          //table.deleteRow(0);
-	         // table.deleteRow(0);
-	         // table.deleteRow(0);
-	         // table.deleteRow(0);
-	        //  table.deleteRow(0);
-	        //  table.deleteRow(0);
-	        //  table.deleteRow(0);
+	          table.deleteRow(0);
+	          table.deleteRow(0);
+	          table.deleteRow(0);
+	          table.deleteRow(0);
+	          table.deleteRow(0);
+	          table.deleteRow(0);
+	          table.deleteRow(0);
 	    	  loop();             
 	      }                        
 	   }, turnTimes)

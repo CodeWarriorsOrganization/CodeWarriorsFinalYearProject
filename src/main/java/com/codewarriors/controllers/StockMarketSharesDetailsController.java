@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.codewarriors.models.Company;
 import com.codewarriors.models.Market;
+import com.codewarriors.models.StockMarketPriceGenerator;
 import com.codewarriors.models.Turn;
 
 @RestController
@@ -18,7 +19,7 @@ public class StockMarketSharesDetailsController {
 	
 	@PostMapping("/getMarketPrices")
 	public Market getStokMarketSharsPrices() {
-		List<Company> companies= new ArrayList<Company>();
+	/*	List<Company> companies= new ArrayList<Company>();
 		Market market=new Market();
 		
 		market.setNoTurns(4);// game time is 0s
@@ -64,9 +65,9 @@ public class StockMarketSharesDetailsController {
 			
 		}
 		market.setCompanies(companies);
-		
-		
-		return market;
+		*/
+		StockMarketPriceGenerator markets=new StockMarketPriceGenerator();
+		return markets.generate();
 	}
 
 }
