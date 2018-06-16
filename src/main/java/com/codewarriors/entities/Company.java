@@ -1,9 +1,14 @@
 package com.codewarriors.entities;
 
+import java.util.List;
+
+import com.codewarriors.models.Turn;
+
 public class Company {
 	String companyName;
 	String sectorName;
 	String details;
+	private List<Turn> turns;
 
 	public String getCompanyName() {
 		return companyName;
@@ -38,6 +43,14 @@ public class Company {
 
 	public Company() {
 
+	}
+
+	public List<Turn> getTurns() {
+		return turns;
+	}
+
+	public void setTurns(List<Turn> turns) {
+		this.turns = turns;
 	}
 
 }

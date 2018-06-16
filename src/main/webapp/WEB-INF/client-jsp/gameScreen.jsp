@@ -10,7 +10,7 @@
 <title>Market Phobia</title>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="shortcut icon" type="image/x-icon"
-	href="/static/img/title-bar-logo.png" />
+	href="/static/img/title-logo.png" />
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -23,67 +23,20 @@
 
 </head>
 
-<body onload="countDownFunction()">
+<body onload="countDownFunction();getStockMarketDetailFromService();">
 	<div class="container">
+	<p id="demo"></p>
 		<div class="row col-md-6 table-responsive">
 			<table id="tblStock" class="table table-bordered table-hover">
 				<thead>
 					<tr>
 						<th>Company Name</th>
-						<th>Price</th>
+						<th>Stock Price</th>
 
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
-						<td>JK Computer Services</td>
-						<td>500</td>
-					</tr>
-					<tr>
-						<td>IFS</td>
-						<td>250</td>
-					</tr>
-					<tr>
-						<td>MillenniumIT</td>
-						<td>450</td>
-					</tr>
-					<tr>
-						<td>Cinnamon Air</td>
-						<td>300</td>
-					</tr>
-					<tr>
-						<td>EAP Holdings</td>
-						<td>150</td>
-					</tr>
-					<tr>
-						<td>ExpoRail</td>
-						<td>150</td>
-					</tr>
-					<tr>
-						<td>Nestle Lanka</td>
-						<td>750</td>
-					</tr>
-					<tr>
-						<td>Bank of Ceylon</td>
-						<td>620</td>
-					</tr>
-					<tr>
-						<td>Tokyo Cement</td>
-						<td>150</td>
-					</tr>
-					<tr>
-						<td>Brandix Lanka Limited</td>
-						<td>750</td>
-					</tr>
-					<tr>
-						<td>DFCC Bank</td>
-						<td>350</td>
-					</tr>
-					<tr>
-						<td>HNB Bank</td>
-						<td>1550</td>
-					</tr>
-
+				<tbody id="demoTable">
+	
 
 				</tbody>
 			</table>
@@ -182,7 +135,7 @@
 						document.getElementById('lblCountdown').style.fontSize = '1000%';
 						document.getElementById("lblCountdown").innerHTML = i;
 						i++;
-						if (i <= 10) {
+						if (i <= 30) {
 							myLoop();
 						}
 					}, 10000)
@@ -191,43 +144,7 @@
 	}
 </script>
 
-<script type="text/javascript">
-	//Load company details when click on the stock market table
 
-	var table = document.getElementById("tblStock");
-	for (var i = 1; i < table.rows.length; i++) {
-		table.rows[i].onclick = function() {
-			document.getElementById("btnTrade").innerHTML = "BUY";
-			document.getElementById("cName").value = this.cells[0].innerHTML;
-			document.getElementById("price").value = this.cells[1].innerHTML;
-			var price = this.cells[1].innerHTML;
-			document.getElementById("upDownQty").value = 1;
-			document.getElementById("cost").value = price
-					* document.getElementById("upDownQty").value;
-
-			$
-					.ajax({
-						type : "GET",
-						url : "${pageContext.request.contextPath}/displayDetails",
-						data : {
-							"cName" : document.getElementById("cName").value
-						},
-						success : function(data) {
-
-							document.getElementById("lblName").innerHTML = "Name    :";
-							document.getElementById("lblSector").innerHTML = "Sector  :";
-							document.getElementById("lblDetails").innerHTML = "Details :";
-
-							document.getElementById("name2").innerHTML = data.companyName;
-							document.getElementById("name3").innerHTML = data.sectorName;
-							document.getElementById("name4").innerHTML = "Official Website";
-							$("a#name4").attr('href', data.details);
-
-						}
-					});
-		};
-	}
-</script>
 
 <script type="text/javascript">
 	//pass data to controller
@@ -273,7 +190,7 @@
 
 				}
 			});
-		}, 110000);
+		}, 310000);
 	});
 </script>
 
@@ -445,7 +362,7 @@
 
 							table.rows[i].onclick = function() {
 
-								document.getElementById("btnTrade").innerHTML = "Sell";
+								document.getElementById("btnTrade").innerHTML = "SELL";
 								document.getElementById("cName").value = this.cells[0].innerText;
 								price = this.cells[1].innerText;
 								document.getElementById("index").value = $(this)
@@ -488,4 +405,108 @@
 
 					});
 </script>
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<script>
+var turn=0;
+var noTurns;
+var turnTimes;
+var response;
+
+	
+	
+function getStockMarketDetailFromService() {
+	
+	
+	 var xhttp = new XMLHttpRequest();
+	    xhttp.open("POST", "http://localhost:8080/stockMarket/getMarketPrices", false);
+	    xhttp.setRequestHeader("Content-type", "application/json");
+	    xhttp.send();
+	    response = JSON.parse(xhttp.responseText);
+	    noTurns=response.noTurns;
+	    turnTimes=response.turnTime;
+	    loop();
+	   
+	   
+	   
+}
+
+function loop(){
+	
+	var table = document.getElementById("tblStock");	
+	document.getElementById("demo").innerHTML=response.companies.length;
+	 for (var i = 0; i < response.companies.length; i++) {
+		 
+		 var object = response.companies[i];		 
+		 var row = table.insertRow(i);
+		 var cell1 = row.insertCell(0);
+		 var cell2 = row.insertCell(1); 		
+		 table.rows[i].cells[0].innerHTML=object['companyName'];
+		 table.rows[i].cells[1].innerHTML=object.turns[turn].price;	      	  
+	    }   
+	 	
+	 
+	 setTimeout(function () {          
+	      turn++;                     
+	      if (turn < noTurns) {           
+	    	       
+	    	  table.deleteRow(0);
+	    	  table.deleteRow(0);
+	          table.deleteRow(0);
+	          table.deleteRow(0);
+	          table.deleteRow(0);
+	          table.deleteRow(0);
+	          table.deleteRow(0);
+	          table.deleteRow(0);
+	          table.deleteRow(0);
+	          table.deleteRow(0);
+	          table.deleteRow(0);
+	          table.deleteRow(0);
+	    	  loop();             
+	      }                        
+	   }, turnTimes)
+} 
+
+
+</script>
+<script type="text/javascript">
+
+
+$(document).on('click', '#tblStock tr', function (e) {
+    e.stopPropagation();
+    var index = $(this).index();
+  
+    document.getElementById("btnTrade").innerHTML = "BUY";
+     document.getElementById("cName").value = this.cells[0].textContent;
+     document.getElementById("price").value = this.cells[1].textContent;
+     var price = document.getElementById("price").value;
+     document.getElementById("upDownQty").value = 1;
+	 document.getElementById("cost").value = price * document.getElementById("upDownQty").value;
+     
+ $
+					.ajax({
+						type : "GET",
+						url : "${pageContext.request.contextPath}/displayDetails",
+						data : {
+							"cName" :   document.getElementById("cName").value
+						},
+						success : function(data) {
+
+							document.getElementById("lblName").innerHTML = "Name    :";
+							document.getElementById("lblSector").innerHTML = "Sector  :";
+							document.getElementById("lblDetails").innerHTML = "Details :";
+
+							document.getElementById("name2").innerHTML = data.companyName;
+							document.getElementById("name3").innerHTML = data.sectorName;
+							document.getElementById("name4").innerHTML = "Official Website";
+							$("a#name4").attr('href', data.details);
+
+						}
+					});
+ 
+   
+});
+
+
+</script>
+
 </html>
