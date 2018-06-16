@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.codewarriors.components.GeneralTrendMarketComponent;
+
 import ch.qos.logback.core.net.SyslogOutputStream;
 
 public class StockMarketPriceGenerator {
@@ -119,13 +121,15 @@ public class StockMarketPriceGenerator {
 	
 	private int[][] getGeneralTrendMarketComponent() {
 		int generalTrendMarketComponent[][] = new int[30][12];
+		//GeneralTrendMarketComponent gtComponent= new GeneralTrendMarketComponent();
+		generalTrendMarketComponent=GeneralTrendMarketComponent.generateGeneralTrendMarketStockRandomValue();
 		int generalTrendTrendMarketLow=-3;
 		int generalTrendTrendMarketHigh=3;
 		System.out.println("");
 		System.out.println("genarate generalTrendMarketComponent=  ");
 		for(int i=0;i<30;i++) {			
 			for(int j=0; j<12;j++) {
-				generalTrendMarketComponent[i][j]=random.nextInt(generalTrendTrendMarketHigh-generalTrendTrendMarketLow) + generalTrendTrendMarketLow;
+			//	generalTrendMarketComponent[i][j]=random.nextInt(generalTrendTrendMarketHigh-generalTrendTrendMarketLow) + generalTrendTrendMarketLow;
 				System.out.print(generalTrendMarketComponent[i][j]+"  ");
 				
 			}		
