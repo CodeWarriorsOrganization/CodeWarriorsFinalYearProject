@@ -17,8 +17,8 @@ public class Bank {
 	private int turnNo = 0;
 	private String type = "Initial";
 
-	private double amount = 1000;
-	private double balance = 1000;
+	private double amount = 10000;
+	private double balance = 10000;
 
 	public Bank(String pName) {
 

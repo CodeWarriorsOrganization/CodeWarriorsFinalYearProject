@@ -24,6 +24,8 @@ public class BrokerController {
 	@Autowired
 	private BrokerService brokerService;
 
+	
+	
 	@RequestMapping(value = "/displayDetails")
 	public Company create(@RequestParam String cName, HttpServletRequest request, HttpServletResponse response,
 			Model model) {
@@ -38,7 +40,8 @@ public class BrokerController {
 	public String createAccounts(@RequestParam String pName, String cName, String turnNo, String type, String unitPrice,
 			String quantity, String amount, String balance, HttpServletRequest request, HttpServletResponse response,
 			Model model) {
-
+		 String type2="";
+		
 		int turnNo1 = Integer.parseInt(turnNo);
 		double unitPrice1 = Double.parseDouble(unitPrice);
 		int quantity1 = Integer.parseInt(quantity);
@@ -48,7 +51,18 @@ public class BrokerController {
 		c = companyService.getCompanyDetails(cName);
 		System.out.println(cName);
 		System.out.println(c.getCompanyName());
-		Bank bank = new Bank(pName, turnNo1, type, amount1, balance1);
+		
+		switch (type) {
+		case "BUY":
+			type2="Withdraw";
+			break;
+		case "SELL":
+			type2="Deposit";
+			break;
+			
+		}
+		
+		Bank bank = new Bank(pName, turnNo1, type2, amount1, balance1);
 		Transaction transaction = new Transaction(pName, turnNo1, type, cName, unitPrice1, quantity1, amount1);
 		brokerService.createBankAccount(bank);
 		brokerService.createTransaction(transaction);
