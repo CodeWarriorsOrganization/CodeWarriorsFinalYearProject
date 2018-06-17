@@ -54,10 +54,10 @@ public class SectorTrendMarketComponent {
 	        //test print of final result
 	        for (int z = 0; z < sectorTrend.length; z++) {
 	            for (int w = 0; w < sectorTrend[z].length; w++) {
-	                System.out.print(sectorTrend[z][w] + " ");
+	              //  System.out.print(sectorTrend[z][w] + " ");
 
 	            }
-	            System.out.println(" ");
+	          //  System.out.println(" ");
 
 	        }
 
