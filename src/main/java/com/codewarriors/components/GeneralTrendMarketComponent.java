@@ -100,9 +100,9 @@ public class GeneralTrendMarketComponent {
 		        for (int v = 0; v < generalTrend.length; v++) {
 
 		            for (int w = 0; w < generalTrend[v].length; w++) {
-		                System.out.print(generalTrend[v][w] + "   ");
+		              //  System.out.print(generalTrend[v][w] + "   ");
 		            }
-		            System.out.println("");
+		           // System.out.println("");
 		        }
 		        //      returns finalized array
 		        return generalTrend;
