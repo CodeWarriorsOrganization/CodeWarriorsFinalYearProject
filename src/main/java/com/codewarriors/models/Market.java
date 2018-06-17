@@ -2,8 +2,6 @@ package com.codewarriors.models;
 
 import java.util.List;
 
-import com.codewarriors.entities.Company;
-
 public class Market {
 
 	private int noTurns;

@@ -1,8 +1,6 @@
-package com.codewarriors.entities;
+package com.codewarriors.models;
 
 import java.util.List;
-
-import com.codewarriors.models.Turn;
 
 public class Company {
 	String companyName;

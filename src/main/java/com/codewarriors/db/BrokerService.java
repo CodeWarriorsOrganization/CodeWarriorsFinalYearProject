@@ -1,4 +1,4 @@
-package com.codewarriors.services;
+package com.codewarriors.db;
 
 import javax.transaction.Transactional;
 

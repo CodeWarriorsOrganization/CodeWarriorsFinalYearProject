@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.codewarriors.db.BrokerService;
 import com.codewarriors.entities.Bank;
-import com.codewarriors.entities.Company;
 import com.codewarriors.entities.Transaction;
-import com.codewarriors.services.BrokerService;
+import com.codewarriors.models.Company;
 import com.codewarriors.services.CompanyService;
 
 @RestController

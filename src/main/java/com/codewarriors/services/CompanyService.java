@@ -4,7 +4,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.codewarriors.entities.Company;
+import com.codewarriors.models.Company;
 
 @Service
 @Transactional

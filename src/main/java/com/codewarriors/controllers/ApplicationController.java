@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.codewarriors.db.BrokerService;
+import com.codewarriors.db.PlayerService;
 import com.codewarriors.entities.Bank;
 import com.codewarriors.entities.Player;
-import com.codewarriors.services.BrokerService;
-import com.codewarriors.services.PlayerService;
 
 @Controller
 public class ApplicationController {

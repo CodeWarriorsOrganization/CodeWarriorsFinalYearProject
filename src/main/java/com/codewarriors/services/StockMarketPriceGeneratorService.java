@@ -1,4 +1,4 @@
-package com.codewarriors.models;
+package com.codewarriors.services;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -6,10 +6,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import com.codewarriors.entities.Company;
+import com.codewarriors.models.Company;
+import com.codewarriors.models.Market;
+import com.codewarriors.models.Turn;
 
 
-public class StockMarketPriceGenerator {
+public class StockMarketPriceGeneratorService {
 
 	Random random = new Random();	
 	int companysStockIncresingPresentages[][]=new int[12][30];	
