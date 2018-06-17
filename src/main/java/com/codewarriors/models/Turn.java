@@ -1,7 +1,6 @@
 package com.codewarriors.models;
 
 public class Turn {
-	
 	private int turnId;
 	private double price;
 	
@@ -17,5 +16,4 @@ public class Turn {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-
 }

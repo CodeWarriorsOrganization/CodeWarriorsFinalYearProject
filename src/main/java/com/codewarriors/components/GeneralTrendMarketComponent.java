@@ -2,9 +2,7 @@ package com.codewarriors.components;
 
 import java.text.DecimalFormat;
 import java.util.Random;
-
 public class GeneralTrendMarketComponent {
-	
 	public static int[][] generateGeneralTrendMarketStockRandomValue() {
 
 	    //--variables declaration begin
@@ -107,5 +105,4 @@ public class GeneralTrendMarketComponent {
 
 	        return result;
 	    }
-
 }

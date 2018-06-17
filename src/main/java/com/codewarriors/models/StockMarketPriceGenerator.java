@@ -2,20 +2,21 @@ package com.codewarriors.models;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import com.codewarriors.components.GeneralTrendMarketComponent;
+import com.codewarriors.entities.Company;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 
 public class StockMarketPriceGenerator {
+
 	Random random = new Random();	
 	int companysStockIncresingPresentages[][]=new int[12][30];	
 	int companyRandomStarterPrice[]=new int[30];
 	double finalCompanyStockPrice[][]=new double[12][30];
 	
-	
+	List<String> companyNames = Arrays.asList("JK Computer Services","IFS","MillenniumIT","Cinnamon Air","EAP Holdings","ExpoRail","Nestle Lanka","Bank of Ceylon","Tokyo Cement","Brandix Lanka Limited","DFCC Bank","HNB Bank");
 	List<Company> companies= new ArrayList<Company>();
 	Market market=new Market();
 	
@@ -51,7 +52,7 @@ public class StockMarketPriceGenerator {
 		
 		
 		market.setNoTurns(30);// game time is 0s
-		market.setTurnTime(1000);// companies stock price will change after 6s
+		market.setTurnTime(10000);// companies stock price will change after 6s
 		
 		
 		
@@ -62,8 +63,8 @@ public class StockMarketPriceGenerator {
 			Company company=new Company();
 			List<Turn> turnList= new ArrayList<Turn>();
 			
-			company.setCompanyName("company="+j);
-			company.setSectorName("sector="+j);
+			company.setCompanyName(companyNames.get(j));
+			//company.setSectorName("sector="+j);
 		
 			
 			for(int i=0;i<30;i++) {
@@ -121,15 +122,13 @@ public class StockMarketPriceGenerator {
 	
 	private int[][] getGeneralTrendMarketComponent() {
 		int generalTrendMarketComponent[][] = new int[30][12];
-		//GeneralTrendMarketComponent gtComponent= new GeneralTrendMarketComponent();
-		generalTrendMarketComponent=GeneralTrendMarketComponent.generateGeneralTrendMarketStockRandomValue();
 		int generalTrendTrendMarketLow=-3;
 		int generalTrendTrendMarketHigh=3;
 		System.out.println("");
 		System.out.println("genarate generalTrendMarketComponent=  ");
 		for(int i=0;i<30;i++) {			
 			for(int j=0; j<12;j++) {
-			//	generalTrendMarketComponent[i][j]=random.nextInt(generalTrendTrendMarketHigh-generalTrendTrendMarketLow) + generalTrendTrendMarketLow;
+				generalTrendMarketComponent[i][j]=random.nextInt(generalTrendTrendMarketHigh-generalTrendTrendMarketLow) + generalTrendTrendMarketLow;
 				System.out.print(generalTrendMarketComponent[i][j]+"  ");
 				
 			}		
@@ -202,4 +201,6 @@ public class StockMarketPriceGenerator {
 		
 		return tempTransformedCompanysStockIncresingPresentages;
 	}
+	
+	
 }
