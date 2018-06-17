@@ -1,16 +1,18 @@
-package com.codewarriors.entities;
+package com.codewarriors;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-class PlayerTests {
+import com.codewarriors.entities.Player;
+
+public class PlayerTests {
 	
     // Is getID() method return value or not null. 
 	@Test
-	void getpIDTest() {
+	public void getpIDTest() {
 		Player pIDjunit = new Player ();
 		int result = pIDjunit.getpID();
 		System.out.println("pID is not empty: "+ result );	
@@ -20,7 +22,7 @@ class PlayerTests {
 	
 	// Checking  whether the pID is a numeric value.
 	@Test
-	void checkNumeric() {
+	public void checkNumeric() {
 		Player pIDjunit = new Player ();
 		int result = pIDjunit.getpID();
 		if ((result%1)!=0) {
@@ -35,7 +37,7 @@ class PlayerTests {
 	
 	// Checking if the value for pId is properly set.
 	@Test
-	void setpIDTest() {
+	public void setpIDTest() {
 		Player pIDjunit = new Player ();
 		int expectedpID = pIDjunit.getpID();
 		int actualpID = pIDjunit.getpID();
@@ -49,16 +51,16 @@ class PlayerTests {
 	
 	// Check if the player name is empty 
 	@Test 
-	void getPlayerNameTest() {
+	public void getPlayerNameTest() {
 		Player namejunit = new Player() ;
 	    String name = namejunit.getPlayerName();
 	    System.out.println("player Name cannot be empty, Please enter a player name: "+" "+ name );	
-		assertNull("player Name cannot be empty, Please enter a player name : "+ " "+ name);			
+		assertNull("player Name cannot be empty, Please enter a player name",name);			
 	}
 	
 	// checking player Name is a string value using parseInt() method.
 	@Test
-	void checkAlphanumeric () {
+	public void checkAlphanumeric () {
 		Player namejunit = new Player() ;
 	    String name = namejunit.getPlayerName();
 	    
@@ -83,7 +85,7 @@ class PlayerTests {
 	
 	//checking if the Player Name is properly set.
 	@Test
-	void setPlayerNameTest() {
+	public void setPlayerNameTest() {
 		Player namejunit = new Player() ;
 	    String expectedName = namejunit.getPlayerName();
 	    String actualName = namejunit.getPlayerName();
