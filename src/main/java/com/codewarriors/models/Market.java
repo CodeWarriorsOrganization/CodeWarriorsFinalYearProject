@@ -1,17 +1,17 @@
 package com.codewarriors.models;
 
 import java.util.List;
+
 public class Market {
-	
-	private int gameTime;
+
+	private int noTurns;
 	private int turnTime;	
 	private List<Company> companies;
-	
-	public int getGameTime() {
-		return gameTime;
+	public int getNoTurns() {
+		return noTurns;
 	}
-	public void setGameTime(int gameTime) {
-		this.gameTime = gameTime;
+	public void setNoTurns(int noTurns) {
+		this.noTurns = noTurns;
 	}
 	public int getTurnTime() {
 		return turnTime;
@@ -25,5 +25,7 @@ public class Market {
 	public void setCompanies(List<Company> companies) {
 		this.companies = companies;
 	}
-
+	
+	
+	
 }

@@ -1,4 +1,4 @@
-package com.codewarriors.services;
+package com.codewarriors.db;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +23,11 @@ public class PlayerService {
 
 	public Player getPlayer(int id) {
 		return playerRepository.getOne(id);
+	}
+
+	public Player findByplayerName(String name) {
+		return playerRepository.findByplayerName(name);
+
 	}
 
 	public List<Player> getAllPlayers() {
