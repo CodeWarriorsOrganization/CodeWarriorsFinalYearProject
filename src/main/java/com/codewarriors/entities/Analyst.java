@@ -9,24 +9,36 @@ import com.codewarriors.models.Turn;
 
 public class Analyst {
 
-	public List<String> getStockData() {
+	public void getStockData(Market market) {
 		Company comp;
 		Turn turn;
 		double price;
 		double currentprice;
 
-		List<Company> getcompanies = new ArrayList<Company>();
-		List<Turn> getturns = new ArrayList<Turn>();
-		List<Double> pricelist = new ArrayList<>();
-		List<String> BuyList = new ArrayList<>();
-		List<String> SellList = new ArrayList<>();
-		List<String> Predictions = new ArrayList<>();
+		//List<Company> getcompanies = new ArrayList<Company>();
+		//List<Turn> getturns = new ArrayList<Turn>();
+		//List<Double> pricelist = new ArrayList<>();
+		//List<String> BuyList = new ArrayList<>();
+		//List<String> SellList = new ArrayList<>();
+		//List<String> Predictions = new ArrayList<>();
 
-		Market market = new Market();
-		Company turns = new Company();
+		
+		//Company turns = new Company();
 
-		getcompanies = market.getCompanies();
-		getturns = turns.getTurns();
+		//getcompanies = market.getCompanies();
+		//getturns = turns.getTurns();
+		//System.out.println("getttttttttttttttttttttttttttttttttttttt"+market.getCompanies().size());
+		int turnSize=market.getNoTurns();
+		int companySize=market.getCompanies().size();
+		for(int i=0; i<turnSize;i++) {
+			
+			for(int x=0;x<companySize;x++) {
+				
+			}
+		}
+		
+		///////////// start pamo part
+		/*
 
 		for (int t = 0; t <= getturns.size(); t++) {
 			for (int c = 0; c <= getcompanies.size(); c++) {
@@ -82,9 +94,9 @@ public class Analyst {
 				}
 
 			}
-		}
+		} */
 
-		return Predictions;
+		
 	}
 
 }
