@@ -23,20 +23,20 @@
 
 </head>
 
-<body onload="countDownFunction();getStockMarketDetailFromService();">
+<body onload="functionOnload()">
 	<div class="container">
-	<p id="demo"></p>
+		<p id="demo"></p>
 		<div class="row col-md-6 table-responsive">
-			<table id="tblStock" class="table table-bordered table-hover">
+			<table id="tblStock" class="table table-bordered table-hover" style="cursor: pointer;">
 				<thead>
 					<tr>
-						<th>Company Name</th>
-						<th>Stock Price</th>
+						<th></th>
+						<th></th>
 
 					</tr>
 				</thead>
-				<tbody id="demoTable">
-	
+				<tbody id="demoTable" style="cursor: pointer;">
+
 
 				</tbody>
 			</table>
@@ -57,7 +57,7 @@
 						id="totStockVal" style="text-align: right" value=0 readonly>
 				</pre>
 				<div>
-					<table id="tblShares" class="table table-hover">
+					<table id="tblShares" class="table table-hover" style="cursor: pointer;">
 						<thead style='display: none;'>
 							<tr>
 								<th>Company</th>
@@ -91,7 +91,8 @@
 					style="height: 100px; width: 250px; margin-top: 15px; margin-bottom: 15px; margin-left: 15px; margin-right: 15px">
 					<pre>
                        <label id="lblQuantity">Quantity :</label>  <input
-							type="number" id="upDownQty" min="1" max="10000" step="1" value="1"
+							type="number" id="upDownQty" min="1" max="10000" step="1"
+							value="1"
 							style="outline: 0; border: 0; border-top: 1px solid red; border-left: 1px solid red; border-right: 1px solid red; width: 200px;"
 							required>
                        <label id="lblCost">Cost     :</label>  <input
@@ -122,10 +123,23 @@
 	</div>
 </body>
 
+
+<script type="text/javascript">
+	function functionOnload() {
+
+		countDownFunction();
+		getStockMarketDetailFromService();
+		shareTblPriceUpdate();
+		totalAmountUpdateWithCurrentValue();
+
+	}
+</script>
+
 <script type="text/javascript">
 	//This script is to set time for the game
-
+	var x = 0;
 	function countDownFunction() {
+		document.getElementById("btnTrade").disabled = true;
 		var i = 2;
 		document.getElementById('lblCountdown').style.fontSize = '1000%';
 		document.getElementById('lblCountdown').innerHTML = 1;
@@ -134,17 +148,75 @@
 					function() {
 						document.getElementById('lblCountdown').style.fontSize = '1000%';
 						document.getElementById("lblCountdown").innerHTML = i;
+
 						i++;
 						if (i <= 30) {
 							myLoop();
 						}
 					}, 10000)
+			x++;
 		}
 		myLoop();
 	}
 </script>
+<script type="text/javascript">
+	function shareTblPriceUpdate() {
 
+		var tblSharesRows = document.getElementById("tblShares").rows.length;
+		var tblStockRows = document.getElementById("tblStock").rows.length;
 
+		for (var y = 0; y < tblSharesRows; y++) {
+
+			for (var z = 0; z < tblStockRows; z++) {
+
+				if ((document.getElementById("tblShares").rows[y].cells[0].innerHTML) == (document
+						.getElementById("tblStock").rows[z].cells[0].innerHTML)) {
+
+					document.getElementById("tblShares").rows[y].cells[1].innerHTML = document
+							.getElementById("tblStock").rows[z].cells[1].innerHTML;
+
+					var unitPrice = document.getElementById("tblShares").rows[y].cells[1].innerHTML;
+					var qty = document.getElementById("tblShares").rows[y].cells[2].innerHTML;
+					//updating the amount column according to current price
+					document.getElementById("tblShares").rows[y].cells[3].innerHTML = (Number(unitPrice) * Number(qty))
+							.toFixed(2);
+					// and schedule a repeat
+
+				}
+
+			}
+
+		}
+
+		setTimeout(shareTblPriceUpdate, 10000);
+	}
+
+	// start the cycle
+	shareTblPriceUpdate();
+</script>
+
+<script type="text/javascript">
+	var sum = 0;
+	function totalAmountUpdateWithCurrentValue() {
+
+		var tblSharesRows = document.getElementById("tblShares").rows.length;
+
+		for (var z = 1; z < tblSharesRows; z++) {
+			sum = Number(sum)
+					+ Number(document.getElementById("tblShares").rows[z].cells[3].innerHTML);
+
+		}
+		var amount = sum;
+		document.getElementById("totStockVal").value = (Number(amount))
+				.toFixed(2);
+		sum = 0;
+
+		setTimeout(totalAmountUpdateWithCurrentValue, 10000);
+	}
+
+	// start the cycle
+	totalAmountUpdateWithCurrentValue();
+</script>
 
 <script type="text/javascript">
 	//pass data to controller
@@ -237,10 +309,12 @@
 					document.getElementById("tblShares").rows[y].cells[3].innerHTML = Number(document
 							.getElementById("tblShares").rows[y].cells[3].innerHTML)
 							+ Number(cost);
-					document.getElementById("totStockVal").value = (Number(totStock) + Number(cost));
-					document.getElementById("balance").value = balance
-							- Number(cost);
+					document.getElementById("totStockVal").value = ((Number(totStock) + Number(cost)))
+							.toFixed(2);
+					document.getElementById("balance").value = (balance - Number(cost))
+							.toFixed(2);
 				} else {
+					total = total.toFixed(2);
 					rows += "<td>" + cName + "</td><td>" + price + "</td><td>"
 							+ qty + "</td><td>" + total + "</td>";
 					var tbody = document.querySelector("#tblShares tbody");
@@ -249,9 +323,10 @@
 					tr.innerHTML = rows;
 					tbody.appendChild(tr);
 
-					document.getElementById("totStockVal").value = (Number(totStock) + Number(total));
-					document.getElementById("balance").value = balance
-							- Number(cost);
+					document.getElementById("totStockVal").value = ((Number(totStock) + Number(total)))
+							.toFixed(2);
+					document.getElementById("balance").value = (balance - Number(cost))
+							.toFixed(2);
 				}
 
 				passData(qty, cost);
@@ -284,9 +359,10 @@
 			if ((Number(tblqty)) <= (Number(qty))) {
 
 				var amount = document.getElementById("tblShares").rows[x].cells[3].innerHTML;
+
 				var unitPrice = document.getElementById("tblShares").rows[x].cells[1].innerHTML;
 
-				document.getElementById("totStockVal").value = (Number(totStock) - Number(amount));
+				document.getElementById("totStockVal").value = ((Number(totStock) - Number(amount))).toFixed(2);
 
 				document.getElementById("balance").value = (Number(balance) + (Number(amount)));
 
@@ -310,10 +386,13 @@
 				var qty = document.getElementById("upDownQty").value;
 				var amount = document.getElementById("tblShares").rows[x].cells[3].innerHTML;
 				var unitPrice = document.getElementById("tblShares").rows[x].cells[1].innerHTML;
-				document.getElementById("tblShares").rows[x].cells[3].innerHTML = (Number(amount) - (Number(qty) * Number(unitPrice)));
+				document.getElementById("tblShares").rows[x].cells[3].innerHTML = (Number(amount) - (Number(qty) * Number(unitPrice)))
+						.toFixed(2);
 				document.getElementById("tblShares").rows[x].cells[2].innerHTML = (Number(tblqty) - Number(qty));
-				document.getElementById("totStockVal").value = (Number(totStock) - (Number(qty) * Number(unitPrice)));
-				document.getElementById("balance").value = (Number(balance) + (Number(qty) * Number(unitPrice)));
+				document.getElementById("totStockVal").value = ((Number(totStock) - (Number(qty) * Number(unitPrice))))
+						.toFixed(2);
+				document.getElementById("balance").value = ((Number(balance) + (Number(qty) * Number(unitPrice))))
+						.toFixed(2);
 
 				passData(qty, cost);
 
@@ -330,9 +409,9 @@
 	$("#upDownQty").bind('keyup mouseup', function() {
 
 		var qty = $(this).val();
-		var price = document.getElementById("price").value
-
-		document.getElementById("cost").value = qty * price
+		var price = document.getElementById("price").value;
+		var cost = (qty * price).toFixed(2);
+		document.getElementById("cost").value = cost;
 
 	});
 </script>
@@ -349,6 +428,7 @@
 						document.getElementById("cName").value = this.cells[0].innerText;
 						document.getElementById("price").value = this.cells[1].innerText;
 						document.getElementById("index").value = index;
+						document.getElementById("upDownQty").value = 1;
 
 						document.getElementById("cost").value = ((Number(document
 								.getElementById("price").value)) * (Number(document
@@ -407,106 +487,101 @@
 </script>
 <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 <script>
-var turn=0;
-var noTurns;
-var turnTimes;
-var response;
+	var turn = 0;
+	var noTurns;
+	var turnTimes;
+	var response;
 
-	
-	
-function getStockMarketDetailFromService() {
-	
-	
-	 var xhttp = new XMLHttpRequest();
-	    xhttp.open("POST", "http://localhost:8080/stockMarket/getMarketPrices", false);
-	    xhttp.setRequestHeader("Content-type", "application/json");
-	    xhttp.send();
-	    response = JSON.parse(xhttp.responseText);
-	    noTurns=response.noTurns;
-	    turnTimes=response.turnTime;
-	    loop();
-	   
-	   
-	   
-}
+	function getStockMarketDetailFromService() {
 
-function loop(){
-	
-	var table = document.getElementById("tblStock");	
-	document.getElementById("demo").innerHTML=response.companies.length;
-	 for (var i = 0; i < response.companies.length; i++) {
-		 
-		 var object = response.companies[i];		 
-		 var row = table.insertRow(i);
-		 var cell1 = row.insertCell(0);
-		 var cell2 = row.insertCell(1); 		
-		 table.rows[i].cells[0].innerHTML=object['companyName'];
-		 table.rows[i].cells[1].innerHTML=object.turns[turn].price;	      	  
-	    }   
-	 	
-	 
-	 setTimeout(function () {          
-	      turn++;                     
-	      if (turn < noTurns) {           
-	    	       
-	    	  table.deleteRow(0);
-	    	  table.deleteRow(0);
-	          table.deleteRow(0);
-	          table.deleteRow(0);
-	          table.deleteRow(0);
-	          table.deleteRow(0);
-	          table.deleteRow(0);
-	          table.deleteRow(0);
-	          table.deleteRow(0);
-	          table.deleteRow(0);
-	          table.deleteRow(0);
-	          table.deleteRow(0);
-	    	  loop();             
-	      }                        
-	   }, turnTimes)
-} 
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("POST", "http://localhost:8080/stockMarket/getMarketPrices",
+				false);
+		xhttp.setRequestHeader("Content-type", "application/json");
+		xhttp.send();
+		response = JSON.parse(xhttp.responseText);
+		noTurns = response.noTurns;
+		turnTimes = response.turnTime;
+		loop();
 
+	}
 
+	function loop() {
+
+		var table = document.getElementById("tblStock");
+		document.getElementById("demo").innerHTML = response.companies.length;
+		for (var i = 0; i < response.companies.length; i++) {
+
+			var object = response.companies[i];
+			var row = table.insertRow(i);
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			table.rows[i].cells[0].innerHTML = object['companyName'];
+			table.rows[i].cells[1].innerHTML = object.turns[turn].price;
+		}
+
+		setTimeout(function() {
+			turn++;
+			if (turn < noTurns) {
+
+				table.deleteRow(0);
+				table.deleteRow(0);
+				table.deleteRow(0);
+				table.deleteRow(0);
+				table.deleteRow(0);
+				table.deleteRow(0);
+				table.deleteRow(0);
+				table.deleteRow(0);
+				table.deleteRow(0);
+				table.deleteRow(0);
+				table.deleteRow(0);
+				table.deleteRow(0);
+				loop();
+			}
+		}, turnTimes)
+	}
 </script>
 <script type="text/javascript">
+	$(document)
+			.on(
+					'click',
+					'#tblStock tr',
+					function(e) {
+						document.getElementById("btnTrade").disabled = false;
+						e.stopPropagation();
+						var index = $(this).index();
 
+						document.getElementById("btnTrade").innerHTML = "BUY";
+						document.getElementById("cName").value = this.cells[0].textContent;
+						document.getElementById("price").value = this.cells[1].textContent;
+						var price = document.getElementById("price").value;
+						document.getElementById("upDownQty").value = 1;
+						document.getElementById("cost").value = price
+								* document.getElementById("upDownQty").value;
 
-$(document).on('click', '#tblStock tr', function (e) {
-    e.stopPropagation();
-    var index = $(this).index();
-  
-    document.getElementById("btnTrade").innerHTML = "BUY";
-     document.getElementById("cName").value = this.cells[0].textContent;
-     document.getElementById("price").value = this.cells[1].textContent;
-     var price = document.getElementById("price").value;
-     document.getElementById("upDownQty").value = 1;
-	 document.getElementById("cost").value = price * document.getElementById("upDownQty").value;
-     
- $
-					.ajax({
-						type : "GET",
-						url : "${pageContext.request.contextPath}/displayDetails",
-						data : {
-							"cName" :   document.getElementById("cName").value
-						},
-						success : function(data) {
+						$
+								.ajax({
+									type : "GET",
+									url : "${pageContext.request.contextPath}/displayDetails",
+									data : {
+										"cName" : document
+												.getElementById("cName").value
+									},
+									success : function(data) {
 
-							document.getElementById("lblName").innerHTML = "Name    :";
-							document.getElementById("lblSector").innerHTML = "Sector  :";
-							document.getElementById("lblDetails").innerHTML = "Details :";
+										document.getElementById("lblName").innerHTML = "Name    :";
+										document.getElementById("lblSector").innerHTML = "Sector  :";
+										document.getElementById("lblDetails").innerHTML = "Details :";
 
-							document.getElementById("name2").innerHTML = data.companyName;
-							document.getElementById("name3").innerHTML = data.sectorName;
-							document.getElementById("name4").innerHTML = "Official Website";
-							$("a#name4").attr('href', data.details);
+										document.getElementById("name2").innerHTML = data.companyName;
+										document.getElementById("name3").innerHTML = data.sectorName;
+										document.getElementById("name4").innerHTML = "Official Website";
+										$("a#name4").attr('href', data.details);
 
-						}
+									}
+								});
+
 					});
- 
-   
-});
-
-
 </script>
 
 </html>
