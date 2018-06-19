@@ -1,8 +1,7 @@
 package com.codewarriors.components;
 
-import static org.junit.Assert.*;
-import static org.junit.jupiter.api.Assertions.assertNotSame;
-
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotSame;
 import com.codewarriors.components.SectorTrendMarketComponent;
 import org.junit.Test;
 
@@ -23,8 +22,7 @@ public class SectorTrendMarketComponentTests {
 		public void AssertNotSame() {
 			int[][] result1 = SectorTrendMarketComponent.sectorTrendMarketStockRandomValue();
 			int[][] result2 = SectorTrendMarketComponent.sectorTrendMarketStockRandomValue();
-			assertNotSame(result1, result2, "Both result1 and result2 objects return random values or are not same ");
-
+			assertNotSame(result1, result2);
 			System.out.println("Ramdom value that get as the output at first attempt:" + " " + result1);
 			System.out.println("Ramdom value that get as the output at second attempt:" + " " + result2);
 
