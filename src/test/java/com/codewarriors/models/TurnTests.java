@@ -1,4 +1,4 @@
-package com.codewarriors;
+package com.codewarriors.models;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
