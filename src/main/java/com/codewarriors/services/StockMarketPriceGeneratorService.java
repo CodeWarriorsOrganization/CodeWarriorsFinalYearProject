@@ -95,7 +95,9 @@ public class StockMarketPriceGeneratorService {
 			companies.add(company);	
 		}
 		market.setCompanies(companies);
+		Analyst analyst=new Analyst();
 		
+		market.setAnalysisMessage(analyst.getStockData(market));
 		
 		return market;
 	}
