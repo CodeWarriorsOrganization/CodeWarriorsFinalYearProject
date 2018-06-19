@@ -64,6 +64,13 @@ public class ApplicationController {
 		model.addAttribute("pName", playerName);
 		return "gameScreen";
 	}
+	
+	
+	@GetMapping(value = "/TestScreen")
+	public String loadGameScreen() {
+		
+		return "testAnalist";
+	}
 
 	@RequestMapping(value = "/gameOverview", method = RequestMethod.GET)
 

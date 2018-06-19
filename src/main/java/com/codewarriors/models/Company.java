@@ -6,6 +6,15 @@ public class Company {
 	String companyName;
 	String sectorName;
 	String details;
+	double companypriceCangingPercentage;
+	public double getCompanypriceCangingPercentage() {
+		return companypriceCangingPercentage;
+	}
+
+	public void setCompanypriceCangingPercentage(double companypriceCangingPercentage) {
+		this.companypriceCangingPercentage = companypriceCangingPercentage;
+	}
+
 	private List<Turn> turns;
 
 	public String getCompanyName() {
