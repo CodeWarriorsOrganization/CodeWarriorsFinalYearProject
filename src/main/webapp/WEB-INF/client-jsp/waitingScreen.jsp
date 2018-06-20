@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -29,7 +30,15 @@
 	<h3>Please Wait...</h3>
 	<div id="container">
 		<div id="countdown"></div>
+		
 		<script type="text/javascript" charset="utf-8">
+			var secondss = $('#jsonBom').val();
+
+			var SecondsTogo = 15;
+			if (secondss != '') {
+				SecondsTogo = secondss;
+			}
+		
 			var countdown = $("#countdown").countdown360({
 				radius : 60,
 				seconds : 1,

@@ -1,10 +1,14 @@
 package com.codewarriors.controllers;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -70,6 +74,20 @@ public class BrokerController {
 
 		return "SUCCESS";
 
+	}
+	
+	@RequestMapping(value = "/getPlayerDetails")
+	public void returnPlayerDetails(@RequestParam String pName,Model model) {
+		
+		//request.setAttribute("playerName", pName);
+		model.addAttribute("playerName", pName);
+		System.out.println("PLAYER NAME IS "+pName);
+		//Transaction t1 = new Transaction();
+	//	t1 = brokerService.findByPlayerName(pName);
+		
+		//return t1;
+	
+		
 	}
 
 }

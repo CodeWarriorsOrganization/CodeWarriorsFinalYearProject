@@ -254,6 +254,7 @@
 				type : "GET",
 				url : "${pageContext.request.contextPath}/gameOverview",
 				data : {
+					
 
 				},
 				success : function(data) {
@@ -262,7 +263,7 @@
 
 				}
 			});
-		}, 310000);
+		}, 8000); // 310000
 	});
 </script>
 
