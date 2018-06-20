@@ -2,6 +2,7 @@ package com.codewarriors.models;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -79,9 +80,8 @@ public class TurnTests {
 					Turn pricejunit = new Turn ();
 					double expectedPrice = pricejunit.getPrice();
 					double actualPrice = pricejunit.getPrice();
-					assertSame(expectedPrice, actualPrice);
+					assertEquals(expectedPrice,actualPrice,0.0);
 					if (expectedPrice == actualPrice) {
-						
 						System.out.println("Both expected Price and actual Price are equal:" + " "+ expectedPrice + "  "+"=" +"  "+ actualPrice);
 					}
 					
