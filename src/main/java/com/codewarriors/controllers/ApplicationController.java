@@ -97,6 +97,13 @@ public class ApplicationController {
 		
 		return "gameScreen";
 	}
+	
+	
+	@GetMapping(value = "/TestScreen")
+	public String loadGameScreen() {
+		
+		return "testAnalist";
+	}
 
 	@RequestMapping(value = "/gameOverview", method = RequestMethod.GET)
 

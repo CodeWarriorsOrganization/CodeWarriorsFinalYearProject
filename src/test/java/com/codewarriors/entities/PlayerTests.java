@@ -1,4 +1,4 @@
-package com.codewarriors;
+package com.codewarriors.entities;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;

@@ -9,6 +9,7 @@ import java.util.Random;
 import com.codewarriors.components.GeneralTrendMarketComponent;
 import com.codewarriors.components.RandomMarketComponent;
 import com.codewarriors.components.SectorTrendMarketComponent;
+import com.codewarriors.entities.Analyst;
 import com.codewarriors.models.Company;
 import com.codewarriors.models.Market;
 import com.codewarriors.models.Turn;
@@ -71,13 +72,13 @@ public class StockMarketPriceGeneratorService {
 			
 			company.setCompanyName(companyNames.get(j));
 			if(j<3) {
-				company.setSectorName(sectorNames.get(1));
+				company.setSectorName(sectorNames.get(0));
 			}else if(3<=j && j<6) {
-				company.setSectorName(sectorNames.get(2));
+				company.setSectorName(sectorNames.get(1));
 			}else if(6<=j && j<9) {
-				company.setSectorName(sectorNames.get(3));
+				company.setSectorName(sectorNames.get(2));
 			}else if(6<=j && j<12) {
-				company.setSectorName(sectorNames.get(4));
+				company.setSectorName(sectorNames.get(3));
 			}
 			
 			
@@ -94,6 +95,10 @@ public class StockMarketPriceGeneratorService {
 			companies.add(company);	
 		}
 		market.setCompanies(companies);
+		Analyst analyst=new Analyst();
+		
+		market.setAnalysisMessage(analyst.getStockData(market));
+		
 		return market;
 	}
 	
