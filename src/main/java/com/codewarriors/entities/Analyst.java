@@ -40,6 +40,7 @@ public class Analyst {
 			 
            
 		for (int t = 0; t < turnSize; t++) {
+			
 			TurnMessage turnMessage = new TurnMessage();
 			
 			for (int c = 0; c < companySize; c++) {				
@@ -69,24 +70,24 @@ public class Analyst {
 		 });			
 			
 			System.out.println("companypriceCangingPercentageAscendingOrdere=  ");
-			List<Message> buyMessage = new  ArrayList<Message>() ;
+			List<Message> sellMessage = new  ArrayList<Message>() ;
 			for (int a = 0; a < 12; a++) {
 				if(a<3) {
 					Message message= new Message();
 					if(t<29) {
-						message.setMessage("this company is best for buy= "+companies.get(a).getCompanyName());
+						message.setMessage("this company is best for Sell= "+companies.get(a).getCompanyName());
 					}else {
 						message.setMessage("After this turn, Stock Market will closed");
 					}
 					
-					buyMessage.add(message);
+					sellMessage.add(message);
 				}else {
 					//break;
 				}
 				System.out.print("name= "+companies.get(a).getCompanyName()+" "+"presentage= "+ companies.get(a).getCompanypriceCangingPercentage()+"   ");
 			
 			}
-			turnMessage.setBuyMessages(buyMessage);
+			turnMessage.setSellMessages(sellMessage);
 			
 			
 			
@@ -95,25 +96,26 @@ public class Analyst {
 			       return Double.valueOf(c2.getCompanypriceCangingPercentage()).compareTo(c1.getCompanypriceCangingPercentage()); 		       
 			      }
 			 });			
-			List<Message> sellMessage = new  ArrayList<Message>() ;
+			
+			List<Message> buyMessage = new  ArrayList<Message>() ;
 				System.out.println("companypriceCangingPercentageDescendingOrder=  ");
 				
 				for (int a = 0; a < 12; a++) {
 					if(a<3) {
 						Message message= new Message();
 						if(t<29) {
-							message.setMessage("this company is best for sell= "+companies.get(a).getCompanyName());
+							message.setMessage("this company is best for Buy= "+companies.get(a).getCompanyName());
 						}else {
 							message.setMessage("After this turn, Stock Market will closed");
 						}
-						sellMessage.add(message);
+						buyMessage.add(message);
 					}else {
 						//break;
 					}
 					System.out.print("name= "+companies.get(a).getCompanyName()+" "+"presentage= "+ companies.get(a).getCompanypriceCangingPercentage()+"   ");
 				}
 				
-				turnMessage.setSellMessages(sellMessage);
+				turnMessage.setBuyMessages(buyMessage);
 				
 						
 			turnMesages.add(turnMessage);
