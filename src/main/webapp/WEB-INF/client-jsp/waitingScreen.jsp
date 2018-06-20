@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="shortcut icon" type="image/x-icon" href="/static/img/title-bar-logo.png" />
+<link rel="shortcut icon" type="image/x-icon"
+	href="/static/img/title-bar-logo.png" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 <script
@@ -29,14 +30,26 @@
 	<h3>Please Wait...</h3>
 	<div id="container">
 		<div id="countdown"></div>
+
+		<input type="hidden" id="playername" value='${playername}' /> <input
+			type="hidden" id="SecondsTogo" value='${SecondsTogo}' />
+
 		<script type="text/javascript" charset="utf-8">
+			var playername = $('#playername').val();
+			var SecondsTogo = $('#SecondsTogo').val();
+
+			var SecondsTotal = 15;
+			if (SecondsTogo != '') {
+				SecondsTotal = SecondsTogo;
+			}
+
 			var countdown = $("#countdown").countdown360({
 				radius : 60,
-				seconds : 1,
+				seconds : SecondsTotal,
 				fontColor : '#FFFFFF',
 				autostart : false,
 				onComplete : function() {
-					window.location.href = ("/gameScreen");
+					window.location.href = ("/gameScreen?name=" + playername);
 				}
 			});
 			countdown.start();
