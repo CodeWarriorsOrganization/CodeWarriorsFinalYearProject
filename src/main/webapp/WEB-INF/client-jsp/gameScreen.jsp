@@ -23,7 +23,7 @@
 
 </head>
 
-<body onload="functionOnload()">
+<body onload="functionOnload();">
 	<div class="container">
 		<p id="demo"></p>
 		<div class="row col-md-6 table-responsive">
@@ -126,11 +126,12 @@
 
 <script type="text/javascript">
 	function functionOnload() {
-
+  
 		countDownFunction();
 		getStockMarketDetailFromService();
 		shareTblPriceUpdate();
 		totalAmountUpdateWithCurrentValue();
+		disableBackButton();
 
 	}
 </script>
@@ -185,7 +186,17 @@
 				}
 
 			}
+			if ((document.getElementById("tblShares").rows[y].cells[0].innerHTML) == (document
+					.getElementById("name2").innerHTML)){
+				
+			     document.getElementById("cost").value = document.getElementById("tblShares").rows[y].cells[1].innerHTML;
+			     document.getElementById("cost").value = Number(document.getElementById("cost").value)*(Number(document.getElementById("upDownQty").value));
+				
+			}
 
+			
+			
+			
 		}
 
 		setTimeout(shareTblPriceUpdate, 10000);
@@ -263,7 +274,7 @@
 
 				}
 			});
-		}, 8000); // 310000
+		}, 100000); // 310000
 	});
 </script>
 
@@ -357,7 +368,7 @@
 			var qty = document.getElementById("upDownQty").value;
 			var tblqty = document.getElementById("tblShares").rows[x].cells[2].innerHTML;
 
-			if ((Number(tblqty)) <= (Number(qty))) {
+			if ((Number(tblqty)) == (Number(qty))) {
 
 				var amount = document.getElementById("tblShares").rows[x].cells[3].innerHTML;
 
@@ -365,7 +376,7 @@
 
 				document.getElementById("totStockVal").value = ((Number(totStock) - Number(amount))).toFixed(2);
 
-				document.getElementById("balance").value = (Number(balance) + (Number(amount)));
+				document.getElementById("balance").value = (Number(balance) + (Number(amount))).toFixed(2);
 
 				passData(tblqty, amount);
 
@@ -381,6 +392,28 @@
 				document.getElementById("upDownQty").value = 1;
 				document.getElementById("cost").value = 0;
 
+			}
+			
+			
+			if((Number(tblqty)) < (Number(qty))){
+				
+				
+				alert("Invalid Quantity! You only have "+tblqty+" stocks on hand");
+				document.getElementById("upDownQty").value = 1;
+				var tblSharesRows = document.getElementById("tblShares").rows.length;
+			//	document.getElementById("cost").value = Number((document.getElementById("cost").value))*(Number(document.getElementById("upDownQty").value));
+				for (var y = 0; y < tblSharesRows; y++) {
+
+					
+					if ((document.getElementById("tblShares").rows[y].cells[0].innerHTML) == (document
+							.getElementById("name2").innerHTML)){
+						
+					     document.getElementById("cost").value = document.getElementById("tblShares").rows[y].cells[1].innerHTML;
+					     document.getElementById("cost").value = Number(document.getElementById("cost").value)*(Number(document.getElementById("upDownQty").value));
+						
+					}
+								
+				}
 			}
 
 			if (tblqty > qty) {
@@ -408,12 +441,22 @@
 	// this is to update cost according to the quantity
 
 	$("#upDownQty").bind('keyup mouseup', function() {
-
+		
+		var tblSharesRows = document.getElementById("tblShares").rows.length;
 		var qty = $(this).val();
-		var price = document.getElementById("price").value;
-		var cost = (qty * price).toFixed(2);
-		document.getElementById("cost").value = cost;
+			for (var y = 0; y < tblSharesRows; y++) {
 
+				
+				if ((document.getElementById("tblShares").rows[y].cells[0].innerHTML) == (document
+						.getElementById("name2").innerHTML)){
+					
+				     document.getElementById("cost").value = document.getElementById("tblShares").rows[y].cells[1].innerHTML;
+				     document.getElementById("cost").value = (Number(document.getElementById("cost").value)*(Number(qty))).toFixed(2);
+					
+				}
+							
+			}
+		
 	});
 </script>
 
@@ -583,6 +626,16 @@
 								});
 
 					});
+</script>
+
+
+<script type="text/javascript">
+function disableBackButton(){
+history.pushState(null, null, location.href);
+window.onpopstate = function () {
+    history.go(1);
+}
+}
 </script>
 
 </html>

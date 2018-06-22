@@ -8,7 +8,8 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="shortcut icon" type="image/x-icon" href="/static/img/title-bar-logo.png" />
+<link rel="shortcut icon" type="image/x-icon"
+	href="/static/img/title-bar-logo.png" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 <script
@@ -26,26 +27,34 @@
 
 <title>Market Phobia</title>
 </head>
-<body>
+<body onload="disableBackButton();">
 	<h3>Please Wait...</h3>
 	<div id="container">
 		<div id="countdown"></div>
-		
-		<script type="text/javascript" charset="utf-8">
-			var secondss = $('#jsonBom').val();
 
-			var SecondsTogo = 15;
-			if (secondss != '') {
-				SecondsTogo = secondss;
-			}
 		
+
+
+		<input type="hidden" id="playername" value='${playername}' /> <input
+			type="hidden" id="SecondsTogo" value='${SecondsTogo}' />
+
+		<script type="text/javascript" charset="utf-8">
+			var playername = $('#playername').val();
+			var SecondsTogo = $('#SecondsTogo').val();
+
+			var SecondsTotal = 15;
+			if (SecondsTogo != '') {
+				SecondsTotal = SecondsTogo;
+			}
+
+
 			var countdown = $("#countdown").countdown360({
 				radius : 60,
-				seconds : 1,
+				seconds : SecondsTotal,
 				fontColor : '#FFFFFF',
 				autostart : false,
 				onComplete : function() {
-					window.location.href = ("/gameScreen");
+					window.location.href = ("/gameScreen?name=" + playername);
 				}
 			});
 			countdown.start();
@@ -64,4 +73,12 @@
 		</script>
 	</div>
 </body>
+<script type="text/javascript">
+function disableBackButton(){
+history.pushState(null, null, location.href);
+window.onpopstate = function () {
+    history.go(1);
+}
+}
+</script>
 </html>

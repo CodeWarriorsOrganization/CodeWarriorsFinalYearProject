@@ -4,11 +4,11 @@ public class PlayerProfile {
 	
 	
 	String profileName;
+	int rank;
 	int noOfTrades;
 	double pBalance;
-	double netWorth;
 	double totalReturns;
-	int stockOwns;
+	
 	public String getProfileName() {
 		return profileName;
 	}
@@ -27,33 +27,27 @@ public class PlayerProfile {
 	public void setpBalance(double pBalance) {
 		this.pBalance = pBalance;
 	}
-	public double getNetWorth() {
-		return netWorth;
-	}
-	public void setNetWorth(double netWorth) {
-		this.netWorth = netWorth;
-	}
-	public double getTotalReturns() {
+		public double getTotalReturns() {
 		return totalReturns;
 	}
 	public void setTotalReturns(double totalReturns) {
 		this.totalReturns = totalReturns;
 	}
-	public int getStockOwns() {
-		return stockOwns;
-	}
-	public void setStockOwns(int stockOwns) {
-		this.stockOwns = stockOwns;
-	}
-	public PlayerProfile(String profileName, int noOfTrades, double pBalance, double netWorth, double totalReturns,
-			int stockOwns) {
-	
+		
+	public PlayerProfile(String profileName, int rank, int noOfTrades, double pBalance, double totalReturns) {
+		
 		this.profileName = profileName;
+		this.rank = rank;
 		this.noOfTrades = noOfTrades;
 		this.pBalance = pBalance;
-		this.netWorth = netWorth;
 		this.totalReturns = totalReturns;
-		this.stockOwns = stockOwns;
+		
+	}
+	public int getRank() {
+		return rank;
+	}
+	public void setRank(int rank) {
+		this.rank = rank;
 	}
 	public PlayerProfile() {
 		
