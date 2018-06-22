@@ -98,6 +98,7 @@ public class StockMarketPriceGeneratorService {
 		Analyst analyst=new Analyst();
 		
 		market.setAnalysisMessage(analyst.getStockData(market));
+	//	AiPlayer.startPlayer(market);
 		
 		return market;
 	}

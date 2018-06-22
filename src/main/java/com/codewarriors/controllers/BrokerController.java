@@ -71,5 +71,39 @@ public class BrokerController {
 		return "SUCCESS";
 
 	}
+	
+	public void createAiTransaction( String pName, String cName, int turnNo, String type, double unitPrice,
+			int quantity, double amount, double balance) {
+		 String type2="";
+		//int turnNo1 = Integer.parseInt(turnNo);
+		//double unitPrice1 = Double.parseDouble(unitPrice);
+		//int quantity1 = Integer.parseInt(quantity);
+		//double amount1 = Double.parseDouble(amount);
+		//double balance1 = Double.parseDouble(balance);
+		////Company c = new Company();
+		//c = companyService.getCompanyDetails(cName);
+		
+		switch (type) {
+		case "BUY":
+			type2="Withdraw";
+			break;
+		case "SELL":
+			type2="Deposit";
+			break;
+			
+		}
+		
+		Bank bank = new Bank(pName, turnNo, type2, amount, balance);
+		
+		if(bank==null) {
+			System.out.println("bank is null=");
+		}else {
+			System.out.println("bank is not null=");
+		}
+		//Transaction transaction = new Transaction(pName, turnNo1, type, cName, unitPrice1, quantity1, amount1);
+		//brokerService.createBankAccount(bank);
+		//brokerService.createTransaction(transaction);
+		
+	}
 
 }
