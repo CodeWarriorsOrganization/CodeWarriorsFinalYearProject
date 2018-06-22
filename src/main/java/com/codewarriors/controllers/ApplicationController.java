@@ -26,6 +26,11 @@ import com.codewarriors.entities.Player;
 import com.codewarriors.entities.Transaction;
 import com.codewarriors.models.PlayerProfile;
 import com.codewarriors.models.GameContentHolder;
+<<<<<<< HEAD
+=======
+import com.codewarriors.models.Market;
+import com.codewarriors.services.AiPlayer;
+>>>>>>> 60ac1f748489aa5a008a1283d3ebecdd516ba56c
 import com.codewarriors.services.StockMarketPriceGeneratorService;
 
 @Controller
@@ -66,9 +71,23 @@ public class ApplicationController {
 					StockMarketPriceGeneratorService markets = new StockMarketPriceGeneratorService();
 					GameContentHolder.MARKET_PRICES = markets.generate();
 					GameContentHolder.WAITING_START_TIME = LocalDateTime.now();
+<<<<<<< HEAD
 
 				} else {
 
+=======
+					
+					String aiPlayername= "gihan";
+					Player aiPlayer = new Player(aiPlayername);
+					playerService.savePlayer(aiPlayer);
+				//	p2 = playerService.findByplayerName(name);
+					Bank aiPlayerBank = new Bank(aiPlayername);
+					brokerService.createBankAccount(aiPlayerBank);
+					AiPlayer.startPlayer(GameContentHolder.MARKET_PRICES,aiPlayername);
+					
+				}else {
+					
+>>>>>>> 60ac1f748489aa5a008a1283d3ebecdd516ba56c
 					LocalDateTime to = LocalDateTime.now();
 					LocalDateTime from = GameContentHolder.WAITING_START_TIME;
 					long secondsDiff = from.until(to, ChronoUnit.SECONDS);

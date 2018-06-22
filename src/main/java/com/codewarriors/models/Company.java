@@ -6,6 +6,24 @@ public class Company {
 	String companyName;
 	String sectorName;
 	String details;
+	private int buyQuantity;
+	private int sellQuantity;
+	public int getBuyQuantity() {
+		return buyQuantity;
+	}
+
+	public void setBuyQuantity(int buyQuantity) {
+		this.buyQuantity = buyQuantity;
+	}
+
+	public int getSellQuantity() {
+		return sellQuantity;
+	}
+
+	public void setSellQuantity(int sellQuantity) {
+		this.sellQuantity = sellQuantity;
+	}
+
 	double companypriceCangingPercentage;
 	public double getCompanypriceCangingPercentage() {
 		return companypriceCangingPercentage;

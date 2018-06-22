@@ -76,6 +76,7 @@ public class Analyst {
 					Message message= new Message();
 					if(t<29) {
 						message.setMessage("this company is best for Sell= "+companies.get(a).getCompanyName());
+						message.setCompany(companies.get(a));
 					}else {
 						message.setMessage("After this turn, Stock Market will closed");
 					}
@@ -105,6 +106,7 @@ public class Analyst {
 						Message message= new Message();
 						if(t<29) {
 							message.setMessage("this company is best for Buy= "+companies.get(a).getCompanyName());
+							message.setCompany(companies.get(a));
 						}else {
 							message.setMessage("After this turn, Stock Market will closed");
 						}
