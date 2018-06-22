@@ -10,6 +10,8 @@
 <link rel="shortcut icon" type="image/x-icon" href="/static/img/title-bar-logo.png" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/stylewaiting.css">	
+	
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script
@@ -26,13 +28,25 @@
 <title>Market Phobia</title>
 </head>
 <body>
-	<h3>Please Wait...</h3>
-	<div id="container">
-		<div id="countdown"></div>
+<div class="container">
+ <div class="row centered-form">
+   <div class="video-header wrap">
+      <div class="fullscreen-video-wrap">
+        <video src="static/img/stockmarket.mp4" autoplay loop></video>
+    </div>
+
+  <div class="col-md-4 col-sm-4 col-xs-12"></div>
+    <div class="col-md-4 col-sm-4 col-xs-12">
+      <div class="countdown1">
+    
+       <div class="countdownimage">
+          <label></label>
+                 
+          <div id="countdown"></div>
 		<script type="text/javascript" charset="utf-8">
 			var countdown = $("#countdown").countdown360({
 				radius : 60,
-				seconds : 1,
+				seconds : 3,
 				fontColor : '#FFFFFF',
 				autostart : false,
 				onComplete : function() {
@@ -53,6 +67,29 @@
 				}
 			});
 		</script>
-	</div>
+                    
+       </div>
+    
+    
+    <!-- ===========================================PLEASE WAIT===== -->
+    
+        <div class="countdowncontent">   
+           <marquee behavior="alternate"><label id="countdownlabel">Please Wait...
+            </label></marquee>
+       </div>
+   
+     </div>
+   </div>
+   
+   
+   <div class="col-md-4 col-sm-4 col-xs-12"></div>
+
+
+</div>
+</div>
+</div>  
+
+	
+	
 </body>
 </html>
