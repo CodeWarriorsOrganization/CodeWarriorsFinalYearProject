@@ -18,8 +18,13 @@ public class StockMarketSharesDetailsController {
 	@PostMapping("/getMarketPrices")
 	public Market getStokMarketSharsPrices() {
 	
+
+	//	StockMarketPriceGeneratorService markets= new StockMarketPriceGeneratorService();
+	//	return markets.generate();
+		
 		return GameContentHolder.MARKET_PRICES;
 		
+
 	}
 
 
