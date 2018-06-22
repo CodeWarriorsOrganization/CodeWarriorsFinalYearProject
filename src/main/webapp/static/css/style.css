@@ -1,0 +1,957 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+@media (min-width: 1200px) { ... }
+
+
+.container{
+	 background-color:black;
+	 width:auto;
+	 height:auto;
+	 margin-right: auto;
+     margin-left: auto;
+     
+	 
+  background:url("/static/img/stockmarket.jpg") repeat 0 0;
+  box-sizing: border-box;
+  -webkit-animation: slide 15s linear infinite;
+	
+}
+
+@-webkit-keyframes slide {
+    from { background-position: 0 0; }
+    to { background-position: 400px -300px; }
+}
+
+
+
+
+
+
+
+
+
+
+.stockgame1 {
+	font-family: Poppins-Regular;
+	font-size: 14px;
+	line-height: 1.7;
+	color:yellow;
+	margin:0px;
+	background-color: black;
+	padding:20px; 
+	width:auto;
+	height:auto;
+	opacity: 0.8;
+	
+    
+	
+	
+
+}
+
+.stockgame2 {
+	font-family: Poppins-Regular;
+	font-size: 14px;
+	line-height:1.7;
+	margin:0px;
+	background-color: black;
+	padding: 20px;
+	width:auto;
+	height:auto;
+	opacity: 0.8;
+	 
+
+}
+
+.stockgame3 {
+	font-family: Poppins-Regular;
+	font-size: 14px;
+	line-height: 1.7;
+	margin-left:0px;
+	background-color: black;
+	padding: 20px; 
+   
+    background-repeat: no-repeat;
+    background-size:100%;
+    width:auto;
+	height:802px;
+	opacity: 0.8;
+	
+    
+    
+}
+.stockimage1{
+	 /*background: url("/static/img/stockmarket1.jpg");*/
+	 width:100%;
+	 height:300px
+
+	
+}
+
+
+.countdown{
+	color:#80ffff;
+	width:100%;
+    height:100%;
+    background-color:black;
+    border-radius:10px;
+    margin:5px;
+    padding:0px 10px;
+    font-size:20px;
+    
+     
+	
+}
+
+
+
+
+
+
+.table{
+	font-family: Poppins-Regular;
+	font-size: 14px;
+	line-height: 1.7;
+	margin:0px;
+	padding:0px; 
+	width:100%;
+	height:100%;
+    background-color: black;
+    color:black;
+	
+	
+}
+
+#tblStock{
+	background-color: #012b36;
+	font-size:16px;
+	font-weight:bold;
+	color:white
+	
+}
+
+
+
+
+.mainhead{
+	background-color:black;
+	color:white;
+}
+	
+.col{
+	 font-weight:none;
+	 color:#049CC8;
+	 font-size:18px;
+	
+}
+
+.data{
+	 font-weight:bold;
+}
+
+.head{
+	background-color:black;
+	color:white;
+}
+
+.head:hover{
+	background-color:yellow;
+	color: black;
+	
+}
+
+
+.playername{
+	
+	 font-size:16px;
+	 font-weight:bold;
+	 text-align:left;
+	 width:100%;
+	 height:100%;
+	 padding:0px 20px;
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	
+}
+#ulogo{
+	transform:rotateY(180deg);
+	transition:transform .9s linear 0s;
+    padding:0px;
+	
+}
+
+
+.form-group:hover
+{
+        -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.1);
+        transform: scale(0.9);
+        
+}
+
+
+
+
+#playernametext{
+	width:300px;
+    height:100%;
+    background-color:black;
+    border-radius:10px;
+    margin:20px;
+    
+    
+}
+
+#codeworriors{
+	 font-size:60px;
+	 font-weight:bold;
+	 color:#5af5fe;
+	 width:100%;
+	 height:100px
+	 text-align:left;
+	 font-family:Poppins-Regular;
+	 animation-name:blinker;
+	 animation-duration:0.1s;
+	 animation-timing-function:linear;
+	 animation-iteration-count:infinite;
+	 
+	 
+	
+	}
+
+
+.balance{
+	
+	 font-size:16px;
+	 font-weight:bold;
+	 text-align:left;
+	 width:100%;
+	 padding:0px 80px;
+	
+}
+#balancelable{
+	width:150px;
+    height:100%;
+    background-color:white;
+    border-radius:10px;
+    
+}
+
+
+#lblCountdown{
+font-size:20px;
+heigh:50px;
+weight:50px;	
+	
+}
+
+
+
+
+
+
+
+/* -------Stock Game 2 -----*/
+
+
+
+.header{}
+
+
+.suggest1
+{
+	 width:100%;
+     height:100%;
+     text-align:center;
+}
+
+
+
+/*.valuedisplay{
+	width:100%;
+	height:300px;
+	Background-color:#0080c0;
+	text-align:center;
+	color:white;
+	font-family: Poppins-Regular;
+	line-height: 1.7;
+	padding:10px; 
+	
+		
+}
+
+
+.value{
+	
+	 font-size:16px;
+	 font-weight:bold;
+	 text-align:center;
+	 width:100%;
+	 height:200px;
+	 padding:0px 10px;
+	 Background-color:black;
+	 border-radius:5px;
+	 
+	 
+}
+
+
+#valuelable{
+	width:80px;
+    height:100%;
+    
+    border-radius:10px;
+     
+}
+*/
+
+
+
+
+.stockdetails{
+	width:100%;
+	height:350px;
+	Background-color:#0080c0;
+	text-align:center;
+	color:white;
+	font-family: Poppins-Regular;
+	line-height: 1.7;
+	padding:20px 10px; 
+
+}
+.stock{
+	 font-size:16px;
+	 font-weight:bold;
+	 text-align:center;
+	 width:100%;
+	 height:100%;
+	 Background-color:black;
+	 border-radius:5px;
+	 color:white;
+	
+}
+
+.stocklabelid{
+	text-align:center;
+	
+}
+
+
+
+#prestock{
+	color:black
+	font-size:32px;
+	font-weight:bold;
+	width:350px;
+	height:260px;
+	text-align:center;
+	Background-color:black;
+	padding:10px 10px;
+}
+
+
+
+
+
+
+.userdisplay{
+	width:auto;
+	height:auto;
+	Background-color:#015769;
+	padding:5px 20px;
+	text-align:center;
+}
+
+.qty{
+	 color:	#ffffff;
+	 font-size:16px;
+	 font-weight:bold;
+	 padding:0px 12px
+}
+
+#qtylable{
+	width:50px;
+    height:100%;
+    background-color:white;
+    border-radius:0px;
+    padding:0px 5px;
+	
+	
+}
+
+.qtyinput{
+	color: black;
+	font-weight:bold;
+	font-size:16px;
+	
+	
+}
+
+.costinput{
+	color: black;
+	font-weight:bold;
+	font-size:16px;
+	
+}
+
+
+
+
+.price{
+	 color:	#ffffff;
+	 font-size:16px;
+	 font-weight:bold;
+	 padding:0px 12px
+}
+
+#pricelable{
+	width:50px;
+    height:100%;
+    background-color:white;
+    border-radius:0px;
+    padding:0px 0px;
+
+}
+
+
+.userbutton {
+    background-color:#62f7f3;
+    color:black;
+    font-weight:bold;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size:35px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    border: 2px solid #0abab5;
+    border-radius: 25px;
+    width:100px;
+    height:80px;
+    border-radius:70%;
+     
+}
+
+.userbutton:hover {
+    background-color:yellow; 
+    color: black;
+}
+
+.neon{
+	
+	transform:translate(0%,10%);
+	font-size:16px;
+	color:#70d6d6;
+	text-shadow:0 0 20px light #0000ff;
+	font-size:20px;
+	text-align:center;
+	font-weight:bold;
+}
+
+.blink{
+	animation-name:blinker;
+	animation-duration:0.8s;
+	animation-timing-function:linear;
+	animation-iteration-count:infinite;
+		
+}
+@keyframes blinker
+{
+	0%{opacity:0}
+	
+	100%{opacity:1}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*---------- Stock Game 3 -----------*/
+.header{}
+.username{
+	 text-align:center;
+	 color:	#00ffff;
+	 font-size:30px;
+	 text-align:center;
+	 font-weight:bold;
+	 
+}
+	
+.userimage{
+	text-align:center;
+	 background: url("/static/img/stockmarket1.jpg");
+	 width:100%;
+	 height:100px
+	
+	
+	
+	
+	
+}
+.accountbalance{
+	 
+	 font-size:16px;
+	 font-weight:bold;
+	 text-align:center;
+	 border-radius:10px;
+}
+#myDIV {
+    width:100%;
+    height:100%;
+    background-color:white;
+    text-align:right;
+    border-radius:25px;
+}
+.profit{
+	 
+	 font-size:16px;
+	 font-weight:bold;
+	 text-align:center;
+}
+
+.stockvalue{
+	 
+	 font-size:16px;
+	 font-weight:bold;
+	 text-align:center;
+}
+
+
+
+.fieldtypes{
+	
+	width:100%;
+     height:100%;
+	
+}
+
+
+
+
+/*===================================================================*/
+
+.valuedisplay{
+	width:100%;
+	height:50px;
+	Background-color:black;
+	text-align:center;
+	color:white;
+	font-family: Poppins-Regular;
+	line-height: 1.7;
+	padding:0px; 
+	
+		
+}
+
+
+.value{
+	
+	 font-size:16px;
+	 font-weight:bold;
+	 text-align:left;
+	 width:100%;
+	 height:100%;
+	 padding:0px 40px;
+	 Background-color:#156d7d;
+	 border-radius:20px;
+	
+	 
+	 
+}
+
+#valuelable{
+	width:100%;
+    height:100%;
+    background-color:white;
+    border-radius:10px;
+    text-align:left;
+
+     
+}
+
+
+
+
+.playernamelabel{
+	width:150px;
+    height:25px;
+    background-color:white;
+    border-radius:10px;
+    color:black;
+    font-size:16px;
+
+}
+
+.balance1{
+	width:150px;
+    height:25px;
+    background-color:white;
+    border-radius:10px;
+    color:black;
+    font-size:16px;
+
+}
+
+.stocklabel{
+	width:150px;
+    height:25px;
+    background-color:white;
+    border-radius:10px;
+    color:black;
+    font-size:16px;
+	
+}
+
+
+
+
+
+/*====================================================================================*/
+
+
+
+.stockdisplay{
+	width:100%;
+	height:50px;
+	Background-color:black;
+	text-align:center;
+	color:white;
+	font-family: Poppins-Regular;
+	line-height: 1.7;
+	padding:0px; 
+	border-radius:0px;
+	
+		
+}
+
+
+.stock{
+	
+	 font-size:16px;
+	 font-weight:bold;
+	 text-align:left;
+	 width:100%;
+	 height:100%;
+	 padding:0px 40px;
+	 Background-color:#156d7d;
+	 border-radius:20px; 
+	 
+}
+
+.stockvalue1{
+	
+	 font-size:16px;
+	 font-weight:bold;
+	 text-align:left;
+	 width:100%;
+	 height:100%;
+	 padding:0px 40px;
+	 Background-color:black;
+	 border-radius:20px; 
+	
+	
+	
+	
+	
+}
+
+
+
+
+
+
+#tblShares{
+	
+	Background-color:yellow;
+	 border-radius:20px;
+	 font-weight:bold;
+	 font-size:16px;
+	
+}
+
+#totStockVal{
+	
+	width:150px;
+    height:25px;
+    background-color:white;
+    border-radius:10px;
+    color:black;
+    font-size:16px;
+    font-weight:bold;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*#playername{
+	 font-size:16px;
+	 font-weight:bold;
+	 width:100%;
+	 height:100%;
+	 padding:0px 80px;
+	 background-color:#109a94;
+	 text-align:left;
+	 color:white;
+	 border-radius:25px;
+	 
+	
+}
+#playernamelabel{
+	width:10 0px;
+    height:30px;
+    background-color:white;
+    text-align:center;
+    color:red;
+    font-weight:bold;
+    font-size:24px;
+	
+}
+
+#balance{
+	 font-size:16px;
+	 font-weight:bold;
+	 width:100%;
+	 height:100%;
+	 padding:0px 80px;
+	 background-color:#109a94;
+	 text-align:center;
+	 color:white;
+	 border-radius:25px;
+	 
+	
+}
+#balancelabel{
+	width:100%;
+    height:30px;
+    background-color:white;
+    border-radius:250px;
+	
+}
+
+#currentprice{
+	 font-size:16px;
+	 font-weight:bold;
+	 width:100%;
+	 height:100%;
+	 padding:0px 80px;
+	 background-color:#109a94;
+	 text-align:center;
+	 color:white;
+	 border-radius:25px;
+	 
+	
+}
+#currentpriceinput{
+	width:100%;
+    height:100%;
+    background-color:white;
+    border-radius:250px;
+	
+}
+*/
+
+
+/* =========================================LOGIN PAGE================================================================*/
+
+
+
+.containerback
+{
+	
+		 
+	 min-width:100%;
+     min-height:100%;
+	 margin-right:auto;
+     margin-left:auto;
+     position: fixed; 
+	 background:url("/static/img/UI-without-buttons.svg") repeat 0 0;
+	 background-repeat: no-repeat;
+     background-size: cover;
+	
+}
+
+.entername{
+	
+	margin:545px 30px 0px 80px;
+    color:white;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius:20px;
+    width:190px;
+    height:38px;
+    background-color:blue;
+    
+   
+    
+    
+    
+}
+
+#enternametext{
+
+	color:black;
+	text-weight:bold;
+	border-radius:20px;
+	
+	margin:545px 30px 0px 80px;
+    
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    width:190px;
+    height:38px;
+    background-color:white;
+    border-color:black;
+    border-width:3px;
+	
+}
+#errormsg{
+	margin:0px 100px;
+	padding:0px 5px;
+	font-size:12px;
+	text-align:center;
+	width:140px;
+}
+
+
+
+
+
+.playnow{
+	margin:545px 0px 0px 0px;
+	color:white;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius:20px;
+    width:190px;
+    height:38px;
+	background:url("/static/img/PLAY.svg")repeat 0 0;
+    border-color:black;
+    border-width:3px;
+}
+
+.logtable{
+	width:auto;
+	height:auto;
+	
+	
+}
+
+
+
+
+/* =========================================WAITING SCREEN================================================================*/
+
+	
+	
+	
+.containerwaiting
+{
+	
+	 min-width:100%;
+     min-height:100%;
+	 margin-right:auto;
+     margin-left:auto;
+     position: fixed; 
+	 background:url(../static/img/UI-without-buttons.svg) repeat 0 0;
+	 background-repeat: no-repeat;
+     background-size: cover;
+     
+     
+     
+     
+	
+}
+
+
+.containerwaitingscr {
+	
+	font-size: 14px;
+	line-height: 1.7;
+	margin:0px;
+	background-color:#0f393c;
+	padding:20px; 
+	width:100%;
+	height:100%;
+	position: fixed;
+    opacity: 0.5;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
