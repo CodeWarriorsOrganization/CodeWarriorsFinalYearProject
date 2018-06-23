@@ -26,6 +26,16 @@ public class StockMarketSharesDetailsController {
 		
 
 	}
+	
+	
+	
+	//this is use only test
+	@PostMapping("/getMarketPricesTest")
+	public Market getStokMarketSharsPricesTest() {
+	StockMarketPriceGeneratorService s= new StockMarketPriceGeneratorService();
+		return s.generate();
+		
+	}
 
 
 }
