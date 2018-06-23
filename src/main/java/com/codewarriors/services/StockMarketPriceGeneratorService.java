@@ -97,8 +97,12 @@ public class StockMarketPriceGeneratorService {
 		market.setCompanies(companies);
 		Analyst analyst=new Analyst();
 		
-		market.setAnalysisMessage(analyst.getStockData(market));
-	//	AiPlayer.startPlayer(market);
+	market.setAnalysisMessage(analyst.getRecommendations(market));
+//		analyst.getStockData(market);
+//		AiPlayer.startPlayer(market);
+	
+	AiPlayerService aiPlayerService = new AiPlayerService(market, "AIplayer1");
+	aiPlayerService.play(0);
 		
 		return market;
 	}

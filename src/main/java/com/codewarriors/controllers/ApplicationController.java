@@ -22,7 +22,7 @@ import com.codewarriors.entities.Bank;
 import com.codewarriors.entities.Player;
 import com.codewarriors.models.GameContentHolder;
 import com.codewarriors.models.Market;
-import com.codewarriors.services.AiPlayer;
+import com.codewarriors.services.AiPlayerService;
 import com.codewarriors.services.StockMarketPriceGeneratorService;
 
 @Controller
@@ -65,13 +65,13 @@ public class ApplicationController {
 					GameContentHolder.MARKET_PRICES = markets.generate();
 					GameContentHolder.WAITING_START_TIME = LocalDateTime.now();
 					
-					String aiPlayername= "gihan";
-					Player aiPlayer = new Player(aiPlayername);
-					playerService.savePlayer(aiPlayer);
-				//	p2 = playerService.findByplayerName(name);
-					Bank aiPlayerBank = new Bank(aiPlayername);
-					brokerService.createBankAccount(aiPlayerBank);
-					AiPlayer.startPlayer(GameContentHolder.MARKET_PRICES,aiPlayername);
+//					String aiPlayername= "gihan";
+//					Player aiPlayer = new Player(aiPlayername);
+//					playerService.savePlayer(aiPlayer);
+//				//	p2 = playerService.findByplayerName(name);
+//					Bank aiPlayerBank = new Bank(aiPlayername);
+//					brokerService.createBankAccount(aiPlayerBank);
+//					AiPlayer.startPlayer(GameContentHolder.MARKET_PRICES,aiPlayername);
 					
 				}else {
 					
