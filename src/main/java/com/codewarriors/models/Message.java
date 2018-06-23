@@ -1,5 +1,7 @@
 package com.codewarriors.models;
 
+import java.util.List;
+
 public class Message {
 	
 	private String message;
@@ -20,5 +22,7 @@ public class Message {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+	
+
 
 }
