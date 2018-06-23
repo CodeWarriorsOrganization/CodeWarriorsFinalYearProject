@@ -9,6 +9,8 @@ import com.codewarriors.entities.Player;
 public interface PlayerRepo extends JpaRepository<Player,Integer>{
 
 	Player findByplayerName(String name);
+	
+	
 
 
 }

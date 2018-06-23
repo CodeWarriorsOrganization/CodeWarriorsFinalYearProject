@@ -1,100 +1,128 @@
 package com.codewarriors.entities;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+
+import com.codewarriors.models.AnalysisMessage;
 import com.codewarriors.models.Company;
 import com.codewarriors.models.Market;
-import com.codewarriors.models.Turn;
+import com.codewarriors.models.Message;
+import com.codewarriors.models.TurnMessage;
+
 
 public class Analyst {
+	
+	
 
-	public void getStockData(Market market) {
-		Company comp;
-		Turn turn;
-		double price;
-		double currentprice;
-
-		//List<Company> getcompanies = new ArrayList<Company>();
-		//List<Turn> getturns = new ArrayList<Turn>();
-		//List<Double> pricelist = new ArrayList<>();
-		//List<String> BuyList = new ArrayList<>();
-		//List<String> SellList = new ArrayList<>();
-		//List<String> Predictions = new ArrayList<>();
-
-		
-		//Company turns = new Company();
-
-		//getcompanies = market.getCompanies();
-		//getturns = turns.getTurns();
-		//System.out.println("getttttttttttttttttttttttttttttttttttttt"+market.getCompanies().size());
+	public AnalysisMessage getStockData(Market market) {
+	    AnalysisMessage analysisMessage =new AnalysisMessage();
+	    List<TurnMessage> turnMesages= new ArrayList<TurnMessage>();
+	    List<Company> companies = new ArrayList<Company>();
+	    DecimalFormat df = new DecimalFormat("#.###");
+		Company company;
+		companies = market.getCompanies();		
 		int turnSize=market.getNoTurns();
-		int companySize=market.getCompanies().size();
-		for(int i=0; i<turnSize;i++) {
-			
-			for(int x=0;x<companySize;x++) {
-				
-			}
-		}
+		int companySize=market.getCompanies().size();			
 		
-		///////////// start pamo part
-		/*
-
-		for (int t = 0; t <= getturns.size(); t++) {
-			for (int c = 0; c <= getcompanies.size(); c++) {
-				comp = getcompanies.get(c);
-				turn = getturns.get(t);
-				currentprice = turn.getPrice();
-
-				int size = getturns.size();
-				int sizelimit = 0;
-				if (t <= 21) {
+		// Not usable this is use for print all stock price of company(12) in all turns(30)
+		System.out.println("company price=");
+		for (int t = 0; t < turnSize; t++) {				
+			for (int c = 0; c < companySize; c++) {
+				System.out.print(companies.get(c).getTurns().get(t).getPrice()+"  ");
+			}
+			System.out.println("");
+		}
+		//
+		
+			 
+           
+		for (int t = 0; t < turnSize; t++) {
+			
+			TurnMessage turnMessage = new TurnMessage();
+			
+			for (int c = 0; c < companySize; c++) {				
+				company = companies.get(c);				
+				int sizelimit = 0;				
+				if (t < 21) {
 					sizelimit = t + 9;
 				} else {
-					sizelimit = size;
-				}
-				for (int currentturn = t; currentturn <= sizelimit; currentturn++) {
-					turn = getturns.get(currentturn);
-					price = turn.getPrice();
-					pricelist.add(price);
-				}
-
-				// sorting the array in descending order
-				Collections.sort(pricelist, Collections.reverseOrder());
-				for (int sp = 0; sp <= pricelist.size(); sp++) {
-					double price1 = pricelist.get(sp);
-
-					if ((currentprice * (1 + 110 / 100)) <= (price1)) {
-
-						double priceprecent = price1 - currentprice;
-
-						String buy = comp + String.valueOf(t) + String.valueOf(priceprecent);
-						BuyList.add(buy);
-					} else {
-						double priceprecent = price1 - currentprice;
-						String sell = comp + String.valueOf(t) + String.valueOf(priceprecent);
-						SellList.add(sell);
-					}
-
-				}
-
-				for (int predition = 0; predition < 6; predition++) {
-					int spredition = 0;
-					// Buy Predictions
-					if (predition < 3) {
-
-						Predictions.add(BuyList.get(predition));
-					}
-					else {
-						// Sell Predictions
-						Predictions.add(SellList.get(spredition));
-						spredition++;
-					}
-
-				}
-
+					sizelimit = turnSize-1;
+				}				
+				double priceCangingPercentage=Double.parseDouble(df.format( (company.getTurns().get(sizelimit).getPrice()-company.getTurns().get(t).getPrice())/100));				
+				company.setCompanypriceCangingPercentage(priceCangingPercentage);				
 			}
-		} */
+			
+			
+			System.out.println("turn="+t+"=");
+			
+			for (int a = 0; a < 12; a++) {				
+				System.out.print(companies.get(a).getCompanypriceCangingPercentage()+"    ");
+			}
+			System.out.println("    ");
+			
+			Collections.sort(companies, new Comparator<Company>(){		      
+		      public int compare(Company c1, Company c2) {		       
+		       return Double.valueOf(c1.getCompanypriceCangingPercentage()).compareTo(c2.getCompanypriceCangingPercentage()); 		       
+		      }
+		 });			
+			
+			System.out.println("companypriceCangingPercentageAscendingOrdere=  ");
+			List<Message> sellMessage = new  ArrayList<Message>() ;
+			for (int a = 0; a < 12; a++) {
+				if(a<3) {
+					Message message= new Message();
+					if(t<29) {
+						message.setMessage("this company is best for Sell= "+companies.get(a).getCompanyName());
+					}else {
+						message.setMessage("After this turn, Stock Market will closed");
+					}
+					
+					sellMessage.add(message);
+				}else {
+					//break;
+				}
+				System.out.print("name= "+companies.get(a).getCompanyName()+" "+"presentage= "+ companies.get(a).getCompanypriceCangingPercentage()+"   ");
+			
+			}
+			turnMessage.setSellMessages(sellMessage);
+			
+			
+			
+			Collections.sort(companies, new Comparator<Company>(){		      
+			      public int compare(Company c1, Company c2) {		       
+			       return Double.valueOf(c2.getCompanypriceCangingPercentage()).compareTo(c1.getCompanypriceCangingPercentage()); 		       
+			      }
+			 });			
+			
+			List<Message> buyMessage = new  ArrayList<Message>() ;
+				System.out.println("companypriceCangingPercentageDescendingOrder=  ");
+				
+				for (int a = 0; a < 12; a++) {
+					if(a<3) {
+						Message message= new Message();
+						if(t<29) {
+							message.setMessage("this company is best for Buy= "+companies.get(a).getCompanyName());
+						}else {
+							message.setMessage("After this turn, Stock Market will closed");
+						}
+						buyMessage.add(message);
+					}else {
+						//break;
+					}
+					System.out.print("name= "+companies.get(a).getCompanyName()+" "+"presentage= "+ companies.get(a).getCompanypriceCangingPercentage()+"   ");
+				}
+				
+				turnMessage.setBuyMessages(buyMessage);
+				
+						
+			turnMesages.add(turnMessage);
+		} 
+		analysisMessage.setTurnMessage(turnMesages);
+		
+		return analysisMessage;
 
 		
 	}
