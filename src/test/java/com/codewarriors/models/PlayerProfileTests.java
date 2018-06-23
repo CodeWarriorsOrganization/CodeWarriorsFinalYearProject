@@ -2,8 +2,7 @@ package com.codewarriors.models;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-import com.codewarriors.models.PlayerProfile;;
-
+import com.codewarriors.models.PlayerProfile;
 public class PlayerProfileTests {
 
 	// Check if the getProfileName is empty 
