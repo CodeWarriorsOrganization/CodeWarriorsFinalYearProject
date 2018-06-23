@@ -31,7 +31,7 @@ body {
 	cursor: pointer;
 	padding: 14px 16px;
 	font-size: 17px;
-	width: 25%;
+	width: 20%;
 }
 
 .tablink:hover {
@@ -62,6 +62,10 @@ body {
 	background-color: orange;
 }
 
+#StockPrices {
+	background-color: orange;
+}
+
 .wrapper {
 	width: 150px;
 	height: 150px;
@@ -81,7 +85,8 @@ body {
 
 </head>
 
-<body onload="checkOnLoad();displayWinnerName();disableBackButton();">
+<body
+	onload="checkOnLoad();displayWinnerName();disableBackButton();getStockMarketDetailFromService();">
 
 	<button class="tablink" onclick="openPage('Overview', this, 'red')"
 		id="defaultOpen">Overview</button>
@@ -93,6 +98,9 @@ body {
 	<button class="tablink"
 		onclick="openPage('Transactions', this, 'orange')"
 		id="OpenTransactionTab">Transactions</button>
+	<button class="tablink"
+		onclick="openPage('StockPrices', this, 'orange')"
+		id="OpenStockPriceTab">StockPrices</button>
 
 	<div id="Overview" class="tabcontent">
 
@@ -103,7 +111,8 @@ body {
 			<img id="trophy" src="/static/img/small_trophy.png" alt="Avatar">
 		</div>
 		<div class="table-responsive" id="tblRankings">
-			<table class="table table-stripped table-bordered" id="tableRank"  style="cursor: pointer;">
+			<table class="table table-stripped table-bordered" id="tableRank"
+				style="cursor: pointer;">
 				<thead>
 					<tr>
 						<th>RANK</th>
@@ -132,7 +141,8 @@ body {
 		<h3 id="portfolioHeader"></h3>
 		<pre>
  <label>RANK :</label>     <label>NET WORTH :</label>                 <label>OVERALL GAINS(+)/LOSS(-) :</label>
- <label id="pRank"></label>           <label id="netWorth"></label>              <label id="overall_perform"></label>
+ <label id="pRank"></label>           <label id="netWorth"></label>              <label
+				id="overall_perform"></label>
   </pre>
 
 		<button id="btnTrade" name="btnTrade" type="button">View
@@ -165,8 +175,8 @@ body {
 		<h3 id="portfolioHeader2"></h3>
 		<pre>
  <label>RANK :</label>      <label>NET WORTH :</label>                 <label>OVERALL GAINS(+)/LOSS(-) :</label>
-  <label id="pRank2"></label>                         <label id="netWorth2"></label>              <label
-				id="overall_perform2"></label>
+  <label id="pRank2"></label>                         <label
+				id="netWorth2"></label>              <label id="overall_perform2"></label>
   </pre>
 
 		<div class="table-responsive" id="tblTrades">
@@ -214,6 +224,56 @@ body {
 		</div>
 	</div>
 
+	<div id="StockPrices" class="tabcontent">
+
+		<h3 id="portfolioHeader4"></h3>
+
+
+		<div class="table-responsive" id="tblStockPrices">
+			<table class="table table-stripped table-bordered"
+				id="tableStockPrices">
+				<thead>
+					<tr>
+						<th>Company</th>
+						<th>TURN 1</th>
+						<th>TURN 2</th>
+						<th>TURN 3</th>
+						<th>TURN 4</th>
+						<th>TURN 5</th>
+						<th>TURN 6</th>
+						<th>TURN 7</th>
+						<th>TURN 8</th>
+						<th>TURN 9</th>
+						<th>TURN 10</th>
+						<th>TURN 11</th>
+						<th>TURN 12</th>
+						<th>TURN 13</th>
+						<th>TURN 14</th>
+						<th>TURN 15</th>
+						<th>TURN 16</th>
+						<th>TURN 17</th>
+						<th>TURN 18</th>
+						<th>TURN 19</th>
+						<th>TURN 20</th>
+						<th>TURN 21</th>
+						<th>TURN 22</th>
+						<th>TURN 23</th>
+						<th>TURN 24</th>
+						<th>TURN 25</th>
+						<th>TURN 26</th>
+						<th>TURN 27</th>
+						<th>TURN 28</th>
+						<th>TURN 29</th>
+						<th>TURN 30</th>
+
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
 	<script>
 		function openPage(pageName, elmnt, color) {
 			var i, tabcontent, tablinks;
@@ -232,24 +292,115 @@ body {
 		// Get the element with id="defaultOpen" and click on it
 		document.getElementById("defaultOpen").click();
 		document.getElementById("OpenPortfolioTab").disabled = true;
-	    document.getElementById("OpenTradeHistoryTab").disabled = true;
+		document.getElementById("OpenTradeHistoryTab").disabled = true;
 		document.getElementById("OpenTransactionTab").disabled = true;
-		
 	</script>
 
-
-
-
 </body>
+<script>
+	var turn = 0;
+	var noTurns;
+	var turnTimes;
+	var response;
 
+	function getStockMarketDetailFromService() {
+
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("POST", "http://localhost:8080/stockMarket/getMarketPrices",
+				false);
+		xhttp.setRequestHeader("Content-type", "application/json");
+		xhttp.send();
+		response = JSON.parse(xhttp.responseText);
+		noTurns = response.noTurns;
+		turnTimes = response.turnTime;
+		loop();
+
+	}
+
+	function loop() {
+
+		
+		var table = document.getElementById("tableStockPrices");
+	
+
+		for (var i = 0; i < response.companies.length; i++) {
+
+			var object = response.companies[i];
+			var row = table.insertRow(i);
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+			var cell4 = row.insertCell(3);
+			var cell5 = row.insertCell(4);
+			var cell6 = row.insertCell(5);
+			var cell7 = row.insertCell(6);
+			var cell8 = row.insertCell(7);
+			var cell9 = row.insertCell(8);
+			var cell10 = row.insertCell(9);
+			var cell11 = row.insertCell(10);
+			var cell12 = row.insertCell(11);
+			var cell13 = row.insertCell(12);
+			var cell14 = row.insertCell(13);
+			var cell15 = row.insertCell(14);
+			var cell16 = row.insertCell(15);
+			var cell17 = row.insertCell(16);
+			var cell18 = row.insertCell(17);
+			var cell19 = row.insertCell(18);
+			var cell20 = row.insertCell(19);
+			var cell21 = row.insertCell(20);
+			var cell22 = row.insertCell(21);
+			var cell23 = row.insertCell(22);
+			var cell24 = row.insertCell(23);
+			var cell25 = row.insertCell(24);
+			var cell26 = row.insertCell(25);
+			var cell27 = row.insertCell(26);
+			var cell28 = row.insertCell(27);
+			var cell29 = row.insertCell(28);
+			var cell30 = row.insertCell(29);
+			var cell31 = row.insertCell(30);
+
+			table.rows[i].cells[0].innerHTML = object['companyName'];
+			table.rows[i].cells[1].innerHTML = object.turns[turn].price;
+			table.rows[i].cells[2].innerHTML = object.turns[1].price;
+			table.rows[i].cells[3].innerHTML = object.turns[2].price;
+			table.rows[i].cells[4].innerHTML = object.turns[3].price;
+			table.rows[i].cells[5].innerHTML = object.turns[4].price;
+			table.rows[i].cells[6].innerHTML = object.turns[5].price;
+			table.rows[i].cells[7].innerHTML = object.turns[6].price;
+			table.rows[i].cells[8].innerHTML = object.turns[7].price;
+			table.rows[i].cells[9].innerHTML = object.turns[8].price;
+			table.rows[i].cells[10].innerHTML = object.turns[9].price;
+			table.rows[i].cells[11].innerHTML = object.turns[10].price;
+			table.rows[i].cells[12].innerHTML = object.turns[11].price;
+			table.rows[i].cells[13].innerHTML = object.turns[12].price;
+			table.rows[i].cells[14].innerHTML = object.turns[13].price;
+			table.rows[i].cells[15].innerHTML = object.turns[14].price;
+			table.rows[i].cells[16].innerHTML = object.turns[15].price;
+			table.rows[i].cells[17].innerHTML = object.turns[16].price;
+			table.rows[i].cells[18].innerHTML = object.turns[17].price;
+			table.rows[i].cells[19].innerHTML = object.turns[18].price;
+			table.rows[i].cells[20].innerHTML = object.turns[19].price;
+			table.rows[i].cells[21].innerHTML = object.turns[20].price;
+			table.rows[i].cells[22].innerHTML = object.turns[21].price;
+			table.rows[i].cells[23].innerHTML = object.turns[22].price;
+			table.rows[i].cells[24].innerHTML = object.turns[23].price;
+			table.rows[i].cells[25].innerHTML = object.turns[24].price;
+			table.rows[i].cells[26].innerHTML = object.turns[25].price;
+			table.rows[i].cells[27].innerHTML = object.turns[26].price;
+			table.rows[i].cells[28].innerHTML = object.turns[27].price;
+			table.rows[i].cells[29].innerHTML = object.turns[28].price;
+			table.rows[i].cells[30].innerHTML = object.turns[29].price;
+
+		}
+	}
+</script>
 <script type="text/javascript">
+	function checkOnLoad() {
 
-function checkOnLoad() {
+		var tableRankRows = document.getElementById("tableRank").rows.length;
 
-        var tableRankRows = document.getElementById("tableRank").rows.length;
-        
 		for (var z = 1; z < tableRankRows; z++) {
-			
+
 			var check = Number(document.getElementById("tableRank").rows[z].cells[4].innerHTML);
 
 			if (check < 0) {
@@ -261,14 +412,13 @@ function checkOnLoad() {
 			}
 
 		}
-    
-}
 
+	}
 </script>
 <script type="text/javascript">
-
 	function displayWinnerName() {
-		document.getElementById("winner").innerHTML = document.getElementById("tableRank").rows[1].cells[1].innerHTML;
+		document.getElementById("winner").innerHTML = document
+				.getElementById("tableRank").rows[1].cells[1].innerHTML;
 	}
 </script>
 <script type="text/javascript">
@@ -280,9 +430,9 @@ function checkOnLoad() {
 						$("#tablePlayerProfile tr").remove();
 						$("#tableTrades tr").remove();
 						$("#tableTransactions tr").remove();
-						
-				document.getElementById("OpenPortfolioTab").disabled = false;
-			
+
+						document.getElementById("OpenPortfolioTab").disabled = false;
+
 						e.stopPropagation();
 						var index = $(this).index();
 						var name = this.cells[1].textContent;
@@ -298,7 +448,7 @@ function checkOnLoad() {
 										"pName" : name,
 										"balance" : balance,
 										"returns" : returns,
-                                        "rank" : rank
+										"rank" : rank
 									},
 									success : function(data) {
 
@@ -307,9 +457,7 @@ function checkOnLoad() {
 										document.getElementById("netWorth").innerText = data[1];
 										document
 												.getElementById("overall_perform").innerText = data[2];
-										document
-										.getElementById("pRank").innerText = data[3];
-
+										document.getElementById("pRank").innerText = data[3];
 
 									}
 								});
@@ -353,68 +501,65 @@ function checkOnLoad() {
 
 									}
 								});
-					
+
 						document.getElementById("OpenPortfolioTab").click();
 						return false;
 					});
 </script>
 
 <script type="text/javascript">
+	$(document)
+			.on(
+					"click",
+					"#btnTrade",
+					function() {
+						$("#tableTrades tr").remove();
+						//document.getElementById("OpenPortfolioTab").disabled = true;
+						document.getElementById("OpenTransactionTab").disabled = true;
+						document.getElementById("OpenTradeHistoryTab").disabled = false;
+						var name = document.getElementById("portfolioHeader").innerText;
+						var balance = document.getElementById("netWorth").innerText;
+						var returns = document
+								.getElementById("overall_perform").innerText;
+						var rank = document.getElementById("pRank").innerText;
 
-$(document).on("click","#btnTrade",function() {
-	$("#tableTrades tr").remove();
-				//document.getElementById("OpenPortfolioTab").disabled = true;
-				document.getElementById("OpenTransactionTab").disabled = true;
-				document.getElementById("OpenTradeHistoryTab").disabled = false;
-		var name = document.getElementById("portfolioHeader").innerText;
-		var balance = document.getElementById("netWorth").innerText;
-		var returns = document.getElementById("overall_perform").innerText;
-		var rank = document.getElementById("pRank").innerText;
-
-
-		$
-				.ajax({
-					type : "GET",
-					url : "${pageContext.request.contextPath}/getPlayerDetailsHeader",
-					data : {
-						"pName" : name,
-						"balance" : balance,
-						"returns" : returns,
-                        "rank" : rank
-					},
-					success : function(data) {
-
-						document
-								.getElementById("portfolioHeader2").innerText = data[0];
-						document.getElementById("netWorth2").innerText = data[1];
-						document
-								.getElementById("overall_perform2").innerText = data[2];
-						document
-						.getElementById("pRank2").innerText = data[3];
-
-					}
-				});
-
-		$
-				.ajax({
-					type : "GET",
-					url : "${pageContext.request.contextPath}/getTransaction",
-					data : {
-						"pName" : name,
-						"balance" : balance,
-						"returns" : returns
-
-					},
-					success : function(data) {
-       
 						$
-								.each(
-										data,
-										function(i, item) {
-											$('<tr>')
-													.html(
-															"<td>"
-															+ data[i].compName
+								.ajax({
+									type : "GET",
+									url : "${pageContext.request.contextPath}/getPlayerDetailsHeader",
+									data : {
+										"pName" : name,
+										"balance" : balance,
+										"returns" : returns,
+										"rank" : rank
+									},
+									success : function(data) {
+
+										document
+												.getElementById("portfolioHeader2").innerText = data[0];
+										document.getElementById("netWorth2").innerText = data[1];
+										document
+												.getElementById("overall_perform2").innerText = data[2];
+										document.getElementById("pRank2").innerText = data[3];
+
+									}
+								});
+
+						$
+								.ajax({
+									type : "GET",
+									url : "${pageContext.request.contextPath}/getTransaction",
+									data : {
+										"pName" : name,
+										"balance" : balance,
+										"returns" : returns
+
+									},
+									success : function(data) {
+
+										$.each(data, function(i, item) {
+											$('<tr>').html(
+													"<td>" + data[i].compName
 															+ "</td><td>"
 															+ data[i].turnID
 															+ "</td><td>"
@@ -427,73 +572,70 @@ $(document).on("click","#btnTrade",function() {
 															+ data[i].cost
 															+ "</td>")
 
-													.appendTo(
-															'#tableTrades');
+											.appendTo('#tableTrades');
 										});
 
-					}
-				});
-	
-	document.getElementById("OpenTradeHistoryTab").click();
-		return false;
-	});
+									}
+								});
+
+						document.getElementById("OpenTradeHistoryTab").click();
+						return false;
+					});
 </script>
 <script type="text/javascript">
+	$(document)
+			.on(
+					"click",
+					"#btnBank",
+					function() {
+						$("#tableTransactions tr").remove();
+						document.getElementById("OpenPortfolioTab").disabled = false;
+						document.getElementById("OpenTransactionTab").disabled = false;
+						document.getElementById("OpenTradeHistoryTab").disabled = true;
 
-$(document).on("click","#btnBank",function() {
-	$("#tableTransactions tr").remove();
-		document.getElementById("OpenPortfolioTab").disabled = false;
-		document.getElementById("OpenTransactionTab").disabled = false;
-		document.getElementById("OpenTradeHistoryTab").disabled = true;
-		
-		var name = document.getElementById("portfolioHeader").innerText;
-		var balance = document.getElementById("netWorth").innerText;
-		var returns = document.getElementById("overall_perform").innerText;
-		var rank = document.getElementById("pRank").innerText;
+						var name = document.getElementById("portfolioHeader").innerText;
+						var balance = document.getElementById("netWorth").innerText;
+						var returns = document
+								.getElementById("overall_perform").innerText;
+						var rank = document.getElementById("pRank").innerText;
 
-		$
-				.ajax({
-					type : "GET",
-					url : "${pageContext.request.contextPath}/getPlayerDetailsHeader",
-					data : {
-						"pName" : name,
-						"balance" : balance,
-						"returns" : returns,
-                        "rank" : rank
-					},
-					success : function(data) {
-
-						document
-								.getElementById("portfolioHeader3").innerText = data[0];
-						document.getElementById("netWorth3").innerText = data[1];
-						document
-						.getElementById("overall_perform3").innerText = data[2];
-				document
-				.getElementById("pRank3").innerText = data[3];
-
-					}
-				});
-
-		$
-				.ajax({
-					type : "GET",
-					url : "${pageContext.request.contextPath}/getBankDetails",
-					data : {
-						"pName" : name,
-						"balance" : balance,
-						"returns" : returns
-
-					},
-					success : function(data) {
-    
 						$
-								.each(
-										data,
-										function(i, item) {
-											$('<tr>')
-													.html(
-															"<td>"
-															+ data[i].turnNo
+								.ajax({
+									type : "GET",
+									url : "${pageContext.request.contextPath}/getPlayerDetailsHeader",
+									data : {
+										"pName" : name,
+										"balance" : balance,
+										"returns" : returns,
+										"rank" : rank
+									},
+									success : function(data) {
+
+										document
+												.getElementById("portfolioHeader3").innerText = data[0];
+										document.getElementById("netWorth3").innerText = data[1];
+										document
+												.getElementById("overall_perform3").innerText = data[2];
+										document.getElementById("pRank3").innerText = data[3];
+
+									}
+								});
+
+						$
+								.ajax({
+									type : "GET",
+									url : "${pageContext.request.contextPath}/getBankDetails",
+									data : {
+										"pName" : name,
+										"balance" : balance,
+										"returns" : returns
+
+									},
+									success : function(data) {
+
+										$.each(data, function(i, item) {
+											$('<tr>').html(
+													"<td>" + data[i].turnNo
 															+ "</td><td>"
 															+ data[i].type
 															+ "</td><td>"
@@ -502,35 +644,32 @@ $(document).on("click","#btnBank",function() {
 															+ data[i].balance
 															+ "</td>")
 
-													.appendTo(
-															'#tableTransactions');
+											.appendTo('#tableTransactions');
 										});
 
-					}
-				});
-		
-	document.getElementById("OpenTransactionTab").click();
-		return false;
+									}
+								});
+
+						document.getElementById("OpenTransactionTab").click();
+						return false;
+					});
+</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#OpenPortfolioTab").click(function() {
+
+			document.getElementById("OpenTransactionTab").disabled = true;
+			document.getElementById("OpenTradeHistoryTab").disabled = true;
+
+		});
 	});
 </script>
 <script type="text/javascript">
-$(document).ready(function() {
-    $("#OpenPortfolioTab").click(function(){
-    	
-		document.getElementById("OpenTransactionTab").disabled = true;
-		document.getElementById("OpenTradeHistoryTab").disabled = true;
-		
-    }); 
-});
-
-
-</script>
-<script type="text/javascript">
-function disableBackButton(){
-history.pushState(null, null, location.href);
-window.onpopstate = function () {
-    history.go(1);
-}
-}
+	function disableBackButton() {
+		history.pushState(null, null, location.href);
+		window.onpopstate = function() {
+			history.go(1);
+		}
+	}
 </script>
 </html>
