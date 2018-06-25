@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import javax.servlet.http.HttpSession;
@@ -20,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.codewarriors.db.BrokerService;
+import com.codewarriors.db.HistoricalWinnerService;
 import com.codewarriors.db.PlayerService;
 import com.codewarriors.entities.Bank;
+import com.codewarriors.entities.HistoricalWinners;
 import com.codewarriors.entities.Player;
 import com.codewarriors.entities.Transaction;
 import com.codewarriors.models.PlayerProfile;
@@ -35,6 +36,9 @@ public class ApplicationController {
 	private BrokerService brokerService;
 	@Autowired
 	private PlayerService playerService;
+	
+	@Autowired
+	private HistoricalWinnerService  winnerService;
 
 	@RequestMapping(value = "/waitingScreen", method = RequestMethod.POST)
 	public String result(@ModelAttribute("txtGetName") String name, BindingResult result, Model model,
@@ -109,7 +113,7 @@ public class ApplicationController {
 
 	@RequestMapping(value = "/gameOverview", method = RequestMethod.GET)
 
-	public String loadGameOverviewScreen(HttpServletRequest request) {
+	public String loadGameOverviewScreen(@RequestParam String Pname,Model model) {
 
 		List<Player> players = new ArrayList<Player>();
 		List<Bank> playerRanking = new ArrayList<Bank>();
@@ -156,8 +160,38 @@ public class ApplicationController {
 
 		});
 
-		request.setAttribute("playerRankings", getFinalRankings);
-
+		model.addAttribute("playerRankings", getFinalRankings);
+		
+		model.addAttribute("Pname",Pname);
+		
 		return "gameOverview";
 	}
+	
+	
+	@RequestMapping(value = "/playAgain", method = RequestMethod.GET)
+	public String loadLoginScreen(@RequestParam String winnerName,String trades,String returns,String netWorth) {
+		
+		winnerService.deleteAllBankRecords();
+		winnerService.deleteAllPlayers();
+		winnerService.deleteAllTransactionRecords();
+		
+		double returns1 = Double.parseDouble(returns);
+		double netWorth1 = Double.parseDouble(netWorth);
+		int trade = Integer.parseInt(trades);
+		
+		
+		HistoricalWinners winner = new HistoricalWinners(winnerName,trade,netWorth1,returns1);
+		
+		winnerService.saveWinner(winner);
+		
+		return "index";	
+	}
+	
+	@RequestMapping(value = "/goToHome", method = RequestMethod.GET)
+	public String ReturnScreen() {
+		
+      return "index";
+	}
+	
+
 }
