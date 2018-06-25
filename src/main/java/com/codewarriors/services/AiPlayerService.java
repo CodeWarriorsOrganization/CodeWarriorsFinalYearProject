@@ -8,12 +8,14 @@ import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import com.codewarriors.controllers.BrokerController;
 import com.codewarriors.db.BrokerService;
 import com.codewarriors.db.PlayerService;
 import com.codewarriors.entities.Bank;
 import com.codewarriors.entities.Player;
+import com.codewarriors.models.AiTransactions;
 import com.codewarriors.models.AnalysisMessage;
 import com.codewarriors.models.Company;
 import com.codewarriors.models.Market;
@@ -34,22 +36,27 @@ public class AiPlayerService {
 	static DecimalFormat df = new DecimalFormat("###");
 	private static String AiplayerName;
 	private List<Company> marketCompanies = new ArrayList<Company>();
-	private List<TurnMessage> marketMessages = new ArrayList<TurnMessage>();
-	private List<Company> buyingCompanies = new ArrayList<Company>();
-	private List<Company> buyingFinalizedCompanies = new ArrayList<Company>();
-
+	private List<TurnMessage> marketMessages = new ArrayList<TurnMessage>();	
+	
+	
+	@Autowired
+	private BrokerService brokerService;
 	public AiPlayerService(Market market, String aiPlayerName) {
 		marketCompanies = market.getCompanies();
 		marketMessages = market.getAnalysisMessage().getTurnMessage();
 		AiplayerName = aiPlayerName;
 	}
 
-	public void play(int turn) {
+	public AiTransactions play(int turn) {
+		
 		/*
 		 * calculate buying/selling companies and its quantities
 		 */
+		List<Company> buyingCompanies = new ArrayList<Company>();
 		List<Message> predictSellMessages = new ArrayList<Message>();
 		List<Message> predictBuyMessages = new ArrayList<Message>();
+	    List<Company> buyingFinalizedCompanies = new ArrayList<Company>();
+		List<Company> sellingFinalizedCompanies = new ArrayList<Company>();
 
 		predictSellMessages = marketMessages.get(turn).getSellMessages();
 		predictBuyMessages = marketMessages.get(turn).getBuyMessages();
@@ -67,7 +74,7 @@ public class AiPlayerService {
 
 			}
 		} else if (buyCompanyCount < 5 && buyCompanyCount > 0) {
-			
+
 			int dff = 5 - buyCompanyCount;
 
 			for (int i = 0; i < buyCompanyCount; i++) {
@@ -77,7 +84,7 @@ public class AiPlayerService {
 			for (int i = 0; i < dff; i++) {
 				// selecting stocks from selling because of we need to fill up to 5
 				buyingCompanies.add(predictSellMessages.get(i).getCompany());
-																				
+
 			}
 
 		} else {
@@ -95,11 +102,13 @@ public class AiPlayerService {
 
 			}
 		}
-		System.out.println(	"::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
-		
+		System.out.println(
+				"::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::");
+
 		// ==========test print
 		System.out.println();
-		System.out.println(	"============================  AI  PART BEGIN   =========================================================================");
+		System.out.println(
+				"============================  AI  PART BEGIN   =========================================================================");
 		for (int i = 0; i < predictBuyMessages.size(); i++) {
 			System.out.println(" PRDICT BUY COMPANY NAME : " + predictBuyMessages.get(i).getCompany().getCompanyName());
 
@@ -108,7 +117,8 @@ public class AiPlayerService {
 		// ==========predictSellMessages print
 		System.out.println();
 		for (int i = 0; i < predictSellMessages.size(); i++) {
-			System.out.println(" PRDICT SELL COMPANY NAME : " + predictSellMessages.get(i).getCompany().getCompanyName());
+			System.out
+					.println(" PRDICT SELL COMPANY NAME : " + predictSellMessages.get(i).getCompany().getCompanyName());
 
 		}
 
@@ -138,93 +148,43 @@ public class AiPlayerService {
 		}
 		// ==================================print company details
 
-		System.out.println(	"\n\n=======================================OBJECT PRICE TESTING=============================");
+		System.out.println(
+				"\n\n=======================================OBJECT PRICE TESTING=============================");
 		for (int i = 0; i < buyingFinalizedCompanies.size(); i++) {
-			
+
 			System.out.println(" BUYING FINALIZED COMPANY NAME : " + buyingFinalizedCompanies.get(i).getCompanyName()
 					+ "PRICE :" + buyingFinalizedCompanies.get(i).getTurns().get(turn).getPrice());
-
 		}
 
-		// database transfer data
-		if (!buyingFinalizedCompanies.isEmpty()) {
-			System.out.println(	"-------------------------------- AI calculateBuyingQuantity -------------------------------------------------------------------------");
-			transaction(calculateBuyingQuantity(buyingFinalizedCompanies, turn), turn, "BUY");
+		for (int i = 0; i < predictSellMessages.size(); i++) {			
+			sellingFinalizedCompanies.add(predictSellMessages.get(i).getCompany());
 		}
-	}
-
-	private List<Company> calculateBuyingQuantity(List<Company> companies, int turn) {
-		System.out.println();
-		int randomQty = random.ints(5, 8).findAny().getAsInt();
-		double bankBalance = getCurrentBankBalance();
-		// asc order sort
-		Collections.sort(companies, new Comparator<Company>() {
-			public int compare(Company c1, Company c2) {
-				return Double.valueOf(c1.getTurns().get(turn).getPrice()).compareTo(c2.getTurns().get(turn).getPrice());
-			}
-		});
-		for (int i = 0; i < companies.size(); i++) {
+		
+		AiTransactions aiTransactions = new AiTransactions();
+		aiTransactions.setBuyCompanies(buyingFinalizedCompanies);
+		System.out.println("========Ai Class print pasing buying quntity=============================");
+		for (int i = 0; i < aiTransactions.getBuyCompanies().size(); i++) {
 			
-			// current balance should retrieve from db
-			double uPrice = companies.get(i).getTurns().get(turn).getPrice();
-
-			if (bankBalance >= (uPrice * randomQty)) {
-				
-				companies.get(i).setBuyQuantity(randomQty);
-				bankBalance = bankBalance - uPrice * randomQty;
-				System.out.println(" Bank Balance : " + bankBalance + "Random Qty : " + randomQty);
-				randomQty--;
-				
-			} else {
-				
-				companies.remove(i);
-			}
-
+			System.out.println("Company Name= "+aiTransactions.getBuyCompanies().get(i).getCompanyName());
+			
 		}
-		System.out.println(	"*****************************************START***********************************************");
-		for (int i = 0; i < companies.size(); i++) {
-			System.out.println(" Company name : " + companies.get(i).getCompanyName() + " BuyingQTY "
-					+ companies.get(i).getBuyQuantity());
+		aiTransactions.setSellCompanies(sellingFinalizedCompanies);
+		
+		System.out.println("========Ai Class print pasing Selling quntity=============================");
+		for (int i = 0; i < aiTransactions.getSellCompanies().size(); i++) {
+			
+			System.out.println("Company Name= "+aiTransactions.getSellCompanies().get(i).getCompanyName());
+			
 		}
+		
+		
+		
+		
 
-		System.out.println(	"*******************************************END*********************************************");
+		return aiTransactions;
+		// ==============================================Select Selling
+		// companies==========
 
-		return companies;
 	}
 
-	private double getCurrentBankBalance() {
-		return bankbalance;
-	}
-
-	private void transaction(List<Company> companiesList, int turn, String type) {
-		if (type == "BUY") {
-			for (int i = 0; i < companiesList.size(); i++) {
-				String playerName = AiplayerName;
-				int turnid = turn;
-				String typeID = type;
-				String companyName = companiesList.get(i).getCompanyName();
-				double unitprice = companiesList.get(i).getTurns().get(turn).getPrice();
-				int buyqty = companiesList.get(i).getBuyQuantity();
-				double cost = unitprice * buyqty;
-				// database implemetation to be implement
-
-			}
-
-		} else if (type == "SELL") {
-			for (int i = 0; i < companiesList.size(); i++) {
-				String playerName = AiplayerName;
-				int turnid = turn;
-				String typeID = type;
-				String companyName = companiesList.get(i).getCompanyName();
-				double unitprice = companiesList.get(i).getTurns().get(turn).getPrice();
-				int sellqty = companiesList.get(i).getSellQuantity();
-				double cost = unitprice * sellqty;
-				// database implemetation to be implement
-			}
-
-		} else {
-			System.out.println("Couln't handle this transaction :/");
-		}
-
-	}
 }
