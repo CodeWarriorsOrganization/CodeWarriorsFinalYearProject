@@ -101,8 +101,8 @@ public class StockMarketPriceGeneratorService {
 //		analyst.getStockData(market);
 //		AiPlayer.startPlayer(market);
 	
-	AiPlayerService aiPlayerService = new AiPlayerService(market, "AIplayer1");
-	aiPlayerService.play(0);
+	//AiPlayerService aiPlayerService = new AiPlayerService(market, "AIplayer1");
+	//aiPlayerService.play(0);
 		
 		return market;
 	}
