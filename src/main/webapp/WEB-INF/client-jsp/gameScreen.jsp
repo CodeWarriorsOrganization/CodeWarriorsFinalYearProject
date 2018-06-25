@@ -4,113 +4,328 @@
 
 <!DOCTYPE html>
 <html>
+
+
 <head>
-
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta charset="ISO-8859-1">
 <title>Market Phobia</title>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="shortcut icon" type="image/x-icon"
-	href="/static/img/title-logo.png" />
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+
 <script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<link rel="icon" type="image/gif" href="images/title-bar-logo.png" />
+
+
 
 </head>
 
-<body onload="functionOnload();">
+
+<!-- ================================================================================================= -->
+
+<body onload="functionOnload()">
 	<div class="container">
-		<p id="demo"></p>
-		<div class="row col-md-6 table-responsive">
-			<table id="tblStock" class="table table-bordered table-hover" style="cursor: pointer;">
-				<thead>
-					<tr>
-						<th></th>
-						<th></th>
+		<div class="col-md-4">
+			<p id="demo" style="display: none"></p>
+			<div class="stockgame1">
 
-					</tr>
-				</thead>
-				<tbody id="demoTable" style="cursor: pointer;">
+				<div class="userlogofront">
+				 	<div class="playername">
+					
+					
+					<div class="example1">
+                     <div class="ex"></div>
+                   </div>
+					
+					
+					</div> 
+				</div>
 
 
-				</tbody>
-			</table>
-			<div>
-				<label id="lblCountdown"
-					style="width: 200px; height: 200px; color: red; background-color: yellow;"></label>
-					<label id="countdownno"
-					style="width: 200px; height: 200px; color: red; background-color: yellow;"></label>
-			</div>
-		</div>
-		<div class="row col-md-1"></div>
-		<div class="row col-md-6" style="background-color: yellow;">
-			<label>Player Name :</label><br> <input type="text"
-				id="playerName" value="${pName}"><br> <label>Balance
-				:</label><br> <input type="text" id="balance" value="${balance}"
-				readonly><br>
-			<div
-				style="background-color: green; margin-top: 15px; margin-bottom: 15px;">
-				<pre> <label>Stock Value :</label>     <input type="text"
-						id="totStockVal" style="text-align: right" value=0 readonly>
-				</pre>
-				<div>
-					<table id="tblShares" class="table table-hover" style="cursor: pointer;">
-						<thead style='display: none;'>
-							<tr>
-								<th>Company</th>
-								<th>Unit Price</th>
-								<th>Shares</th>
-								<th>Value</th>
-							</tr>
-						</thead>
-						<tbody class="tbody">
-						</tbody>
+				<div class="tno">
+					<table>
+						<tr>
+							<td>
+								<div id="turn" style="height: 36px;">TURN NO :</div>
+							</td>
+							<td>
+								<div id="lblCountdown">
+									<label id="labelcountdown"></label>
+								</div>
+							</td>
+							<td><label id="countdownno"> </label></td>
+						</tr>
 					</table>
 				</div>
-			</div>
-			<div>
-				<pre>
-                   <label id="lblName"></label>	<label id="name2"></label>
-                   <label id="lblSector"></label>  <label id="name3"></label>
-                   <label id="lblDetails"></label>  <a id="name4"
-						target="_blank"></a>
-               </pre>
-			</div>
-			<div class="row"
-				style="background-color: green; margin-top: 15px; margin-bottom: 15px;">
-				<div class="row col-md-3">
-					<button id="btnTrade" name="btnTrade" type="button"
-						onclick="checkExist()"
-						style="height: 30px; width: 60px; margin-top: 35px; margin-bottom: 35px; margin-left: 15px; margin-right: 15px">BUY</button>
+				<br>
+				<div class="table">
+				  
+					<table id="tblStock" class="table table-black table-reponsive" style="cursor: pointer;">
+                      
+                       <table>
+                           <thead>
+                           
+                            <tr>
+                              
+							<!--  	<th class="col-md-6">Company Name</th>  -->
+							<!--  	<th class="col-md-6">Current Stock Price</th>-->
+
+							</tr>
+
+						
+							
+						</thead>
+						<tbody style="cursor: pointer;">
+							
+								<tbody id="demoTable" style="cursor: pointer;">
+								</tbody>
+					  	</tbody>
+					  	
+					  	    </table>	
+							</table>
+							<br>
+							<br>
+					
 				</div>
-				<div class="row col-md-1"></div>
-				<div class="row col-md-5"
-					style="height: 100px; width: 250px; margin-top: 15px; margin-bottom: 15px; margin-left: 15px; margin-right: 15px">
-					<pre>
-                       <label id="lblQuantity">Quantity :</label>  <input
-							type="number" id="upDownQty" min="1" max="10000" step="1"
-							value="1"
-							style="outline: 0; border: 0; border-top: 1px solid red; border-left: 1px solid red; border-right: 1px solid red; width: 200px;"
-							required>
-                       <label id="lblCost">Cost     :</label>  <input
-							type="text" id="cost"
-							style="outline: 0; border: 0; border-bottom: 1px solid red; border-left: 1px solid red; border-right: 1px solid red; width: 200px;"
-							value=0 readonly>
-                    </pre>
-				</div>
+			</div>
+			<br>
+		</div>
+
+
+		<!-- ==========================================Container 1 END====================================== -->
+
+		<!--============================================ Container 2 =========================================-->
+
+
+		<div class="col-md-4">
+			<div class="stockgame2">
+				
+				
+				
+				<div class="form-group1">
+					<div class="d-block p-2 text-black">
+					  	
+					   
+						<p class="neon" data-text="[neon_light]">ANALYSIS 1</p>
+					 <div class="analysis">
+					 
+					<div class="suggest1">
+					
+						
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+					
+						
+					</div>	
+				   </div>
+					</div>
+					
+					</div>
+					<br> 
+
+
+
+					<!-- Stock Details ======================= -->
+
+					<div class="stockdetails">
+						<div class="form-group">
+							<div class="d-block p-2 bg-primary text-white">
+								<div class="stock">
+									<label id="labelstock" for="text">Stock Details </label>
+									<div class="d-block p-2 prestock ">
+										<div>
+											<br>
+											<br> <label id="lblName"></label> <label id="name2"></label><br>
+											<label id="lblSector"></label> <label id="name3"></label><br>
+											<label id="lblDetails"></label> <a id="name4" target="_blank"></a><br>
+											<br>
+											<br>
+											<br>
+											<br>
+											<br>
+											<br>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<br>
+					
+					
+                   <div class="row centered">
+					<div class="d-block p-2 userdisplay">
+					
+							<div class="row">
+						<!--  	<div class="userdisplay1">	-->
+						    <div class="col-md-4 text-center">
+									<div>
+										<span class="d-block p-2 blink">
+											<button id="btnTrade" class="userbutton" name="btnTrade"
+												type="button" onclick="checkExist()">BUY</button>
+										</span>
+									</div>
+							</div>
+							
+									
+			
+							
+							<!-- quantity ============================ -->
+							
+							<div class="col-md-4 form-label text-center">
+                             <div class="text-center qty">
+					              <label for="text">Quantity</label>
+						                 <input class="form-control qtyinput" type="number" id="upDownQty" min="1"
+											max="10000" step="1" value="1" required>
+				             </div>
+					       </div>		
+							
+							<!-- Price ============================ -->
+							
+							     	<div class="col-md-4 form-label text-center centered">
+                                      <div class="text-center qty">
+										<label for="text">Cost</label>
+										<input type="text" class="form-control qtyinput" id="cost" value=0 readonly>
+									</div>		
+							      </div>		
+									
+							
+			<!--  		</div>-->
+					</div>
+					
+					</div>
+					</div>
+				    
 			</div>
 		</div>
+         
+
+		<!-- Container 3 ===================-->
+
+		<div class="col-md-4">
+			<div class="stockgame3">
+				<form action="">
+					<div class="userimage">
+						<img src="/static/img/user.jpg" class="img-circle"
+							alt="Cinque Terre" width="70" height="70">
+					</div>
+
+
+					<!-- player name Value ============================ -->
+					
+               <div class="valuedisplay">
+					<div class="row">
+					   <label class="col-md-6 form-label text-right" for="text">Player Name :</label>
+						  <input class="col-md-6 form-control playernamelabel" type="text" name="pName" id="playerName" value="${pName}" readonly>
+				   </div>
+              </div>
+              <br>
+                    <!-- Account Balance ============================ -->
+
+               <div class="valuedisplay">
+					<div class="row">
+					   <label class="col-md-6 form-label text-right" for="text">Account Balance (Rs) :</label>
+						  <input class="col-md-6 form-control playernamelabel" type="text" id="balance" value="${balance}" readonly>
+				   </div>
+              </div>
+              <br>
+              
+              
+              
+         
+              
+                <!-- Stock value ============================ -->
+
+               <div class="valuedisplay">
+					<div class="row">
+					   <label class="col-md-6 form-label text-right" for="text">Stock Value (Rs) :</label>
+						  <input class="col-md-6 form-control playernamelabel" style="font-size:16px; height:32px; border-radius:20px;" type="text" id="totStockVal" value="0" readonly>
+				   </div>
+              </div>
+              
+              <br>
+              
+          
+              
+              
+              
+
+					
+				</form>
+                 
+
+				<!-- ========================Invested Amount================================= -->
+
+				<form>
+					
+
+
+
+					<!-- Value ======================= -->
+
+					<div class="stockdisplay">
+						<div class="form-group1">
+							<div class="d-block p-2 text-white">
+								<div class="stockvalue1">
+
+									<div class="table">
+
+										<table id="tblShares" class="table" style="cursor: pointer;">
+											<thead>
+												<tr>
+												   
+													<th class="col-md-4 company">Company</th>
+													<th class="col-md-4 text-right">Current Price</th>
+													<th class="col-md-2 shares">Shares</th>
+													<th class="col-md-2 Value">Value</th>
+												
+												</tr>
+											</thead>
+											<tbody style="cursor: pointer;">
+
+												
+                                                
+													<tbody class="tbody" style="cursor: pointer;">
+													</tbody>
+												
+												</table>
+
+										    <br>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</form>
+			</div>
+		</div>
+
+
+
 	</div>
-	<input type="text" id="cName" name="cName" />
-	<pre>
-		<input type="text" id="index" name="index">
-	</pre>
-	<input type="text" id="price" name="price">
+	<input type="hidden" id="cName" name="cName" />
+
+	<input type="hidden" id="index" name="index">
+
+	<input type="hidden" id="price" name="price">
 
 	<div>
 		<div id="dialog-message" title="Insufficient Balance"
@@ -127,8 +342,17 @@
 </body>
 
 
+<!-- ============================================================================================================= -->
+
+<!--===============================MY DOC============================================================  -->
+
+
+
 <script type="text/javascript">
 	function functionOnload() {
+
+		countDown();
+
 	
 		countDownFunction();
 		getStockMarketDetailFromService();
@@ -139,19 +363,75 @@
 	}
 </script>
 
+<script>
+	//This script is to set time for the game
+	var x = 0;
+	function countDown() {
+
+		var i = 8;
+
+		document.getElementById('countdownno').style.fontSize = '150%';
+		document.getElementById('countdownno').innerHTML = 9;
+		function myLoop2() {
+			setTimeout(
+					function() {
+
+						var turnz = document.getElementById('labelcountdown').textContent;
+						document.getElementById('countdownno').style.fontSize = '150%';
+						document.getElementById("countdownno").innerHTML = i;
+
+						i--;
+						if (i >= 0) {
+							myLoop2();
+						} else {
+							if (turnz != '30') {
+
+								i = 9;
+								myLoop2();
+							} else {
+								$
+										.ajax({
+											type : "GET",
+											url : "${pageContext.request.contextPath}/gameOverview",
+											data : {
+
+											},
+											success : function(data) {
+
+												window.location = '/gameOverview';
+
+											}
+										});
+
+							}
+
+						}
+					}, 1000)
+			x++;
+		}
+		myLoop2();
+	}
+</script>
+
 <script type="text/javascript">
 	//This script is to set time for the game
 	var x = 0;
 	function countDownFunction() {
 		document.getElementById("btnTrade").disabled = true;
+
+		var i = 2;
+		document.getElementById('labelcountdown').style.fontSize = '300%';
+		document.getElementById('labelcountdown').innerHTML = 1;
+
 		var i = 1;
 		document.getElementById('lblCountdown').style.fontSize = '1000%';
 		document.getElementById('lblCountdown').innerHTML = 1;
+
 		function myLoop() {
 			setTimeout(
 					function() {
-						document.getElementById('lblCountdown').style.fontSize = '1000%';
-						document.getElementById("lblCountdown").innerHTML = i;
+						document.getElementById('labelcountdown').style.fontSize = '300%';
+						document.getElementById("labelcountdown").innerHTML = i;
 
 						i++;
 						if (i <= 30) {
@@ -260,6 +540,25 @@
 <script>
 	// Redirect to another page after certain time
 
+
+	/*	$(document).ready(function() {
+	 document.getElementById("alert").style.display = 'none';
+	 setTimeout(function() {
+	 $.ajax({
+	 type : "GET",
+	 url : "${pageContext.request.contextPath}/gameOverview",
+	 data : {
+
+	 },
+	 success : function(data) {
+
+	 window.location = '/gameOverview';
+
+	 }
+	 });  
+	 }, 310000);
+	 });  */
+
 	$(document).ready(function() {
 		document.getElementById("alert").style.display = 'none';
 		setTimeout(function() {
@@ -270,6 +569,7 @@
 
 		}, 40000); // 310000
 	});
+
 </script>
 
 <script type="text/javascript">
@@ -278,7 +578,6 @@
 	//if it does exist it will update the stock record
 	//or else it will add a new record
 	//then send data to the controller so it will be able to create bank and transaction records 
-
 	function checkExist() {
 		var type = document.getElementById("btnTrade").innerHTML;
 		var rows = "";
@@ -322,8 +621,8 @@
 							.toFixed(2);
 				} else {
 					total = total.toFixed(2);
-					rows += "<td>" + cName + "</td><td>" + price + "</td><td>"
-							+ qty + "</td><td>" + total + "</td>";
+					rows += "<td class='col-md-6'>" + cName + "</td><td class='col-md-2 text-center'>" + price + "</td><td class='col-md-2 text-center'>"
+							+ qty + "</td><td class='col-md-2 text-center'>" + total + "</td>";
 					var tbody = document.querySelector("#tblShares tbody");
 					var tr = document.createElement("tr");
 
@@ -398,7 +697,8 @@
 
 				var unitPrice = document.getElementById("tblShares").rows[x].cells[1].innerHTML;
 
-				document.getElementById("totStockVal").value = ((Number(totStock) - Number(amount))).toFixed(2);
+				document.getElementById("totStockVal").value = ((Number(totStock) - Number(amount)))
+						.toFixed(2);
 
 				document.getElementById("balance").value = (Number(balance) + (Number(amount))).toFixed(2);
 
@@ -580,7 +880,7 @@
 				document.getElementById("upDownQty").value = 1;
 					});
 </script>
-<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  -->
 <script>
 	var turn = 0;
 	var noTurns;
@@ -690,3 +990,14 @@ window.onpopstate = function () {
 </script>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+

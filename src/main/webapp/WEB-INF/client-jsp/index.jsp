@@ -31,13 +31,14 @@ background-image:url("static/img/UI-without-buttons.svg");
                <form action="waitingScreen" method="post">
 		
      <div class="logtable">
-       <table>
+     
+     <table>
          <tr>
            <td> 
              <div>
        
         <div class="">
-             <input type="text" name="txtGetName" class="form-control" id="enternametext" placeholder="Enter Player Name" size="75" required /> 
+             <input type="text" name="txtGetName" class="form-control" id="enternametext" placeholder="Enter Player Name" required /> 
            
          
        </div> 
@@ -45,7 +46,7 @@ background-image:url("static/img/UI-without-buttons.svg");
        
        
        
-       <!-- <button type="button"  class="entername"></button>-->
+     
         
         </div>
       </td>
@@ -53,9 +54,9 @@ background-image:url("static/img/UI-without-buttons.svg");
       <td>
       
         <div>
-         <a href="http://localhost:8085/final/gamescrn.html"><input type="submit" name="btnPlay" class="playnow"size="75" value=""/> </a>
+         <a href="http://localhost:8085/final/gamescrn.html"><button type="submit" name="btnPlay" class="btn btn-primary btn-responsive playnow" value=""></button> </a>
         
-        
+     
         
         
         </div>
@@ -67,7 +68,12 @@ background-image:url("static/img/UI-without-buttons.svg");
               <span class="validity"></span>    </td></tr>
      
        
-     </table>
+     </table> 
+     
+     
+     
+     
+     
      </div>  
     
     
