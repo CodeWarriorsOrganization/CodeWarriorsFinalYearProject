@@ -34,11 +34,14 @@ import com.codewarriors.models.AiTransactions;
 import com.codewarriors.models.Company;
 import com.codewarriors.models.GameContentHolder;
 import com.codewarriors.models.Market;
+import com.codewarriors.models.PlayerProfile;
 import com.codewarriors.services.AiPlayerService;
 import com.codewarriors.services.StockMarketPriceGeneratorService;
 
 @Controller
 public class ApplicationController {
+	static DecimalFormat decimalFormat = new DecimalFormat("####.##");
+	static Random random = new Random();
 
 	@Autowired
 	private BrokerService brokerService;
