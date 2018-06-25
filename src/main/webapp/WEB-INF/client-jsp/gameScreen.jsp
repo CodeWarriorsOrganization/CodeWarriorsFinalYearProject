@@ -43,11 +43,13 @@
 			<div>
 				<label id="lblCountdown"
 					style="width: 200px; height: 200px; color: red; background-color: yellow;"></label>
+					<label id="countdownno"
+					style="width: 200px; height: 200px; color: red; background-color: yellow;"></label>
 			</div>
 		</div>
 		<div class="row col-md-1"></div>
 		<div class="row col-md-6" style="background-color: yellow;">
-			<label>Player Name :</label><br> <input type="text" name="pName"
+			<label>Player Name :</label><br> <input type="text"
 				id="playerName" value="${pName}"><br> <label>Balance
 				:</label><br> <input type="text" id="balance" value="${balance}"
 				readonly><br>
@@ -121,12 +123,13 @@
 		</div>
 
 	</div>
+
 </body>
 
 
 <script type="text/javascript">
 	function functionOnload() {
-  
+	
 		countDownFunction();
 		getStockMarketDetailFromService();
 		shareTblPriceUpdate();
@@ -141,7 +144,7 @@
 	var x = 0;
 	function countDownFunction() {
 		document.getElementById("btnTrade").disabled = true;
-		var i = 2;
+		var i = 1;
 		document.getElementById('lblCountdown').style.fontSize = '1000%';
 		document.getElementById('lblCountdown').innerHTML = 1;
 		function myLoop() {
@@ -155,7 +158,7 @@
 							myLoop();
 						}
 					}, 10000)
-			x++;
+		x++;
 		}
 		myLoop();
 	}
@@ -189,14 +192,13 @@
 			if ((document.getElementById("tblShares").rows[y].cells[0].innerHTML) == (document
 					.getElementById("name2").innerHTML)){
 				
-			     document.getElementById("cost").value = document.getElementById("tblShares").rows[y].cells[1].innerHTML;
-			     document.getElementById("cost").value = Number(document.getElementById("cost").value)*(Number(document.getElementById("upDownQty").value));
+				
+			    // document.getElementById("cost").value = document.getElementById("tblShares").rows[y].cells[1].innerHTML;
+			    var currentVal = document.getElementById("tblShares").rows[y].cells[1].innerHTML;
+			     document.getElementById("cost").value = ((Number(currentVal)).toFixed(2))*(Number(document.getElementById("upDownQty").value));
 				
 			}
-
-			
-			
-			
+	
 		}
 
 		setTimeout(shareTblPriceUpdate, 10000);
@@ -261,20 +263,12 @@
 	$(document).ready(function() {
 		document.getElementById("alert").style.display = 'none';
 		setTimeout(function() {
-			$.ajax({
-				type : "GET",
-				url : "${pageContext.request.contextPath}/gameOverview",
-				data : {
-					
+			
+			var name = document.getElementById("playerName").value;
+		
+		    window.location.href = ("/gameOverview?Pname="+name);
 
-				},
-				success : function(data) {
-
-					window.location = '/gameOverview';
-
-				}
-			});
-		}, 100000); // 310000
+		}, 40000); // 310000
 	});
 </script>
 
@@ -303,7 +297,8 @@
 
 		if (type == "BUY") {
 			var qty = document.getElementById("upDownQty").value;
-			if (balance >= total) {
+			if (balance >= Number(document.getElementById("cost").value))//total
+			{
 				for (var i = 0; i < z; i++) {
 					var x = document.getElementById("tblShares").rows[i].cells[0].innerHTML;
 
@@ -343,7 +338,20 @@
 
 				passData(qty, cost);
 
+				//document.getElementById("upDownQty").value = "1";
 				document.getElementById("upDownQty").value = "1";
+				var tableSharesRows = document.getElementById("tblStock").rows.length;
+				for (var z = 1; z < tableSharesRows; z++) {
+
+					if (document.getElementById("tblStock").rows[z].cells[0].innerHTML == document
+							.getElementById("name2").innerHTML) {
+				
+						   document.getElementById("cost").value = document.getElementById("tblStock").rows[z].cells[1].innerHTML;
+
+					}
+				}
+
+
 
 			}
 
@@ -359,6 +367,22 @@
 					});
 				});
 
+			
+				
+		document.getElementById("upDownQty").value = "1";
+				var tableSharesRows = document.getElementById("tblShares").rows.length;
+				for (var z = 1; z < tableSharesRows; z++) {
+
+					if (document.getElementById("tblShares").rows[z].cells[0].innerHTML == document
+							.getElementById("name2").innerHTML) {
+				
+						   document.getElementById("cost").value = document.getElementById("tblShares").rows[z].cells[1].innerHTML;
+
+					}
+				}
+
+				
+				
 			}
 		}
 
@@ -417,6 +441,7 @@
 			}
 
 			if (tblqty > qty) {
+				
 				var qty = document.getElementById("upDownQty").value;
 				var amount = document.getElementById("tblShares").rows[x].cells[3].innerHTML;
 				var unitPrice = document.getElementById("tblShares").rows[x].cells[1].innerHTML;
@@ -428,8 +453,22 @@
 				document.getElementById("balance").value = ((Number(balance) + (Number(qty) * Number(unitPrice))))
 						.toFixed(2);
 
-				passData(qty, cost);
+				
+				
+				//passData(qty, cost);
 
+			}
+			passData(qty, cost);
+			document.getElementById("upDownQty").value = "1";
+			var tableSharesRows = document.getElementById("tblStock").rows.length;
+			for (var z = 1; z < tableSharesRows; z++) {
+
+				if (document.getElementById("tblStock").rows[z].cells[0].innerHTML == document
+						.getElementById("name2").innerHTML) {
+			
+					   document.getElementById("cost").value = document.getElementById("tblStock").rows[z].cells[1].innerHTML;
+
+				}
 			}
 
 		}
@@ -450,12 +489,24 @@
 				if ((document.getElementById("tblShares").rows[y].cells[0].innerHTML) == (document
 						.getElementById("name2").innerHTML)){
 					
-				     document.getElementById("cost").value = document.getElementById("tblShares").rows[y].cells[1].innerHTML;
-				     document.getElementById("cost").value = (Number(document.getElementById("cost").value)*(Number(qty))).toFixed(2);
-					
+				 //    document.getElementById("cost").value = document.getElementById("tblShares").rows[y].cells[1].innerHTML;
+				  var currentPrice = document.getElementById("tblShares").rows[y].cells[1].innerHTML;
+				    // document.getElementById("cost").value = (Number(document.getElementById("cost").value)*(Number(qty))).toFixed(2);
+				  document.getElementById("cost").value = ((parseFloat(currentPrice)).toFixed(2))*(Number(qty));
 				}
-							
+					
+				
+				else{
+					if ((document.getElementById("tblStock").rows[y].cells[0].innerHTML) == (document
+							.getElementById("name2").innerHTML)){
+						  var currentPrice = document.getElementById("tblStock").rows[y].cells[1].innerHTML;
+						  document.getElementById("cost").value = ((parseFloat(currentPrice)).toFixed(2))*(Number(qty));
+					}
+				}
+				
 			}
+			
+			
 		
 	});
 </script>
@@ -472,7 +523,7 @@
 						document.getElementById("cName").value = this.cells[0].innerText;
 						document.getElementById("price").value = this.cells[1].innerText;
 						document.getElementById("index").value = index;
-						document.getElementById("upDownQty").value = 1;
+					
 
 						document.getElementById("cost").value = ((Number(document
 								.getElementById("price").value)) * (Number(document
@@ -526,7 +577,7 @@
 										});
 							}
 						}
-
+				document.getElementById("upDownQty").value = 1;
 					});
 </script>
 <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->

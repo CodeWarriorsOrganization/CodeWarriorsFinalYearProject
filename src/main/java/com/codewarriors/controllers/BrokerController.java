@@ -7,10 +7,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.codewarriors.db.BrokerService;
+import com.codewarriors.db.HistoricalWinnerService;
 import com.codewarriors.entities.Bank;
+import com.codewarriors.entities.HistoricalWinners;
 import com.codewarriors.entities.Transaction;
 import com.codewarriors.models.Company;
 import com.codewarriors.models.TransactionHistory;
@@ -24,6 +27,11 @@ public class BrokerController {
 
 	@Autowired
 	private BrokerService brokerService;
+	
+
+	@Autowired
+	private HistoricalWinnerService  winnerService;
+
 
 	@RequestMapping(value = "/displayDetails")
 	public Company create(@RequestParam String cName, HttpServletRequest request, HttpServletResponse response,
@@ -188,6 +196,18 @@ public class BrokerController {
 		}
 
 		return getPlayerRows;
+
+	}
+	
+	@RequestMapping(value = "/getWinnerHistory",method = RequestMethod.GET)
+	public List<HistoricalWinners> winnerHistoryDetails() {
+
+		List<HistoricalWinners> winnerList = new ArrayList<HistoricalWinners>();
+
+		winnerList = winnerService.getAllWinners();
+		
+	    return winnerList;
+		
 
 	}
 
