@@ -8,6 +8,16 @@ public class Company {
 	String details;
 	private int buyQuantity;
 	private int sellQuantity;
+	private String prediction;
+	
+	public String getPrediction() {
+		return prediction;
+	}
+
+	public void setPrediction(String prediction) {
+		this.prediction = prediction;
+	}
+
 	public int getBuyQuantity() {
 		return buyQuantity;
 	}

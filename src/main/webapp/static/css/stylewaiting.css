@@ -1,0 +1,105 @@
+/*===========================================================*/
+
+@media (min-width: 992px) and (max-width: 1199px) { ... }
+
+
+
+.container{
+	/*position:relative;*/
+	min-width: 100%; 
+    min-height: 100%;
+    width: auto; 
+    height: auto;
+ 	position:fixed;
+	background-size: cover; 
+	right: 0; 
+    bottom: 0;
+    z-index: -100;    
+    		
+}
+
+.fullscreen-video-wrap{
+	position:absolute;
+	top:0;
+	left:0;
+	height:100vh;
+	width:100%;
+	
+}
+
+.fullscreen-video-wrap video{
+	min-height:100%;
+	min-width:100%;	
+}
+
+
+.countdown1{
+	
+	height:200px;
+	width:200px;
+	position:relative;
+	/*background:#225470;*/
+	background:transparent;
+	z-index:1;
+    opacity:0.9;	
+    margin: auto;
+    justify-content:center;
+    align-item:center;
+    border:0px solid #fff;
+    top:0;
+    left:0;
+    border-radius:20px;
+    margin-top:30vh;
+    
+  /*  -webkit-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
+     box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);   */
+}
+
+/*==========count down image============================================*/
+
+.countdownimage{
+	color:#ffff00;
+	text-align:center;
+	font-size:50px;
+	text-weight:bold;
+	font-family: Poppins-Regular;
+	
+}
+
+/*==========Please Wait============================================*/
+
+.countdowncontent{
+	text-align:center;
+	margin:130px 0px;	
+}
+
+#countdownlabel{
+	color:#4fffff;
+	text-align:center;
+	font-size:20px;
+		
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
