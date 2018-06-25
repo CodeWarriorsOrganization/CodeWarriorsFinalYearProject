@@ -71,7 +71,7 @@ public class Analyst {
 
 					company.setPrediction("BUY");
 					message.setCompany(company);
-					message.setMessage(" Best Stocks for Buy :" + company.getCompanyName());
+					message.setMessage(company.getCompanyName());
 					buyMessage.add(message);
 
 				} else if (estimatedValue > turnsEndValue) {
@@ -80,7 +80,7 @@ public class Analyst {
 
 					company.setPrediction("SELL");
 					message.setCompany(company);
-					message.setMessage(" Best Stocks for Sell :" + company.getCompanyName());
+					message.setMessage(company.getCompanyName());
 					sellMessage.add(message);
 				}
 

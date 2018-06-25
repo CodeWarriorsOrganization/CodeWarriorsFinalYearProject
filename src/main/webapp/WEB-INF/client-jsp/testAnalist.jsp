@@ -18,64 +18,48 @@ function getStockMarketDetailFromService() {
 	
 	
 	 var xhttp = new XMLHttpRequest();
-	    xhttp.open("POST", "http://localhost:8080/stockMarket/getMarketPrices", false);
+	    xhttp.open("POST", "http://localhost:8080/stockMarket/getMarketPricesTest", false);
 	    xhttp.setRequestHeader("Content-type", "application/json");
 	    xhttp.send();
 	    response = JSON.parse(xhttp.responseText);
 	    noTurns=response.noTurns;
-	    turnTimes=response.turnTime;
-	    
-	 //   document.getElementById("demo").innerHTML=response.analysisMessage.turnMessage[0].buyMessages[0].message;
-	    
-	    loop();
-	   
-	   
+	    turnTimes=response.turnTime; 	    
+	   loop();   
 	   
 }
 
+
+
 function loop(){	
-	var table = document.getElementById("demoTable");	
-	//document.getElementById("demotextArea").value. =response.analysisMessage.turnMessage[0].buyMessages[0].message;
-	//document.getElementById("demotextArea").value =response.analysisMessage.turnMessage[0].buyMessages[1].message;
-	//document.getElementById("demotextArea").value =response.analysisMessage.turnMessage[0].buyMessages[2].message;
+	var table = document.getElementById("demoTable");		
+	var buyMessage=response.analysisMessage.turnMessage[turn].buyMessages.length;
+	var sellMessage=response.analysisMessage.turnMessage[turn].sellMessages.length;
+	  document.getElementById("demoturnCount").innerHTML=buyMessage;
+	  document.getElementById("demo").innerHTML="curent turn= "+turn;
+	  var analysisTxtMsg='Best Stocks for buy : ';
+	  for(var x=0;x<buyMessage;x++){
+		  analysisTxtMsg=analysisTxtMsg +'\n'+'        :- '+ response.analysisMessage.turnMessage[turn].buyMessages[x].message ;
+	  } 
+	  
+	  
 	
-	//var element='<p>This is<br>a paragraph<br>with line breaks.</p>';
-//	document.getElementById("textContainer").innerHTML=element;
-	//document.getElementById("demo").innerHTML=response.analysisMessage.turnMessage[0].buyMessages[0].message[0];
 	
-	document.getElementById("demo").innerHTML="curent turn= "+turn;
-	for (var i = 0; i < 3; i++) {
-		 
-		 var object = response.companies[i];		 
-		 var row = table.insertRow(i);
-		 var cell1 = row.insertCell(0);
-		 var cell2 = row.insertCell(1); 		
-		//table.rows[i].cells[0].innerHTML=object['companyName'];
-		// table.rows[i].cells[1].innerHTML=object.turns[turn].price;	
+	  analysisTxtMsg=analysisTxtMsg+'\n\nBest Stocks for sell : ';
+	
+	for(var x=0;x<sellMessage;x++){
 		
-		 table.rows[i].cells[0].innerHTML=response.analysisMessage.turnMessage[turn].buyMessages[i].message;
-		 table.rows[i].cells[1].innerHTML=response.analysisMessage.turnMessage[turn].sellMessages[i].message;
-		// table.rows[i].cells[0].innerHTML="sellMessages";
-		// table.rows[i].cells[1].innerHTML=response.analysisMessage.turnMessage[turn].sellMessages[i].message;
-	    }   
-	 	
+		analysisTxtMsg=analysisTxtMsg +'\n'+'        :- '+ response.analysisMessage.turnMessage[turn].sellMessages[x].message ;
+		
+	  } 
+	
+	document.getElementById("analysisTxtArea").innerHTML=analysisTxtMsg;
+	
+		
 	 
 	 setTimeout(function () {          
 	      turn++;                     
 	      if (turn < noTurns) {           
-	    	       
-	    	  table.deleteRow(0);
-	    	  table.deleteRow(0);
-	          table.deleteRow(0);
-	      /*    table.deleteRow(0);
-	          table.deleteRow(0);
-	          table.deleteRow(0);
-	         table.deleteRow(0);
-	         table.deleteRow(0);
-	          table.deleteRow(0);
-	          table.deleteRow(0);
-	          table.deleteRow(0);
-	          table.deleteRow(0);*/
+	    	
 	    	  loop();             
 	      }                        
 	   }, 2000)
@@ -92,13 +76,18 @@ function loop(){
 	<script type="text/javascript"
 		src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 
-
+<label id="lbl"></label>
 	<h1>Hello welcome to game screen</h1>
 	<p id="demo">a</p>
-<!--	<div id="textContainer"></div>
-	  <textarea rows="10" cols="100" id="demotextArea">
+	<p id="demoturnCount"></p>
+	<div id="demodiv"></div>
+	<div id="textContainer"></div>
+	  
 
-</textarea> -->
+<div class="form-group">
+  <label for="comment">Comment:</label>
+  <textarea class="form-control" rows="18" cols="60" id="analysisTxtArea"></textarea>
+</div>
 
 	<div class="table-responsive" id="refresh">
 		<table class="table table-stripped table-bordered">
