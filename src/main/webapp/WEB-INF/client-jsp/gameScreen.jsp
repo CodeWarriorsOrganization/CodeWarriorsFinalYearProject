@@ -23,7 +23,30 @@
 
 
 <link rel="icon" type="image/gif" href="images/title-bar-logo.png" />
-
+<style>
+#dialogoverlay{
+	display: none;
+	opacity: .8;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	background: #FFF;
+	width: 100%;
+	z-index: 10;
+}
+#dialogbox{
+	display: none;
+	position: fixed;
+	background: #000;
+	border-radius:7px; 
+	width:550px;
+	z-index: 10;
+}
+#dialogbox > div{ background:#FFF; margin:8px; }
+#dialogbox > div > #dialogboxhead{ background: #666; font-size:19px; padding:10px; color:#CCC; }
+#dialogbox > div > #dialogboxbody{ background:#333; padding:20px; color:#FFF; }
+#dialogbox > div > #dialogboxfoot{ background: #666; padding:10px; text-align:right; }
+</style>
 
 
 </head>
@@ -69,28 +92,28 @@
 				<div class="table">
 				  
 					<table id="tblStock" class="table table-black table-reponsive" style="cursor: pointer;">
-                      
-                       <table>
-                           <thead>
+					<thead>
                            
                             <tr>
                               
-							<!--  	<th class="col-md-6">Company Name</th>  -->
-							<!--  	<th class="col-md-6">Current Stock Price</th>-->
-
+							 	<th class="col-md-6">Company Name</th>  
+							  	<th class="col-md-6">Current Stock Price</th>
 							</tr>
 
 						
 							
 						</thead>
-						<tbody style="cursor: pointer;">
+					      
+                          
+						 <tbody style="cursor: pointer;">
 							
 								<tbody id="demoTable" style="cursor: pointer;">
 								</tbody>
-					  	</tbody>
+					  <!-- </tbody> -->	
 					  	
-					  	    </table>	
-							</table>
+					  		
+					  	
+					</table>
 							<br>
 							<br>
 					
@@ -338,6 +361,14 @@
 		</div>
 
 	</div>
+<div id="dialogoverlay"></div>
+<div id="dialogbox">
+  <div>
+    <div id="dialogboxhead"></div>
+    <div id="dialogboxbody"></div>
+    <div id="dialogboxfoot"></div>
+  </div>
+</div>
 
 </body>
 
@@ -352,8 +383,6 @@
 	function functionOnload() {
 
 		countDown();
-
-	
 		countDownFunction();
 		getStockMarketDetailFromService();
 		shareTblPriceUpdate();
@@ -418,15 +447,9 @@
 	var x = 0;
 	function countDownFunction() {
 		document.getElementById("btnTrade").disabled = true;
-
 		var i = 2;
 		document.getElementById('labelcountdown').style.fontSize = '300%';
 		document.getElementById('labelcountdown').innerHTML = 1;
-
-		var i = 1;
-		document.getElementById('lblCountdown').style.fontSize = '1000%';
-		document.getElementById('lblCountdown').innerHTML = 1;
-
 		function myLoop() {
 			setTimeout(
 					function() {
@@ -438,7 +461,7 @@
 							myLoop();
 						}
 					}, 10000)
-		x++;
+			x++;
 		}
 		myLoop();
 	}
@@ -472,8 +495,6 @@
 			if ((document.getElementById("tblShares").rows[y].cells[0].innerHTML) == (document
 					.getElementById("name2").innerHTML)){
 				
-				
-			    // document.getElementById("cost").value = document.getElementById("tblShares").rows[y].cells[1].innerHTML;
 			    var currentVal = document.getElementById("tblShares").rows[y].cells[1].innerHTML;
 			     document.getElementById("cost").value = ((Number(currentVal)).toFixed(2))*(Number(document.getElementById("upDownQty").value));
 				
@@ -538,26 +559,6 @@
 
 
 <script>
-	// Redirect to another page after certain time
-
-
-	/*	$(document).ready(function() {
-	 document.getElementById("alert").style.display = 'none';
-	 setTimeout(function() {
-	 $.ajax({
-	 type : "GET",
-	 url : "${pageContext.request.contextPath}/gameOverview",
-	 data : {
-
-	 },
-	 success : function(data) {
-
-	 window.location = '/gameOverview';
-
-	 }
-	 });  
-	 }, 310000);
-	 });  */
 
 	$(document).ready(function() {
 		document.getElementById("alert").style.display = 'none';
@@ -637,7 +638,6 @@
 
 				passData(qty, cost);
 
-				//document.getElementById("upDownQty").value = "1";
 				document.getElementById("upDownQty").value = "1";
 				var tableSharesRows = document.getElementById("tblStock").rows.length;
 				for (var z = 1; z < tableSharesRows; z++) {
@@ -655,16 +655,8 @@
 			}
 
 			else {
-				$(function() {
-					$("#dialog-message").dialog({
-						modal : true,
-						buttons : {
-							Ok : function() {
-								$(this).dialog("close");
-							}
-						}
-					});
-				});
+
+				Alert.render('Sorry, your balance is insufficient!')
 
 			
 				
@@ -675,7 +667,7 @@
 					if (document.getElementById("tblShares").rows[z].cells[0].innerHTML == document
 							.getElementById("name2").innerHTML) {
 				
-						   document.getElementById("cost").value = document.getElementById("tblShares").rows[z].cells[1].innerHTML;
+						   document.getElementById("cost").value = (Number(document.getElementById("tblShares").rows[z].cells[1].innerHTML)).toFixed(2);
 
 					}
 				}
@@ -721,11 +713,9 @@
 			
 			if((Number(tblqty)) < (Number(qty))){
 				
-				
-				alert("Invalid Quantity! You only have "+tblqty+" stocks on hand");
+				Alert.render("Invalid Quantity! You only have "+tblqty+" stock on hand");
 				document.getElementById("upDownQty").value = 1;
 				var tblSharesRows = document.getElementById("tblShares").rows.length;
-			//	document.getElementById("cost").value = Number((document.getElementById("cost").value))*(Number(document.getElementById("upDownQty").value));
 				for (var y = 0; y < tblSharesRows; y++) {
 
 					
@@ -733,7 +723,7 @@
 							.getElementById("name2").innerHTML)){
 						
 					     document.getElementById("cost").value = document.getElementById("tblShares").rows[y].cells[1].innerHTML;
-					     document.getElementById("cost").value = Number(document.getElementById("cost").value)*(Number(document.getElementById("upDownQty").value));
+					     document.getElementById("cost").value = (Number(document.getElementById("cost").value)*(Number(document.getElementById("upDownQty").value))).toFixed(2);
 						
 					}
 								
@@ -745,15 +735,14 @@
 				var qty = document.getElementById("upDownQty").value;
 				var amount = document.getElementById("tblShares").rows[x].cells[3].innerHTML;
 				var unitPrice = document.getElementById("tblShares").rows[x].cells[1].innerHTML;
-				document.getElementById("tblShares").rows[x].cells[3].innerHTML = (Number(amount) - (Number(qty) * Number(unitPrice)))
-						.toFixed(2);
+				
+				
+      document.getElementById("tblShares").rows[x].cells[3].innerHTML = (Number(amount) - (Number(qty) * Number(unitPrice))).toFixed(2);
 				document.getElementById("tblShares").rows[x].cells[2].innerHTML = (Number(tblqty) - Number(qty));
 				document.getElementById("totStockVal").value = ((Number(totStock) - (Number(qty) * Number(unitPrice))))
 						.toFixed(2);
 				document.getElementById("balance").value = ((Number(balance) + (Number(qty) * Number(unitPrice))))
-						.toFixed(2);
-
-				
+						.toFixed(2);			
 				
 				//passData(qty, cost);
 
@@ -766,7 +755,7 @@
 				if (document.getElementById("tblStock").rows[z].cells[0].innerHTML == document
 						.getElementById("name2").innerHTML) {
 			
-					   document.getElementById("cost").value = document.getElementById("tblStock").rows[z].cells[1].innerHTML;
+					   document.getElementById("cost").value = (parseFloat(document.getElementById("tblStock").rows[z].cells[1].innerHTML)).toFixed(2);
 
 				}
 			}
@@ -781,32 +770,22 @@
 
 	$("#upDownQty").bind('keyup mouseup', function() {
 		
-		var tblSharesRows = document.getElementById("tblShares").rows.length;
+        var tblStockRows = document.getElementById("tblStock").rows.length;
 		var qty = $(this).val();
-			for (var y = 0; y < tblSharesRows; y++) {
 
-				
-				if ((document.getElementById("tblShares").rows[y].cells[0].innerHTML) == (document
-						.getElementById("name2").innerHTML)){
-					
-				 //    document.getElementById("cost").value = document.getElementById("tblShares").rows[y].cells[1].innerHTML;
-				  var currentPrice = document.getElementById("tblShares").rows[y].cells[1].innerHTML;
-				    // document.getElementById("cost").value = (Number(document.getElementById("cost").value)*(Number(qty))).toFixed(2);
+		for (var y = 0; y < tblStockRows; y++) {
+		
+		  if ((document.getElementById("tblStock").rows[y].cells[0].innerHTML) == (document
+					.getElementById("name2").innerHTML))
+		  {
+				  var currentPrice = document.getElementById("tblStock").rows[y].cells[1].innerHTML;
 				  document.getElementById("cost").value = ((parseFloat(currentPrice)).toFixed(2))*(Number(qty));
-				}
-					
-				
-				else{
-					if ((document.getElementById("tblStock").rows[y].cells[0].innerHTML) == (document
-							.getElementById("name2").innerHTML)){
-						  var currentPrice = document.getElementById("tblStock").rows[y].cells[1].innerHTML;
-						  document.getElementById("cost").value = ((parseFloat(currentPrice)).toFixed(2))*(Number(qty));
-					}
-				}
-				
 			}
-			
-			
+
+
+
+
+		}
 		
 	});
 </script>
@@ -988,7 +967,29 @@ window.onpopstate = function () {
 }
 }
 </script>
-
+<script>
+function CustomAlert(){
+    this.render = function(dialog){
+        var winW = window.innerWidth;
+        var winH = window.innerHeight;
+        var dialogoverlay = document.getElementById('dialogoverlay');
+        var dialogbox = document.getElementById('dialogbox');
+        dialogoverlay.style.display = "block";
+        dialogoverlay.style.height = winH+"px";
+        dialogbox.style.left = (winW/2) - (550 * .5)+"px";
+        dialogbox.style.top = "100px";
+        dialogbox.style.display = "block";
+        document.getElementById('dialogboxhead').innerHTML = "Warning";
+        document.getElementById('dialogboxbody').innerHTML = dialog;
+        document.getElementById('dialogboxfoot').innerHTML = '<button onclick="Alert.ok()">OK</button>';
+    }
+	this.ok = function(){
+		document.getElementById('dialogbox').style.display = "none";
+		document.getElementById('dialogoverlay').style.display = "none";
+	}
+}
+var Alert = new CustomAlert();
+</script>
 </html>
 
 
