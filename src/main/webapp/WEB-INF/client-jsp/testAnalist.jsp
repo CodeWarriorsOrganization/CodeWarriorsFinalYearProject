@@ -31,6 +31,20 @@ function getStockMarketDetailFromService() {
 
 
 function loop(){	
+	
+	document.getElementById("Event").innerHTML=response.events[turn].eventName;
+	
+	
+	var eventMsg='Occurring Event : '+response.events[turn].eventName + '\n  Affected Companies : ';
+	
+	for(var x=0; x<response.events[turn].eventAfectedCompanies.length;x++){
+		
+		eventMsg= eventMsg+'\n  * '+response.events[turn].eventAfectedCompanies[x];
+		//document.getElementById("eventTxtArea").innerHTML=response.events[turn].eventAfectedCompanies[x];
+	}
+	
+	document.getElementById("eventTxtArea").innerHTML=eventMsg;
+	
 	var table = document.getElementById("demoTable");		
 	var buyMessage=response.analysisMessage.turnMessage[turn].buyMessages.length;
 	var sellMessage=response.analysisMessage.turnMessage[turn].sellMessages.length;
@@ -82,11 +96,13 @@ function loop(){
 	<p id="demoturnCount"></p>
 	<div id="demodiv"></div>
 	<div id="textContainer"></div>
-	  
+	<p id="Event"></p>  
 
 <div class="form-group">
   <label for="comment">Comment:</label>
   <textarea class="form-control" rows="18" cols="60" id="analysisTxtArea"></textarea>
+  <textarea class="form-control" rows="18" cols="60" id="eventTxtArea"></textarea>
+  events
 </div>
 
 	<div class="table-responsive" id="refresh">
