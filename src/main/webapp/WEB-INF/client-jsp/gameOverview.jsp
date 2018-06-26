@@ -18,56 +18,113 @@
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
+
+
+
 body {
+    height: 100%;
+    height: 100%;
+    
 	font-family: "Lato", sans-serif;
+	background: url("/static/img/overview.jpeg");
+	
+	
+	
+	 box-sizing: border-box;
+    -webkit-animation: slide 15s linear infinite;
+	
 }
 
+@-webkit-keyframes slide {
+    from { background-position: 0 0; }
+    to { background-position: -400px -500px; }
+}
+.container-fluid{
+height:100%;
+width:100%;
+
+}
+
+
+
+	
+.navbar1{
+width:1500px;
+
+
+}	
+
+	
+
+
+
 .tablink {
-	background-color: #555;
+	background-color:#00BFFF;
 	color: white;
 	float: left;
 	border: none;
 	outline: none;
 	cursor: pointer;
-	padding: 14px 16px;
-	font-size: 17px;
+	padding: 8px 10px;
+	font-size: 16px;
 	width: 16.5%;
+	height:40px;
+	/*border-radius:20px;*/
+	opacity:0.9;
+	
 }
 
 .tablink:hover {
-	background-color: #777;
+	background-color:#07BBFA;
 }
+
+
+
+
+
+
 
 /* Style the tab content */
 .tabcontent {
-	color: white;
-	display: none;
-	padding: 50px;
+	color: yellow;
+	display: block;
+	
 	text-align: center;
+	width:100%;
+	height:100%;
+	opacity:0.8;
 }
 
 #Overview {
-	background-color: red;
+	background-color:#012b36;
+	height:754px;
+	width:cover;
+    	
 }
 
 #Portfolio {
-	background-color: green;
+	background-color: #012b36;
+	height:754px;
 }
 
 #TradeHistory {
-	background-color: blue;
+	background-color: #012b36;
+	height:754px;
 }
 
 #Transactions {
-	background-color: orange;
+	background-color: #012b36;
+	height:754px;
 }
 
 #StockPrices {
-	background-color: orange;
+	background-color:#012b36;
+	height:754px;
 }
 
 #HistoryOfWinners {
-	background-color: green;
+	background-color: #012b36;
+	height:754px;
 }
 
 
@@ -89,50 +146,173 @@ body {
 	left: 50%;
 	transform: translate(-50%, -50%)
 }
+
+
+#btnPlayAgain{
+    width:120px;
+	height:50px;
+	background-color:#08495F;
+	color:white;
+	border-radius:30px;
+	font-size:20px;
+	text-align:center;
+	font-weight:bold;
+	
+
+}
+
+.table{
+     Background-color:#012b36;	
+	 font-weight:bold;
+	 font-size:16px;
+	 color:white;
+	 text-align:center;
+	 
+	 
+}
+
+.table th{
+Background-color:#0199c1;	
+ color:white;
+
+}
+
+
+
+
+
+
+#tableRank{
+Background-color:#012b36;
+border-outline:none;
+ text-align:center;
+}
+
+
+
+
+.blink{
+	animation-name:blinker;
+	animation-duration:1s;
+	animation-timing-function:linear;
+	animation-iteration-count:infinite;
+		
+}
+@keyframes blinker
+{
+	0%{opacity:0}
+	
+	100%{opacity:1}
+	
+}
+
+
+
+
+
+
+
 </style>
 
 </head>
 
 <body
 	onload="checkOnLoad();displayWinnerName();disableBackButton();getStockMarketDetailFromService();pageLoad();">
-
-	<button class="tablink" onclick="openPage('Overview', this, 'red')"
+	
+	
+	
+	
+	
+	
+     <div class="container-fluid"> 
+  
+  
+  
+  
+    
+	<div class="row">
+     <div class="col-md-2">
+     <div class="navbar-header navbar1">
+	<button class="tablink" onclick="openPage('Overview', this, '#012b36')"
 		id="defaultOpen">Overview</button>
-	<button class="tablink" onclick="openPage('Portfolio', this, 'green')"
-		id="OpenPortfolioTab">Portfolio</button>
-	<button class="tablink"
-		onclick="openPage('TradeHistory', this, 'blue')"
-		id="OpenTradeHistoryTab">TradeHistory</button>
-	<button class="tablink"
-		onclick="openPage('Transactions', this, 'orange')"
-		id="OpenTransactionTab">Transactions</button>
-	<button class="tablink"
-		onclick="openPage('StockPrices', this, 'orange')"
-		id="OpenStockPriceTab">StockPrices</button>
+		</div>
+		</div>
 		
+		
+	<div class="col-md-2">	
+	<div class="navbar-header navbar1">
+	<button class="tablink" onclick="openPage('Portfolio', this, '#012b36')"
+		id="OpenPortfolioTab">Portfolio</button>
+		</div>
+		</div>
+		
+		
+		<div class="col-md-2">
+		<div class="navbar-header navbar1">
+	<button class="tablink"
+		onclick="openPage('TradeHistory', this, '#012b36')"
+		id="OpenTradeHistoryTab">Trade History</button>
+		</div>
+		</div>
+		
+		<div class="col-md-2">
+		<div class="navbar-header navbar1">
+	<button class="tablink"
+		onclick="openPage('Transactions', this, '#012b36')"
+		id="OpenTransactionTab">Transactions</button>
+		</div>
+		</div>
+		
+		<div class="col-md-2">
+		<div class="navbar-header navbar1">
+	<button class="tablink"
+		onclick="openPage('StockPrices', this, '#012b36')"
+		id="OpenStockPriceTab">Stock Prices</button>
+		</div>
+		</div>
+		
+		<div class="col-md-2">
+		<div class="navbar-header navbar1">
 		<button class="tablink"
-		onclick="openPage('HistoryOfWinners', this, 'grey')"
-		id="OpenWinnerHistoryTab">HistoryOfWinners</button>
+		onclick="openPage('HistoryOfWinners', this, '#012b36')"
+		id="OpenWinnerHistoryTab">History Of Winners</button>
+        </div>
+        </div>
+</div>
+</div>
+
+
+
+
 
 	<div id="Overview" class="tabcontent">
-
-		<h2>Congratulations!</h2>
-		<h2 id="winner">${playerRankings[0].profileName}</h2>
-		<h3>The Winner</h3>
+         <br>
+		<h1>Congratulations!</h1>
+		<h1 id="winner">${playerRankings[0].profileName}</h1>
+		<h2>The Winner</h2>
+		
 		<div class="wrapper">
+		<span class="d-block p-2 blink">
 			<img id="trophy" src="/static/img/small_trophy.png" alt="Avatar">
+			</span>
 		</div>
-		<button id="btnPlayAgain" name="btnPlayAgain" type="button">Play Again</button>
-		<div class="table-responsive" id="tblRankings">
-			<table class="table table-stripped table-bordered" id="tableRank"
-				style="cursor: pointer;">
+		
+		<button class="btn btn-success" id="btnPlayAgain" name="btnPlayAgain" type="button">Play Again</button>
+		
+		<br>
+		<br>
+		<div class="d-block p-2 table-responsive text-black" id="tblRankings">
+		
+		<div class="table"> 
+		
+			<table class="table table-stripped table-bordered" id="tableRank" style="cursor: pointer;">
 				<thead>
 					<tr>
-						<th>RANK</th>
-						<th>NAME</th>
-						<th>TRADES</th>
-						<th>NET WORTH</th>
-						<th>TOTAL RETURNS</th>
+						<th class="col-md-2 text-center">RANK</th>
+						<th class="col-md-3 text-center">NAME</th>
+						<th class="col-md-2 text-center">TRADES</th>
+						<th class="col-md-2 text-center">NET WORTH</th>
+						<th class="col-md-3 text-center">TOTAL RETURNS</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -147,88 +327,103 @@ body {
 					</c:forEach>
 				</tbody>
 			</table>
+			</div>
 		</div>
+		
+		
 	</div>
 
 	<div id="Portfolio" class="tabcontent">
 		<h3 id="portfolioHeader">${Pname}</h3>
 		<pre>
- <label>RANK :</label>     <label>NET WORTH :</label>                 <label>OVERALL GAINS(+)/LOSS(-) :</label>
- <label id="pRank"></label>           <label id="netWorth"></label>              <label
+                   <label>RANK :</label>           <label>NET WORTH :</label>               <label>OVERALL GAINS(+)/LOSS(-) :</label>
+             <label id="pRank"></label>               <label id="netWorth"></label>                    <label
 				id="overall_perform"></label>
   </pre>
 
 		
 		
 		<div class="table-responsive" id="tblPlayerProfile">
-			<table class="table table-stripped table-bordered"
-				id="tablePlayerProfile">
+		
+
+		
+			<table class="table table-stripped table-bordered">
+				
 				<thead>
 					<tr>
-						<th>COMPANY</th>
-						<th>TYPE</th>
-						<th>QUANTITY BOUGHT</th>
-						<th>BOUGHT COST</th>
-						<th>QUANTITY SOLD</th>
-						<th>SOLD COST</th>
-						<th>STOCK ON HAND</th>
+						<th class="col-md-2 text-center">COMPANY</th>
+						<th class="col-md-1 text-center">QUANTITY BOUGHT</th>
+						<th class="col-md-2 text-center">BOUGHT COST</th>
+						<th class="col-md-1 text-center">QUANTITY SOLD</th>
+						<th class="col-md-2 text-center">SOLD COST</th>
+						<th class="col-md-2 text-center">STOCK ON HAND</th>
+						<th class="col-md-2 text-center">RETURNS</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="tablePlayerProfile">
 				</tbody>
 			</table>
 		</div>
+		
+		
+		
+		
+		
 	</div>
 
 	<div id="TradeHistory" class="tabcontent">
 
 		<h3 id="portfolioHeader2"></h3>
 		<pre>
- <label>RANK :</label>      <label>NET WORTH :</label>                 <label>OVERALL GAINS(+)/LOSS(-) :</label>
-  <label id="pRank2"></label>                         <label
-				id="netWorth2"></label>              <label id="overall_perform2"></label>
+                   <label>RANK :</label>           <label>NET WORTH :</label>               <label>OVERALL GAINS(+)/LOSS(-) :</label>
+             <label id="pRank2"></label>              <label id="netWorth2"></label>                    <label
+				id="overall_perform2"></label>
   </pre>
 
+
 		<div class="table-responsive" id="tblTrades">
-			<table class="table table-stripped table-bordered" id="tableTrades">
+			<table class="table table-stripped table-bordered">
 				<thead>
 					<tr>
-						<th style="align: center">COMPANY</th>
-						<th style="align: center">TURN NO</th>
-						<th style="align: center">TYPE</th>
-						<th style="align: center">UNIT PRICE</th>
-						<th style="align: center">QUANTITY</th>
-						<th style="align: center">COST</th>
+						<th class="col-md-2 text-center">COMPANY</th>
+						<th class="col-md-2 text-center">TURN NO</th>
+						<th class="col-md-2 text-center">TYPE</th>
+						<th class="col-md-2 text-center">UNIT PRICE</th>
+						<th class="col-md-2 text-center">QUANTITY</th>
+						<th class="col-md-2 text-center">COST</th>
 
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="tableTrades">
 				</tbody>
 			</table>
 		</div>
+		
+		
+		
+		
 	</div>
 
 	<div id="Transactions" class="tabcontent">
 
 		<h3 id="portfolioHeader3"></h3>
 		<pre>
-  <label>RANK :</label>             <label>NET WORTH :</label>                 <label>OVERALL GAINS(+)/LOSS(-) :</label>
-   <label id="pRank3"></label>      <label id="netWorth3"></label>              <label
+                   <label>RANK :</label>           <label>NET WORTH :</label>               <label>OVERALL GAINS(+)/LOSS(-) :</label>
+      <label id="pRank3"></label>              <label id="netWorth3"></label>                           <label
 				id="overall_perform3"></label>
   </pre>
 
 		<div class="table-responsive" id="tblTransactions">
-			<table class="table table-stripped table-bordered"
-				id="tableTransactions">
+			<table class="table table-stripped table-bordered">
 				<thead>
 					<tr>
-						<th>TURN NO</th>
-						<th>TRANSACTION TYPE</th>
-						<th>AMOUNT</th>
-						<th>BALANCE</th>
+						<th class="col-md-4 text-center">TURN NO</th>
+						<th class="col-md-4 text-center">TRANSACTION TYPE</th>
+						<th class="col-md-4 text-center">AMOUNT</th>
+						<th class="col-md-4 text-center">BALANCE</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="tableTransactions">
 				</tbody>
 			</table>
 		</div>
@@ -240,8 +435,7 @@ body {
 
 
 		<div class="table-responsive" id="tblStockPrices">
-			<table class="table table-stripped table-bordered"
-				id="tableStockPrices">
+			<table class="table table-stripped table-bordered">
 				<thead>
 					<tr>
 						<th>COMPANY</th>
@@ -278,7 +472,7 @@ body {
 
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="tableStockPrices">
 				</tbody>
 			</table>
 		</div>
@@ -289,24 +483,32 @@ body {
 	<div id="HistoryOfWinners" class="tabcontent">
 	<h3 id="portfolioHeader"></h3>
 		<div class="table-responsive" id="tblWinnerHistory">
-			<table class="table table-stripped table-bordered"
-				id="tableWinnerHistory">
+			<table class="table table-stripped table-bordered">
 				<thead>
 					<tr>
-						<th>ROUND NO</th>
-						<th>WINNER</th>
-						<th>TRADES</th>
-						<th>NET WORTH</th>
-						<th>RETURNS</th>
+						<th class="col-md-2 text-center">ROUND NO</th>
+						<th class="col-md-3 text-center">WINNER</th>
+						<th class="col-md-3 text-center">TRADES</th>
+						<th class="col-md-2 text-center">NET WORTH</th>
+						<th class="col-md-2 text-center">RETURNS</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="tableWinnerHistory">
 	
 				</tbody>
 			</table>
 		</div>
-	</div>
-	<script>
+	</div> 
+	
+	
+	
+	
+
+</body>
+
+
+
+<script>
 		function openPage(pageName, elmnt, color) {
 			var i, tabcontent, tablinks;
 			tabcontent = document.getElementsByClassName("tabcontent");
@@ -326,7 +528,19 @@ body {
 		document.getElementById("defaultOpen").click();
 	</script>
 
-</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script type="text/javascript">
 	function pageLoad() {
 		
