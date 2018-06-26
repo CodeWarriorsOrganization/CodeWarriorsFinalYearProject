@@ -147,17 +147,23 @@
 					 
 					<div class="suggest1">
 					
+					<div class="row ">
+					<div class="col-md-6">
+					<textarea class="form-control" rows="14" cols="25" id="analysisTxtAreaBuy"></textarea>
+					</div>
+					
+					<div class="col-md-6">
+					<textarea class="form-control" rows="14" cols="25" id="analysisTxtAreaSell"></textarea>
+					</div>					
+					</div>
+					
+					<!--<div class="row">
+					<div class="col-sm-12">
+					<button type="button" class="btn btn-primary"></button>	
+					</div>								
+					</div>  -->
+					
 						
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
 					
 						
 					</div>	
@@ -172,6 +178,9 @@
 					<!-- Stock Details ======================= -->
 
 					<div class="stockdetails">
+					
+					<label id="eventName"></label>
+					
 						<div class="form-group">
 							<div class="d-block p-2 bg-primary text-white">
 								<div class="stock">
@@ -746,10 +755,10 @@
 				document.getElementById("balance").value = ((Number(balance) + (Number(qty) * Number(unitPrice))))
 						.toFixed(2);			
 				
-				//passData(qty, cost);
+				passData(qty, cost);
 
 			}
-			passData(qty, cost);
+			//passData(qty, cost);
 			document.getElementById("upDownQty").value = "1";
 			var tableSharesRows = document.getElementById("tblStock").rows.length;
 			for (var z = 1; z < tableSharesRows; z++) {
@@ -894,6 +903,33 @@
 			var cell2 = row.insertCell(1);
 			table.rows[i].cells[0].innerHTML = object['companyName'];
 			table.rows[i].cells[1].innerHTML = object.turns[turn].price;
+			
+			var buyMessage=response.analysisMessage.turnMessage[turn].buyMessages.length;
+			var sellMessage=response.analysisMessage.turnMessage[turn].sellMessages.length;
+			
+			var analysisTxtMsgBuy='Best Stocks for buy : ';
+			  for(var x=0;x<buyMessage;x++){
+				  analysisTxtMsgBuy=analysisTxtMsgBuy +'\n'+':- '+ response.analysisMessage.turnMessage[turn].buyMessages[x].message ;
+			  } 
+			  
+			  
+			
+			
+			 var analysisTxtMsgSell='Best Stocks for sell : ';
+			
+			for(var x=0;x<sellMessage;x++){
+				
+				analysisTxtMsgSell=analysisTxtMsgSell +'\n'+':- '+ response.analysisMessage.turnMessage[turn].sellMessages[x].message ;
+				
+			  } 
+			 
+			document.getElementById("analysisTxtAreaBuy").innerHTML=analysisTxtMsgBuy;
+		    document.getElementById("analysisTxtAreaSell").innerHTML=analysisTxtMsgSell;
+		    
+		    var eventMsg='Occurring Event : '+response.events[turn].eventName;
+		    document.getElementById("eventName").innerHTML=eventMsg;
+		    
+		    
 		}
 
 		setTimeout(function() {
