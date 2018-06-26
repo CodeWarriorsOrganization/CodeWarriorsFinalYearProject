@@ -7,7 +7,15 @@ public class Market {
 	private int noTurns;
 	private int turnTime;	
 	private List<Company> companies;
+	private List<Event> events;
 	private AnalysisMessage analysisMessage;
+	public List<Event> getEvents() {
+		return events;
+	}
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
+	 
 	public AnalysisMessage getAnalysisMessage() {
 		return analysisMessage;
 	}
