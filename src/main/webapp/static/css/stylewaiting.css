@@ -50,6 +50,7 @@
     left:0;
     border-radius:20px;
     margin-top:30vh;
+    font-size:14px;	
     
   /*  -webkit-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
     -moz-box-shadow: -1px 4px 26px 11px rgba(0,0,0,0.75);
@@ -71,13 +72,15 @@
 
 .countdowncontent{
 	text-align:center;
-	margin:130px 0px;	
+	margin:130px 0px;
+	font-size:14px;	
 }
 
 #countdownlabel{
 	color:#4fffff;
 	text-align:center;
-	font-size:20px;
+	font-size:14px;
+	
 		
 }
 

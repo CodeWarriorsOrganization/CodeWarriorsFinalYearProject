@@ -76,7 +76,7 @@
 					<table>
 						<tr>
 							<td>
-								<div id="turn" style="height: 36px;">TURN NO :</div>
+								<div id="turn" style="height: 30px;">TURN NO :</div>
 							</td>
 							<td>
 								<div id="lblCountdown">
@@ -142,18 +142,18 @@
 					<div class="d-block p-2 text-black">
 					  	
 					   
-						<p class="neon" data-text="[neon_light]">ANALYSIS 1</p>
+						<p class="neon" data-text="[neon_light]">ANALYSIS</p>
 					 <div class="analysis">
 					 
 					<div class="suggest1">
 					
 					<div class="row ">
 					<div class="col-md-6">
-					<textarea class="form-control" rows="14" cols="25" id="analysisTxtAreaBuy"></textarea>
+					<textarea class="form-control" style="border:none" rows="14" cols="25" id="analysisTxtAreaBuy"></textarea>
 					</div>
 					
 					<div class="col-md-6">
-					<textarea class="form-control" rows="14" cols="25" id="analysisTxtAreaSell"></textarea>
+					<textarea class="form-control" style="border:none" rows="14" cols="25" id="analysisTxtAreaSell"></textarea>
 					</div>					
 					</div>
 					
@@ -185,7 +185,7 @@
 							<div class="d-block p-2 bg-primary text-white">
 								<div class="stock">
 									<label id="labelstock" for="text">Stock Details </label>
-									<div class="d-block p-2 prestock ">
+									<div class="d-block p-2 prestock"style="height:220px;">
 										<div>
 											<br>
 											<br> <label id="lblName"></label> <label id="name2"></label><br>
@@ -193,10 +193,8 @@
 											<label id="lblDetails"></label> <a id="name4" target="_blank"></a><br>
 											<br>
 											<br>
-											<br>
-											<br>
-											<br>
-											<br>
+											
+											
 										</div>
 									</div>
 								</div>
@@ -325,11 +323,11 @@
 
 										<table id="tblShares" class="table" style="cursor: pointer;">
 											<thead>
-												<tr class="text-white" >		   
-													<th class="col-md-4 company">Company</th>
-													<th class="col-md-4 text-right">Current Price</th>
-													<th class="col-md-2 shares">Shares</th>
-													<th class="col-md-2 Value">Value</th>								
+												<tr class="text-black" >		   
+													<th class="col-md-4 company" style="background-color:white;color:black">Company</th>
+													<th class="col-md-4 text-right" style="background-color:white;color:black">Current Price</th>
+													<th class="col-md-2 shares" style="background-color:white;color:black">Shares</th>
+													<th class="col-md-2 Value" style="background-color:white;color:black">Value</th>								
 												</tr>
 											</thead>
 											<tbody style="cursor: pointer;">                                  
@@ -579,7 +577,7 @@
 		
 		    window.location.href = ("/gameOverview?Pname="+name);
 
-		}, 40000); // 310000
+		}, 310000); // 310000
 	});
 
 </script>
