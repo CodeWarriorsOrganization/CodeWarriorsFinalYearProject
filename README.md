@@ -6,13 +6,23 @@
 *The game consists of two players: human players and computer players and competing to make the highest profit. Both players have initial amount of 1000LKR at the beginning of the game. This simulator game consists of four major Sectors and twelve Stocks. Each Sector has three pre-defined Stocks. In-built Analyst provides predictions for both players to make profit. Strategic game algorithm generates stocks and events values and handles the final stock price of each and every stock. Yes ,let's try it. Markrt Phobia: Overcome the fear of market, the virtual stock exchange.*
 
 ## Prerequisites
+- Windows Platform
+- Java 1.8 and JAVA_HOME System Variable pointed to 'C:\Program Files\Java\<your jdk version>\'
+- Maven
 
-## Instalation
-First you need to `clone` the project.
-*to be explain ;)*
+## Installation
+- First you need to download or clone the project.
+- If you download the project copy the project in to C drive,
+- Navigate to project folder which contains src and target folders
+- Double click on the exe.bat file 
+- then, go to web browser and access 'http://localhost:8080'
+- ps: don't close the command prompt until game over.
 
 ## Tests
-*Yes, we test all :P*
+- JUnit Testing
+- Integration Testing
+- Functional Testing
+- System Testing
 
 ## Contributors
 
@@ -29,5 +39,6 @@ First you need to `clone` the project.
 MIT
 
 ## Acknowledgments
+We would like to express our special thanks of gratitude to Professor Rem Collier who gave us the support and guidance to complete this project successfully.
 
 **Happy Coding :)** 
