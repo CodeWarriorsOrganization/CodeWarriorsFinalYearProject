@@ -5,7 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="shortcut icon" type="image/x-icon" href="/static/img/title-bar-logo.png" />
+<link rel="shortcut icon" type="image/x-icon"
+	href="/static/img/title-bar-logo.png" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="/static/css/style.css">
@@ -18,73 +19,54 @@
 <script src="/js/getrequest.js"></script>
 <title>Market Phobia</title>
 <style>
-.body{
-background-image:url("static/img/UI-without-buttons.svg");
+.body {
+	background-image: url("static/img/UI-without-buttons.svg");
 }
 </style>
 </head>
 <body>
-	 <div class="containerback">
-       <div class="row centered-form">
-         <div class="col-md-4">
-            <div>
-               <form action="waitingScreen" method="post">
-		
-     <div class="logtable">
-     
-     <table>
-         <tr>
-           <td> 
-             <div>
-       
-        <div class="">
-             <input type="text" name="txtGetName" class="form-control" id="enternametext" placeholder="Enter Player Name" required /> 
-           
-         
-       </div> 
-       
-       
-       
-       
-     
-        
-        </div>
-      </td>
-      
-      <td>
-      
-        <div>
-         <a href="http://localhost:8085/final/gamescrn.html"><button type="submit" name="btnPlay" class="btn btn-primary btn-responsive playnow" value=""></button> </a>
-        
-     
-        
-        
-        </div>
-             
-        </td>
-     </tr> 
-     
-     <tr><td>  <label id="errormsg" style="color: red;text-align:center;">${errorMSG}</label>    
-              <span class="validity"></span>    </td></tr>
-     
-       
-     </table> 
-     
-     
-     
-     
-     
-     </div>  
-    
-    
-    </form>
-    </div>
-    
-    
-     </div>
-    </div>
-   </div>
-	
-	
+	<div class="containerback" style="height: 100%;">
+		<!--       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa     -->
+
+		<table style="width: 100%; height: 100%;">
+			<tr>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td style="padding-left:50px">
+					<form class="form-inline"  action="waitingScreen" method="post">
+						 <div class="form-group">
+						<input type="text" name="txtGetName" class="form-control " style="width:190px"
+													id="enternametext" placeholder="Enter Player Name" 
+													 required />
+						  
+						  </div>
+						<button type="submit" name="btnPlay" class="btn btn-default playnow"></button>
+					</form>
+
+				</td>
+				<td>""</td>
+				<td>""</td>
+				<td>""</td>
+				
+
+			</tr>
+		</table>
+
+
+
+		<!--       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa     -->
+	</div>
+
+
 </body>
 </html>
