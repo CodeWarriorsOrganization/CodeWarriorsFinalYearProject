@@ -81,13 +81,16 @@ public class ApplicationController {
      StockMarketPriceGeneratorService markets = new StockMarketPriceGeneratorService();
      GameContentHolder.MARKET_PRICES = markets.generate();
      GameContentHolder.WAITING_START_TIME = LocalDateTime.now();
-
-     String aiPlayername = "gihan";
+     
+     
+     String aiPlayername = "AI Player " +Integer.toString(random.ints(100,130).findAny().getAsInt());
      Player aiPlayer = new Player(aiPlayername);
      playerService.savePlayer(aiPlayer);
      p2 = playerService.findByplayerName(name);
      Bank aiPlayerBank = new Bank(aiPlayername);
      brokerService.createBankAccount(aiPlayerBank);
+     
+     
 
      AiPlayerService aiPlayerService = new AiPlayerService(GameContentHolder.MARKET_PRICES,
        aiPlayername);
@@ -127,14 +130,12 @@ public class ApplicationController {
        
        
       }
-      /*
-      try {
-       Thread.sleep(5000);
-      } catch (InterruptedException e) {
-       // TODO Auto-generated catch block
-       e.printStackTrace();
-      } 
-      */
+      
+      
+      
+      
+      
+     
       
      }
      
@@ -396,18 +397,18 @@ public class ApplicationController {
  private void transaction(List<Company> companiesList, int turn, String type, String AiPlayerName) {
   if (type == "BUY") {
    for (int i = 0; i < companiesList.size(); i++) {
-    String playerName = AiPlayerName;
+    
     int turnid = turn;
     String typeID = "Withdraw";
     String companyName = companiesList.get(i).getCompanyName();
     double unitprice = companiesList.get(i).getTurns().get(turn).getPrice();
     int buyqty = companiesList.get(i).getBuyQuantity();
     double cost = Double.parseDouble(decimalFormat.format( unitprice * buyqty));
-    double balance =Double.parseDouble(decimalFormat.format(getCurrentBankBalance(playerName) - cost)); 
+    double balance =Double.parseDouble(decimalFormat.format(getCurrentBankBalance(AiPlayerName) - cost)); 
     
     if(buyqty!=0) {
-    Bank bank = new Bank(playerName, turnid, typeID, cost, balance);
-    Transaction transaction = new Transaction(playerName, turnid, type, companyName, unitprice, buyqty,
+    Bank bank = new Bank(AiPlayerName, turnid, typeID, cost, balance);
+    Transaction transaction = new Transaction(AiPlayerName, turnid, type, companyName, unitprice, buyqty,
       cost);
     brokerService.createBankAccount(bank);
     brokerService.createTransaction(transaction);
@@ -418,19 +419,19 @@ public class ApplicationController {
 
   } else if (type == "SELL") {
    for (int i = 0; i < companiesList.size(); i++) {
-    String playerName = "gihan";
+    
     int turnid = turn;
     String typeID = "Deposit";
     String companyName = companiesList.get(i).getCompanyName();
     double unitprice = companiesList.get(i).getTurns().get(turn).getPrice();
     int sellqty = companiesList.get(i).getSellQuantity();
     double cost = Double.parseDouble(decimalFormat.format( unitprice * sellqty)); 
-    double balance =Double.parseDouble(decimalFormat.format( getCurrentBankBalance(playerName) + cost));  
+    double balance =Double.parseDouble(decimalFormat.format( getCurrentBankBalance(AiPlayerName) + cost));  
     
     // database implemetation to be implement    
     if(sellqty!=0) {
-     Bank bank = new Bank(playerName, turnid, typeID, cost, balance);
-     Transaction transaction = new Transaction(playerName, turnid, type, companyName, unitprice, sellqty,
+     Bank bank = new Bank(AiPlayerName, turnid, typeID, cost, balance);
+     Transaction transaction = new Transaction(AiPlayerName, turnid, type, companyName, unitprice, sellqty,
        cost);
      brokerService.createBankAccount(bank);
      brokerService.createTransaction(transaction);
