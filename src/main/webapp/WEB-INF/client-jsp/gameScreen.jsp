@@ -49,7 +49,6 @@
 					</div> 
 				</div>
 
-
 				<div class="tno">
 					<table>
 						<tr>
@@ -66,35 +65,39 @@
 					</table>
 				</div>
 				<br>
-				<div class="table">
-				  
-					<table id="tblStock" class="table table-black table-reponsive" style="cursor: pointer;">
-                      
-                       <table>
-                           <thead>
-                           
-                            <tr>
-                              
-							<!--  	<th class="col-md-6">Company Name</th>  -->
-							<!--  	<th class="col-md-6">Current Stock Price</th>-->
+				
+			
+				
+				                  <div class="table">
 
-							</tr>
+										<table class="table" style="cursor: pointer;">
+											<thead>
+												<tr>		   
+													<th class="col-md-6">Company Name</th> 
+						  	                        <th class="col-md-6 text-right">Current Stock Price</th>							
+												</tr>
+											</thead>
+											<tbody style="cursor: pointer;">
 
-						
-							
-						</thead>
-						<tbody style="cursor: pointer;">
-							
-								<tbody id="demoTable" style="cursor: pointer;">
-								</tbody>
-					  	</tbody>
-					  	
-					  	    </table>	
-							</table>
-							<br>
-							<br>
-					
-				</div>
+												<table id="tblStock" class="table" style="cursor: pointer;">
+                                                
+													<tbody id="demoTable" style="cursor: pointer;">
+								                    </tbody>
+												</table>
+
+											</tbody>
+								                   
+												</table>
+                                           
+										    <br>
+
+									</div>
+				
+				
+				
+			
+	
+				
 			</div>
 			<br>
 		</div>
@@ -288,22 +291,17 @@
 
 										<table id="tblShares" class="table" style="cursor: pointer;">
 											<thead>
-												<tr>
-												   
+												<tr class="text-white" >		   
 													<th class="col-md-4 company">Company</th>
 													<th class="col-md-4 text-right">Current Price</th>
 													<th class="col-md-2 shares">Shares</th>
-													<th class="col-md-2 Value">Value</th>
-												
+													<th class="col-md-2 Value">Value</th>								
 												</tr>
 											</thead>
-											<tbody style="cursor: pointer;">
-
-												
-                                                
+											<tbody style="cursor: pointer;">                                  
 													<tbody class="tbody" style="cursor: pointer;">
 													</tbody>
-												
+										   		</tbody>		
 												</table>
 
 										    <br>
@@ -312,7 +310,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div>  
 					
 				</form>
 			</div>
@@ -364,84 +362,78 @@
 </script>
 
 <script>
-	//This script is to set time for the game
-	var x = 0;
-	function countDown() {
+ //This script is to set time for the game
+ var x = 0;
+ function countDown() {
 
-		var i = 8;
+  var i = 8;
 
-		document.getElementById('countdownno').style.fontSize = '150%';
-		document.getElementById('countdownno').innerHTML = 9;
-		function myLoop2() {
-			setTimeout(
-					function() {
+  document.getElementById('countdownno').style.fontSize = '150%';
+  document.getElementById('countdownno').innerHTML = 9;
+  function myLoop2() {
+   setTimeout(
+     function() {
 
-						var turnz = document.getElementById('labelcountdown').textContent;
-						document.getElementById('countdownno').style.fontSize = '150%';
-						document.getElementById("countdownno").innerHTML = i;
+      var turnz = document.getElementById('labelcountdown').textContent;
+      document.getElementById('countdownno').style.fontSize = '150%';
+      document.getElementById("countdownno").innerHTML = i;
 
-						i--;
-						if (i >= 0) {
-							myLoop2();
-						} else {
-							if (turnz != '30') {
+      i--;
+      if (i >= 0) {
+       myLoop2();
+      } else {
+       if (turnz != '30') {
 
-								i = 9;
-								myLoop2();
-							} else {
-								$
-										.ajax({
-											type : "GET",
-											url : "${pageContext.request.contextPath}/gameOverview",
-											data : {
+        i = 9;
+        myLoop2();
+       } else {
+        $
+          .ajax({
+           type : "GET",
+           url : "${pageContext.request.contextPath}/gameOverview",
+           data : {
 
-											},
-											success : function(data) {
+           },
+           success : function(data) {
 
-												window.location = '/gameOverview';
+            window.location = '/gameOverview';
 
-											}
-										});
+           }
+          });
 
-							}
+       }
 
-						}
-					}, 1000)
-			x++;
-		}
-		myLoop2();
-	}
+      }
+     }, 1000)
+   x++;
+  }
+  myLoop2();
+ }
 </script>
 
 <script type="text/javascript">
-	//This script is to set time for the game
-	var x = 0;
-	function countDownFunction() {
-		document.getElementById("btnTrade").disabled = true;
+ //This script is to set time for the game
+ var x = 0;
+ function countDownFunction() {
+  document.getElementById("btnTrade").disabled = true;
+  var i = 2;
+  document.getElementById('labelcountdown').style.fontSize = '300%';
+  document.getElementById('labelcountdown').innerHTML = 1;
+  function myLoop() {
+   setTimeout(
+     function() {
+      document.getElementById('labelcountdown').style.fontSize = '300%';
+      document.getElementById("labelcountdown").innerHTML = i;
 
-		var i = 2;
-		document.getElementById('labelcountdown').style.fontSize = '300%';
-		document.getElementById('labelcountdown').innerHTML = 1;
-
-		var i = 1;
-		document.getElementById('lblCountdown').style.fontSize = '1000%';
-		document.getElementById('lblCountdown').innerHTML = 1;
-
-		function myLoop() {
-			setTimeout(
-					function() {
-						document.getElementById('labelcountdown').style.fontSize = '300%';
-						document.getElementById("labelcountdown").innerHTML = i;
-
-						i++;
-						if (i <= 30) {
-							myLoop();
-						}
-					}, 10000)
-		x++;
-		}
-		myLoop();
-	}
+      i++;
+      if (i <= 30) {
+       myLoop();
+      }
+     }, 10000)
+   x++;
+  }
+  myLoop();
+ }
 </script>
 <script type="text/javascript">
 	function shareTblPriceUpdate() {
