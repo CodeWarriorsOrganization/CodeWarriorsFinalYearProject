@@ -945,18 +945,16 @@ text-align:left;
 
 	color:black;
 	text-weight:bold;
-	border-radius:20px;
-	
-	margin:545px 30px 0px 80px;
-    
+	border-radius:20px;    
     text-decoration: none;
     display: inline-block;
-    cursor: pointer;
-    width:190px;
-    height:38px;
+    cursor: pointer;   
+    height:38px; 
     background-color:white;
     border-color:black;
     border-width:3px;
+    margin-right:80px;
+    
 	
 }
 #errormsg{
@@ -972,7 +970,7 @@ text-align:left;
 
 
 .playnow{
-	margin:545px 0px 0px 0px;
+	
 	color:white;
     text-decoration: none;
     display: inline-block;
@@ -983,6 +981,7 @@ text-align:left;
 	background:url("/static/img/PLAY.svg")repeat 0 0;
     border-color:black;
     border-width:3px;
+    
    
 }
 
