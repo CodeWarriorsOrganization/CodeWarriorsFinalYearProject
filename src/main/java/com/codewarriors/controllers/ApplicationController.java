@@ -82,8 +82,8 @@ public class ApplicationController {
      GameContentHolder.MARKET_PRICES = markets.generate();
      GameContentHolder.WAITING_START_TIME = LocalDateTime.now();
      
-     
-     String aiPlayername = "AI Player " +Integer.toString(random.ints(100,130).findAny().getAsInt());
+     //================================Ai 1======================================
+     String aiPlayername = "AI Player 1 ";
      Player aiPlayer = new Player(aiPlayername);
      playerService.savePlayer(aiPlayer);
      p2 = playerService.findByplayerName(name);
@@ -129,17 +129,61 @@ public class ApplicationController {
        transaction(calculatedSelingingQuntity,turn,"SELL",aiPlayername);
        
        
-      }
-      
-      
-      
-      
-      
+      }   
      
       
      }
      
+   //=============================================Ai 2===================================
      
+     String aiPlayername2 = "AI Player 2 ";
+     Player aiPlayer2 = new Player(aiPlayername2);
+     playerService.savePlayer(aiPlayer2);
+     p2 = playerService.findByplayerName(name);
+     Bank aiPlayerBank2 = new Bank(aiPlayername2);
+     brokerService.createBankAccount(aiPlayerBank2);
+     
+     
+     AiPlayerService aiPlayerService2 = new AiPlayerService(GameContentHolder.MARKET_PRICES,
+    		 aiPlayername2);
+     
+     for (int turn = 0; turn <30; turn++) {
+         
+         System.out.println("************************************************Ai Player turn = " + turn +"   ");
+         AiTransactions aiTransactions = aiPlayerService2.play(turn);
+         if (!aiTransactions.getBuyCompanies().isEmpty()) {
+          System.out.println(
+            "-------------------------------- AI calculateBuyingQuantity -------------------------------------------------------------------------");
+                
+          System.out.println("+++++++++++++befor calling calculateBuyingQuantity methode+++++++++");
+          System.out.println("buy quntiy = " + aiTransactions.getBuyCompanies().size());
+
+          List <Company> calculatedBuyingQuntity = calculateBuyingQuantity(aiTransactions.getBuyCompanies(), turn,aiPlayername2);
+          
+          System.out.println("++++++++++++++++++++calculatedBuyingQuntity++++++++++++++++++++++++++");
+          for (int i = 0; i < calculatedBuyingQuntity.size(); i++) {
+           System.out.println("******************Company name=  "+calculatedBuyingQuntity.get(i).getCompanyName() + " qty= " + calculatedBuyingQuntity.get(i).getBuyQuantity());      
+           
+          }
+          
+          transaction(calculatedBuyingQuntity,turn,"BUY",aiPlayername2); 
+         }
+         
+         if (!aiTransactions.getSellCompanies().isEmpty()) {      
+          List <Company> calculatedSelingingQuntity = calculateSellingQuantity(aiTransactions.getSellCompanies(), turn,aiPlayername2);
+          System.out.println("++++++++++++++++++++calculatedSellingQuntity++++++++++++++++++++++++++");
+          for (int i = 0; i < calculatedSelingingQuntity.size(); i++) {
+           System.out.println("******************Company name=  "+calculatedSelingingQuntity.get(i).getCompanyName());
+           
+          }
+          
+          transaction(calculatedSelingingQuntity,turn,"SELL",aiPlayername2);
+          
+          
+         }   
+        
+         
+        }
      
 
      
