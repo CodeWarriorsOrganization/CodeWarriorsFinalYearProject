@@ -88,8 +88,8 @@
     
     <!-- ===========================================PLEASE WAIT===== -->
     
-        <div class="countdowncontent">   
-           <marquee behavior="alternate"><label id="countdownlabel">Please Wait...
+        <div class="countdowncontent" style="width:300px;">   
+           <marquee behavior="alternate"><label id="countdownlabel">Searching for Players...
             </label></marquee>
        </div>
    
