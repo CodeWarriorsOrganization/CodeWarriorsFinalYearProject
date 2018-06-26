@@ -26,7 +26,7 @@ First you need to `clone` the project.
 | 16211129 | P Y Witharana | codewarriors0006|
 
 ## License
-This project is licensed under the MIT License - see the LICENSE.md file for details
+MIT
 
 ## Acknowledgments
 
