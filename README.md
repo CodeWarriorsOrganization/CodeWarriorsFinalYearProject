@@ -9,6 +9,7 @@
 - Windows Platform
 - Java 1.8 and JAVA_HOME System Variable should pointed to 'C:\Program Files\Java\<your jdk version>\'
 - Maven
+- Spring Boot Plugin
 
 ## Installation
 - First you need to download or clone the project.
@@ -17,7 +18,13 @@
 - Double click on the exe.bat file 
 - then, go to web browser and access 'http://localhost:8080'
 - ps: don't close the command prompt until game over.
-
+### If you can not execute the batch(.bat) file, simply follow following alternative procedure:
+- Step 01 : `clone` the project to eclipse jee IDE
+- Step 02 : Right click on the project and go to Run As > Maven built
+- Step 03 : Then Edit Configuration Dialog will raise where should enter value for "Field Goals" as 'clean install'
+- Step 04 : Then click on 'Run'. This operation does download all the maven libaries and which need to execute the project and also you need proper internet connection for this downloading process.
+- Step 05 : Then now you are all set to execute the project. Now Right click on the project and go to 'Run As' > 'Spring Boot App'
+- Step 06 : Wait till the built process is done and then go to Web browser  and access the 'http://localhost:8080'
 ## Tests
 - JUnit Testing
 - Integration Testing
