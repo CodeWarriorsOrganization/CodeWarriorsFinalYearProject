@@ -3,7 +3,7 @@
 
 ### The Online Multiplayer Stock Market Simulator Game
 
-*The game consist of two players: human players and computer players and competing to make the highest profit. Both players have initial amount of 1000LKR at the beginning. This simulator game consists of four major Sectors and twelve Stocks. Each Sector has three pre-defined Stocks. In-built Analyst provides predictions for both players to make profit. Strategic game algorithm generates stocks and events values and handles the final stock price of each and every stock*
+*The game consists of two players: human players and computer players and competing to make the highest profit. Both players have initial amount of 1000LKR at the beginning of the game. This simulator game consists of four major Sectors and twelve Stocks. Each Sector has three pre-defined Stocks. In-built Analyst provides predictions for both players to make profit. Strategic game algorithm generates stocks and events values and handles the final stock price of each and every stock*
 
 ## Instalation
 *to be explain ;)*
@@ -20,7 +20,7 @@
 | 16211129 | P Y Witharana | codewarriors0006|
 
 ## License
------
+
 MIT
 
 ###### Happy Coding :) 
