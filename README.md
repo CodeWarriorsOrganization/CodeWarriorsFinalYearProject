@@ -7,7 +7,7 @@
 
 ## Prerequisites
 - Windows Platform
-- Java 1.8 and JAVA_HOME System Variable pointed to 'C:\Program Files\Java\<your jdk version>\'
+- Java 1.8 and JAVA_HOME System Variable should pointed to 'C:\Program Files\Java\<your jdk version>\'
 - Maven
 
 ## Installation
