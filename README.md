@@ -15,7 +15,7 @@
 - First you need to download or clone the project.
 - If you download the project copy the project in to C drive,
 - Navigate to project folder which contains src and target folders
-- Double click on the exe.bat file 
+- Double click on the exe.bat file
 - then, go to web browser and access 'http://localhost:8080'
 - ps: don't close the command prompt until game over.
 ### If you can not execute the batch(.bat) file, simply follow following alternative procedure:
