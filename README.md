@@ -6,26 +6,29 @@
 *The game consists of two players: human players and computer players and competing to make the highest profit. Both players have initial amount of 1000LKR at the beginning of the game. This simulator game consists of four major Sectors and twelve Stocks. Each Sector has three pre-defined Stocks. In-built Analyst provides predictions for both players to make profit. Strategic game algorithm generates stocks and events values and handles the final stock price of each and every stock. Yes ,let's try it. Markrt Phobia: Overcome the fear of market, the virtual stock exchange.*
 
 ## Prerequisites
+
 - Windows Platform
-- Java 1.8 and JAVA_HOME System Variable should pointed to 'C:\Program Files\Java\<your jdk version>\'
-- Maven
+- You MUST use Java 1.8 and JAVA_HOME System Variable  pointed to 'C:\Program Files\Java\<your jdk version>\'
+  * IF you have only  Java 1.8 in your local machine,execute following batch file :
+      * Exe_For_JDK_1.8.bat
+  * IF you have set JAVA_HOME as Java JDK 1.8 but you also have Java JDK 10.0 in your local machine(but not set as Java 10.0 as JAVA_HOME), execute following batch file:
+      * Exe_For_JDK_10.0.bat
 - Spring Boot Plugin
 
 ## Installation
+
 - First you need to download or clone the project.
-- If you download the project copy the project in to C drive,
 - Navigate to project folder which contains src and target folders
-- Double click on the exe.bat file
+- Double click on the relevent batch(.bat) file
 - then, go to web browser and access 'http://localhost:8080'
 - ps: don't close the command prompt until game over.
 ### If you can not execute the batch(.bat) file, simply follow following alternative procedure:
 - Step 01 : `clone` the project to eclipse jee IDE
-- Step 02 : Right click on the project and go to Run As > Maven built
-- Step 03 : Then Edit Configuration Dialog will raise where should enter value for "Field Goals" as 'clean install'
-- Step 04 : Then click on 'Run'. This operation does download all the maven libaries and which need to execute the project and also you need proper internet connection for this downloading process.
-- Step 05 : Then now you are all set to execute the project. Now Right click on the project and go to 'Run As' > 'Spring Boot App'
-- Step 06 : Wait till the built process is done and then go to Web browser  and access the 'http://localhost:8080'
+- Step 02 : Right click on the project and go to Run As > Sprin Boot App
+- Step 03 : Wait till the built process is done and then go to Web browser  and access the 'http://localhost:8080'
+
 ## Tests
+
 - JUnit Testing
 - Integration Testing
 - Functional Testing
@@ -43,9 +46,11 @@
 | 16211129 | P Y Witharana | codewarriors0006|
 
 ## License
+
 MIT
 
 ## Acknowledgments
+
 We would like to express our special thanks of gratitude to Professor Rem Collier who gave us the support and guidance to complete this project successfully.
 
 **Happy Coding :)** 
